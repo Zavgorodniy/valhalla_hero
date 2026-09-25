@@ -12,22 +12,7 @@ class L10nEn extends L10n {
   String get appName => 'Valhalla Hero';
 
   @override
-  String get tabHome => 'Hall';
-
-  @override
-  String get tabFeed => 'Saga';
-
-  @override
   String get tabShop => 'Loot';
-
-  @override
-  String get tabLeaderboard => 'Ranking';
-
-  @override
-  String get tabProfile => 'Profile';
-
-  @override
-  String get tabStaff => 'Team';
 
   @override
   String get signIn => 'Sign in';
@@ -48,35 +33,13 @@ class L10nEn extends L10n {
   String get nickname => 'Nickname';
 
   @override
-  String get nicknameHint => '3–20 characters, shown on the leaderboard';
-
-  @override
   String get birthDate => 'Date of birth';
-
-  @override
-  String get birthDatePick => 'Pick date of birth';
-
-  @override
-  String get ageGateTitle => 'Adults only';
-
-  @override
-  String get ageGateBody =>
-      'Valhalla Hero is a bar loyalty programme. You must be 18 or older to take part.';
 
   @override
   String get ageGateError => 'You must be at least 18 years old.';
 
   @override
-  String get continueWithGoogle => 'Continue with Google';
-
-  @override
   String get continueWithApple => 'Continue with Apple';
-
-  @override
-  String get orDivider => 'or';
-
-  @override
-  String get noAccountYet => 'No account yet?';
 
   @override
   String get alreadyHaveAccount => 'Already have an account?';
@@ -84,18 +47,6 @@ class L10nEn extends L10n {
   @override
   String get termsAccept =>
       'I accept the terms of participation and have read the privacy policy.';
-
-  @override
-  String get consentPush =>
-      'Push notifications about promotions and events (optional)';
-
-  @override
-  String get consentOffers =>
-      'Personalised offers based on my visits (optional)';
-
-  @override
-  String get consentsNote =>
-      'You can withdraw the optional consents at any time in settings.';
 
   @override
   String get createAccount => 'Create account';
@@ -109,43 +60,12 @@ class L10nEn extends L10n {
   }
 
   @override
-  String levelLabel(int level) {
-    return 'Level $level';
-  }
-
-  @override
   String xpLabel(int xp) {
     return '$xp XP';
   }
 
   @override
-  String coinsLabel(int coins) {
-    return '$coins coins';
-  }
-
-  @override
-  String xpToNextLevel(int xp, String level) {
-    return '$xp XP to $level';
-  }
-
-  @override
-  String get maxLevelReached => 'You have reached Valhalla.';
-
-  @override
   String get onBoard => 'On board';
-
-  @override
-  String get offBoard => 'Left the ship';
-
-  @override
-  String onBoardHint(int days) {
-    return 'Visit us within $days days to stay on board.';
-  }
-
-  @override
-  String streakWeeks(int weeks) {
-    return '$weeks weeks in a row';
-  }
 
   @override
   String visitsCount(int count) {
@@ -159,10 +79,6 @@ class L10nEn extends L10n {
   String get claimVisitTitle => 'Report a visit';
 
   @override
-  String get claimVisitBody =>
-      'Enter your bill amount. The team confirms your visit, then you receive XP and coins.';
-
-  @override
   String get claimVenue => 'Bar';
 
   @override
@@ -172,17 +88,7 @@ class L10nEn extends L10n {
   String get claimNote => 'Note (optional)';
 
   @override
-  String get claimSubmit => 'Submit';
-
-  @override
-  String get claimSubmitted =>
-      'Visit reported. The team will review it shortly.';
-
-  @override
   String get claimTooManyPending => 'You have too many pending reports.';
-
-  @override
-  String get claimStatusPending => 'Awaiting confirmation';
 
   @override
   String get claimStatusApproved => 'Confirmed';
@@ -192,9 +98,6 @@ class L10nEn extends L10n {
 
   @override
   String get myClaims => 'My reports';
-
-  @override
-  String get recentActivity => 'Recent activity';
 
   @override
   String get achievements => 'Achievements';
@@ -215,19 +118,6 @@ class L10nEn extends L10n {
 
   @override
   String get myVouchers => 'My vouchers';
-
-  @override
-  String get redeem => 'Redeem';
-
-  @override
-  String redeemConfirmTitle(String name) {
-    return 'Redeem $name?';
-  }
-
-  @override
-  String redeemConfirmBody(int price) {
-    return '$price coins will be deducted. You get a code to show to the team.';
-  }
 
   @override
   String get redeemed => 'Redeemed! Show this code at the bar.';
@@ -276,9 +166,6 @@ class L10nEn extends L10n {
   String get rewardTypeEventAccess => 'Event';
 
   @override
-  String get buy => 'Buy';
-
-  @override
   String get owned => 'Owned';
 
   @override
@@ -289,11 +176,6 @@ class L10nEn extends L10n {
 
   @override
   String get unequip => 'Unequip';
-
-  @override
-  String purchaseConfirmTitle(String name) {
-    return 'Buy $name?';
-  }
 
   @override
   String get purchaseDone => 'Purchased. You can equip it now.';
@@ -336,30 +218,13 @@ class L10nEn extends L10n {
   String get rarityLegendary => 'Legendary';
 
   @override
-  String get customizeHero => 'Customise hero';
-
-  @override
   String get leaderboardTitle => 'Ranking';
-
-  @override
-  String get leaderboardSubtitle => 'All time · by XP';
 
   @override
   String get leaderboardYou => 'You';
 
   @override
   String get leaderboardHidden => 'You are hidden from the ranking.';
-
-  @override
-  String get feedTitle => 'Saga';
-
-  @override
-  String get feedEmpty => 'No news yet.';
-
-  @override
-  String eventAt(String date) {
-    return '$date';
-  }
 
   @override
   String get postTypeNews => 'News';
@@ -418,23 +283,10 @@ class L10nEn extends L10n {
   String get close => 'Close';
 
   @override
+  String get gotIt => 'Got it';
+
+  @override
   String get retry => 'Retry';
-
-  @override
-  String get loading => 'Loading…';
-
-  @override
-  String get errorGeneric => 'Something went wrong.';
-
-  @override
-  String get responsibleDrinking =>
-      'Enjoy responsibly. Points are for visits, not for drinking.';
-
-  @override
-  String get staffTitle => 'Team area';
-
-  @override
-  String get staffClaims => 'Pending reports';
 
   @override
   String get staffClaimsEmpty => 'No pending reports.';
@@ -447,15 +299,6 @@ class L10nEn extends L10n {
 
   @override
   String get staffRejectReason => 'Reason (optional)';
-
-  @override
-  String get staffVoucher => 'Redeem voucher';
-
-  @override
-  String get staffVoucherCode => 'Enter code';
-
-  @override
-  String get staffVoucherLookup => 'Look up';
 
   @override
   String get staffVoucherConfirm => 'Mark as redeemed';
@@ -539,6 +382,12 @@ class L10nEn extends L10n {
   String get adminStartsAt => 'Starts at';
 
   @override
+  String get adminEndsAt => 'Ends (optional)';
+
+  @override
+  String get adminCategory => 'Category';
+
+  @override
   String get adminPrice => 'Price (coins)';
 
   @override
@@ -614,44 +463,7 @@ class L10nEn extends L10n {
   String get tabHero => 'Hero';
 
   @override
-  String get tabFame => 'Fame';
-
-  @override
-  String get tabVisit => 'Visit';
-
-  @override
-  String greetMorning(String name) {
-    return 'Good morning, $name';
-  }
-
-  @override
-  String greetDay(String name) {
-    return 'Hello, $name';
-  }
-
-  @override
-  String greetEvening(String name) {
-    return 'Good evening, $name';
-  }
-
-  @override
-  String levelOfTotal(int level) {
-    return 'Level $level of 8';
-  }
-
-  @override
   String get heroPath => 'Hero path';
-
-  @override
-  String nextLevelHint(int xp, int visits, String level) {
-    String _temp0 = intl.Intl.pluralLogic(
-      visits,
-      locale: localeName,
-      other: 'about $visits visits',
-      one: 'one visit',
-    );
-    return '$xp XP to go – $_temp0 to $level.';
-  }
 
   @override
   String get statStreak => 'Streak';
@@ -685,84 +497,10 @@ class L10nEn extends L10n {
   }
 
   @override
-  String get nextGoal => 'Your next goal';
-
-  @override
-  String goalStreakTitle(int weeks) {
-    String _temp0 = intl.Intl.pluralLogic(
-      weeks,
-      locale: localeName,
-      other: '$weeks weeks on board',
-      one: 'One week on board',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get goalStreakBody => 'One visit by Sunday keeps your streak alive.';
-
-  @override
-  String goalStreakLevelBody(String level) {
-    return 'One visit by Sunday keeps your streak – and takes you to $level.';
-  }
-
-  @override
-  String get goalStartTitle => 'Start your streak';
-
-  @override
-  String get goalStartBody =>
-      'Visit us every week: from the second week on you earn bonus XP.';
-
-  @override
-  String get goalDoneTitle => 'On board this week';
-
-  @override
-  String goalDoneBody(String level) {
-    return 'Your streak is safe. Next goal: $level.';
-  }
-
-  @override
-  String get goalMaxBody =>
-      'You reached Valhalla. Keep your streak for the glory.';
-
-  @override
   String get thisWeek => 'This week';
 
   @override
-  String weekShort(int week) {
-    return 'W$week';
-  }
-
-  @override
-  String daysLeft(int days) {
-    String _temp0 = intl.Intl.pluralLogic(
-      days,
-      locale: localeName,
-      other: '$days days left',
-      one: '1 day left',
-    );
-    return '$_temp0';
-  }
-
-  @override
-  String get rewardLabel => 'Reward';
-
-  @override
-  String get upcomingEvents => 'Coming up in the hall';
-
-  @override
-  String get fromSaga => 'From the saga';
-
-  @override
   String get all => 'All';
-
-  @override
-  String get pendingClaimTitle => 'Visit is being checked';
-
-  @override
-  String pendingClaimBody(String code) {
-    return 'Show the team code $code.';
-  }
 
   @override
   String get claimSheetSub => 'The team at the bar confirms your visit.';
@@ -903,18 +641,12 @@ class L10nEn extends L10n {
   }
 
   @override
-  String get myHero => 'My hero';
-
-  @override
   String ownedOf(int owned, int total) {
     return '$owned of $total owned';
   }
 
   @override
   String get cosmeticOnly => 'Cosmetic only – no gameplay effect';
-
-  @override
-  String get emptySlot => 'Empty';
 
   @override
   String get heroForm => 'Hero form';
@@ -1169,7 +901,7 @@ class L10nEn extends L10n {
   String get teamMode => 'Open team mode';
 
   @override
-  String get teamModeCaption => 'Confirm visits, check vouchers';
+  String get teamModeCaption => 'Confirm visits, review photos, check vouchers';
 
   @override
   String get legal => 'Legal';
@@ -1239,7 +971,7 @@ class L10nEn extends L10n {
 
   @override
   String get welcomeBody =>
-      'Report visits, rise through eight levels and trade coins for real loot.';
+      'Scan receipts, share moments from the hall and trade coins for merch and exclusive perks.';
 
   @override
   String get continueWithEmail => 'Email';
@@ -1326,10 +1058,219 @@ class L10nEn extends L10n {
   String get daySun => 'SUN';
 
   @override
-  String eventFrom(String time) {
-    return 'from $time';
+  String get comingSoon => 'Coming soon';
+
+  @override
+  String get tabEvents => 'Events';
+
+  @override
+  String get tabSaga => 'Saga';
+
+  @override
+  String get tabScan => 'Scan';
+
+  @override
+  String get tonight => 'Tonight';
+
+  @override
+  String get tomorrow => 'Tomorrow';
+
+  @override
+  String get liveNow => 'On now';
+
+  @override
+  String get eventsEmpty => 'No events planned right now.';
+
+  @override
+  String get catMatch => 'Live sports';
+
+  @override
+  String get catLive => 'Live music';
+
+  @override
+  String get catQuiz => 'Quiz';
+
+  @override
+  String get catParty => 'Party';
+
+  @override
+  String get catSpecial => 'Special';
+
+  @override
+  String get scanTitle => 'Scan receipt';
+
+  @override
+  String get scanHint => 'Point the camera at the QR code on your receipt.';
+
+  @override
+  String get scanFromPhotos => 'From photos';
+
+  @override
+  String get scanEnterCode => 'Enter code';
+
+  @override
+  String get scanCodeHint => 'Printed below the QR code on your receipt.';
+
+  @override
+  String get scanNoQr => 'Report without QR';
+
+  @override
+  String get scanDemo => 'Demo receipt';
+
+  @override
+  String get scanChecking => 'Checking receipt …';
+
+  @override
+  String get torch => 'Light';
+
+  @override
+  String get scanNoCamera =>
+      'No camera available. Pick a photo or enter the code.';
+
+  @override
+  String get scanNothingInImage => 'No QR code found in the image.';
+
+  @override
+  String get scanOnce =>
+      'Each receipt counts once – XP per visit, coins by amount.';
+
+  @override
+  String get receiptErrUsed => 'This receipt has already been redeemed.';
+
+  @override
+  String get receiptErrInvalid => 'This is not a valid Valhalla receipt.';
+
+  @override
+  String get receiptErrTooOld => 'This receipt is too old.';
+
+  @override
+  String get receiptErrUnknownVenue =>
+      'This receipt is not from a Valhalla bar.';
+
+  @override
+  String get receiptErrDailyLimit =>
+      'You already redeemed a receipt here today. See you tomorrow!';
+
+  @override
+  String get sagaComposerTitle => 'Share your moment';
+
+  @override
+  String sagaComposerSub(int xp, int coins) {
+    return 'Photo from the hall or with Valhalla merch · +$xp XP · +$coins coins';
   }
 
   @override
-  String get comingSoon => 'Coming soon';
+  String get checkinNewTitle => 'Share photo';
+
+  @override
+  String get takePhoto => 'Camera';
+
+  @override
+  String get pickPhoto => 'Library';
+
+  @override
+  String get captionHint => 'What is happening in the hall?';
+
+  @override
+  String get tagEvent => 'Tag an event';
+
+  @override
+  String get noEvent => 'No event';
+
+  @override
+  String get checkinRules =>
+      'Only photos from the hall or with Valhalla merch. The team reviews every photo before it appears in the saga.';
+
+  @override
+  String checkinReward(int xp, int coins) {
+    return '+$xp XP · +$coins coins after approval (once per day)';
+  }
+
+  @override
+  String get checkinSubmit => 'Send for review';
+
+  @override
+  String get checkinPendingTitle => 'Your photo is being reviewed';
+
+  @override
+  String get checkinPendingBody =>
+      'As soon as the team approves it, it appears in the saga. Until then you cannot send another photo.';
+
+  @override
+  String get checkinWithdraw => 'Withdraw';
+
+  @override
+  String get checkinRejectedTitle => 'Photo not approved';
+
+  @override
+  String get checkinErrPending => 'You already have a photo under review.';
+
+  @override
+  String get sagaEmpty => 'No photos yet. Be the first!';
+
+  @override
+  String get justNow => 'just now';
+
+  @override
+  String agoMinutes(int minutes) {
+    return '$minutes min ago';
+  }
+
+  @override
+  String agoHours(int hours) {
+    return '$hours h ago';
+  }
+
+  @override
+  String get photosInSaga => 'Photos in the saga';
+
+  @override
+  String teamPhotosTab(int count) {
+    return 'Photos · $count';
+  }
+
+  @override
+  String get teamPhotosEmpty => 'No photos to review.';
+
+  @override
+  String get approvePhoto => 'Approve';
+
+  @override
+  String get helpFeedback => 'Help & feedback';
+
+  @override
+  String get reportBug => 'Report a bug';
+
+  @override
+  String get reportBugCaption => 'Something not working? Let us know.';
+
+  @override
+  String get bugDescribe => 'What happened?';
+
+  @override
+  String get bugHint => 'Briefly describe what you did and what went wrong.';
+
+  @override
+  String get bugIncludeInfo => 'Include app and device info';
+
+  @override
+  String get bugSend => 'Send';
+
+  @override
+  String get bugThanks => 'Thanks! We are on it.';
+
+  @override
+  String get chooseLanguage => 'Choose language';
+
+  @override
+  String whoLikes(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count likes',
+      one: '1 like',
+      zero: 'No likes yet',
+    );
+    return '$_temp0';
+  }
 }

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:valhalla_core/valhalla_core.dart';
 
 import '../../shared/ui.dart';
+import '../leaderboard/fame_section.dart';
 import 'item_tile.dart';
 
-/// Held tab: the hero with five cosmetic slots, the level path and achievements.
+/// Held tab: the hero with five cosmetic slots, status, Hall of Fame and achievements.
 class HeroScreen extends ConsumerStatefulWidget {
   const HeroScreen({super.key, this.initialSegment = 0});
   final int initialSegment;
@@ -81,9 +81,17 @@ class _HeroScreenState extends ConsumerState<HeroScreen> {
 
     final content = switch (_seg) {
       0 => _gear(t, locale, items, owned, equippedIds, achievements),
-      1 => _Path(profile: profile),
+      1 => const FameSliver(),
       _ => _Achievements(profile: profile),
     };
+    final economy = ref.watch(economyProvider).valueOrNull;
+    final unread = ref.watch(unreadCountProvider);
+    final cur = levels[profile.level];
+    final next = levels[profile.level + 1];
+    final xpProgress = next == null ? 1.0 : (profile.xp - (cur?.xpThreshold ?? 0)) / (next.xpThreshold - (cur?.xpThreshold ?? 0));
+    final onBoardDays = economy?.onboardWindowDays ?? 30;
+    final onBoard = isOnBoard(profile.lastVisitAt, onBoardDays);
+    final daysLeft = profile.lastVisitAt == null ? 0 : (onBoardDays - DateTime.now().difference(profile.lastVisitAt!).inDays).clamp(0, onBoardDays);
 
     return Scaffold(
       backgroundColor: VColors.bg,
@@ -100,13 +108,10 @@ class _HeroScreenState extends ConsumerState<HeroScreen> {
                   SafeArea(
                     bottom: false,
                     child: VTopBar(
-                      title: t.myHero,
+                      title: t.tabHero,
                       actions: [
-                        VRoundButton(
-                          icon: VIcons.share,
-                          tooltip: t.share,
-                          onTap: () => Share.share(t.shareLevelText(levelName(levels, profile.level, form))),
-                        ),
+                        VCoinPill(amount: profile.coinBalance, onTap: () => context.push('/coins')),
+                        VRoundButton(icon: VIcons.horn, tooltip: t.notifications, dot: unread > 0, onTap: () => context.push('/notifications')),
                         VRoundButton(icon: VIcons.settings, tooltip: t.settings, onTap: () => context.push('/settings')),
                       ],
                     ),
@@ -141,10 +146,44 @@ class _HeroScreenState extends ConsumerState<HeroScreen> {
               ),
             ),
             SliverPadding(
-              padding: const EdgeInsets.fromLTRB(20, 8, 20, 16),
+              padding: const EdgeInsets.fromLTRB(20, 4, 20, 0),
+              sliver: SliverToBoxAdapter(
+                child: Column(children: [
+                  Row(children: [
+                    const VGem(size: 15),
+                    const SizedBox(width: 6),
+                    Text(t.xpLabel(profile.xp), style: VType.body(size: 13, weight: FontWeight.w800, color: VColors.frostBright, tabular: true)),
+                    const Spacer(),
+                    GestureDetector(
+                      onTap: () => context.push('/path'),
+                      behavior: HitTestBehavior.opaque,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Row(children: [
+                          Text(next == null ? t.heroPath : '${vNum(next.xpThreshold)} · ${next.nameFor(form)}',
+                              style: VType.body(size: 13, weight: FontWeight.w800, color: VColors.gold, tabular: true)),
+                          const VIcon(VIcons.chevRight, size: 16, color: VColors.gold, stroke: 2),
+                        ]),
+                      ),
+                    ),
+                  ]),
+                  VXpBar(progress: xpProgress),
+                  const SizedBox(height: 14),
+                  Row(children: [
+                    Expanded(child: VStatTile(icon: VIcons.ship, color: VColors.goldBright, value: t.weeksCount(profile.currentStreakWeeks), label: t.statStreak)),
+                    const SizedBox(width: 10),
+                    Expanded(child: VStatTile(icon: VIcons.anchor, color: onBoard ? VColors.moss : VColors.ash, value: onBoard ? t.daysCount(daysLeft) : '—', label: t.statOnBoard)),
+                    const SizedBox(width: 10),
+                    Expanded(child: VStatTile(icon: VIcons.seal, color: const Color(0xFFD6CAB4), value: vNum(profile.visitCount), label: t.statVisits)),
+                  ]),
+                ]),
+              ),
+            ),
+            SliverPadding(
+              padding: const EdgeInsets.fromLTRB(20, 18, 20, 16),
               sliver: SliverToBoxAdapter(
                 child: VSegmented(
-                  labels: [t.gear, t.heroPath, t.achievements],
+                  labels: [t.gear, t.fameTitle, t.achievements],
                   index: _seg,
                   onChanged: (i) => setState(() {
                     _seg = i;
@@ -234,8 +273,8 @@ class _HeroScreenState extends ConsumerState<HeroScreen> {
 }
 
 // ---------------------------------------------------------------- Heldenweg
-class _Path extends ConsumerWidget {
-  const _Path({required this.profile});
+class PathSliver extends ConsumerWidget {
+  const PathSliver({super.key, required this.profile});
   final Profile profile;
 
   @override

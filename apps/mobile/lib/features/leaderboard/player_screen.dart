@@ -114,9 +114,44 @@ class PlayerScreen extends ConsumerWidget {
               ]),
             ),
           ),
+          ..._photos(context, ref, p.id),
           const SliverToBoxAdapter(child: SizedBox(height: 48)),
         ]),
       ),
     );
+  }
+
+  List<Widget> _photos(BuildContext context, WidgetRef ref, String id) {
+    final t = L10n.of(context);
+    final photos = ref.watch(playerCheckinsProvider(id)).valueOrNull ?? const <FeedCheckin>[];
+    if (photos.isEmpty) return const [];
+    final repo = ref.read(communityRepoProvider);
+    return [
+      SliverPadding(padding: const EdgeInsets.fromLTRB(0, 28, 0, 14), sliver: SliverToBoxAdapter(child: VSectionHeader(t.photosInSaga))),
+      SliverPadding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        sliver: SliverGrid.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, mainAxisSpacing: 6, crossAxisSpacing: 6, childAspectRatio: 4 / 5),
+          itemCount: photos.length,
+          itemBuilder: (_, i) => GestureDetector(
+            onTap: () => showDialog<void>(
+              context: context,
+              builder: (ctx) => Dialog(
+                backgroundColor: Colors.transparent,
+                insetPadding: const EdgeInsets.all(16),
+                child: GestureDetector(
+                  onTap: () => Navigator.pop(ctx),
+                  child: ClipRRect(borderRadius: BorderRadius.circular(18), child: Image.network(repo.photoUrl(photos[i].photoPath), fit: BoxFit.contain)),
+                ),
+              ),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: Image.network(repo.photoUrl(photos[i].photoPath), fit: BoxFit.cover, errorBuilder: (_, _, _) => Container(color: VColors.surface2)),
+            ),
+          ),
+        ),
+      ),
+    ];
   }
 }

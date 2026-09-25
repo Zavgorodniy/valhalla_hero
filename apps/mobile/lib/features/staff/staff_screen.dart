@@ -22,7 +22,10 @@ class _StaffScreenState extends ConsumerState<StaffScreen> {
   @override
   void initState() {
     super.initState();
-    _poll = Timer.periodic(const Duration(seconds: 10), (_) => ref.invalidate(pendingClaimsProvider));
+    _poll = Timer.periodic(const Duration(seconds: 10), (_) {
+      ref.invalidate(pendingClaimsProvider);
+      ref.invalidate(checkinQueueProvider);
+    });
   }
 
   @override
@@ -35,6 +38,7 @@ class _StaffScreenState extends ConsumerState<StaffScreen> {
   Widget build(BuildContext context) {
     final t = L10n.of(context);
     final pending = ref.watch(pendingClaimsProvider).valueOrNull?.length ?? 0;
+    final photos = ref.watch(checkinQueueProvider).valueOrNull?.length ?? 0;
     final venue = ref.watch(activeVenuesProvider).valueOrNull?.firstOrNull;
     return VScreen(
       glow: VColors.frost,
@@ -69,16 +73,16 @@ class _StaffScreenState extends ConsumerState<StaffScreen> {
                     ]),
                   ),
                   TextButton(
-                    onPressed: () => context.canPop() ? context.pop() : context.go('/home'),
+                    onPressed: () => context.canPop() ? context.pop() : context.go('/hero'),
                     child: Text(t.exitTeam, style: VType.body(size: 13, weight: FontWeight.w800, color: VColors.frostBright)),
                   ),
                 ]),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-                child: VSegmented(labels: [t.claimsTab(pending), t.voucherCheckTab], index: _seg, onChanged: (i) => setState(() => _seg = i)),
+                child: VSegmented(labels: [t.claimsTab(pending), t.teamPhotosTab(photos), t.voucherCheckTab], index: _seg, onChanged: (i) => setState(() => _seg = i)),
               ),
-              Expanded(child: _seg == 0 ? const _Claims() : const _VoucherCheck()),
+              Expanded(child: switch (_seg) { 0 => const _Claims(), 1 => const _Photos(), _ => const _VoucherCheck() }),
             ]),
           ),
         ),
@@ -406,5 +410,134 @@ class _VoucherCheckState extends ConsumerState<_VoucherCheck> {
         Text(t.voucherUsedHint, textAlign: TextAlign.center, style: VType.body(size: 12.5, color: VColors.ash, height: 1.45)),
       ],
     ]);
+  }
+}
+
+class _Photos extends ConsumerWidget {
+  const _Photos();
+
+  Future<void> _review(BuildContext context, WidgetRef ref, QueuedCheckin c, bool approve) async {
+    final t = L10n.of(context);
+    String? reason;
+    if (!approve) {
+      final ctrl = TextEditingController();
+      final ok = await showDialog<bool>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text(t.staffReject),
+          content: TextField(controller: ctrl, decoration: InputDecoration(hintText: t.staffRejectReason)),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(ctx, false), child: Text(t.cancel)),
+            TextButton(onPressed: () => Navigator.pop(ctx, true), child: Text(t.staffReject, style: VType.body(size: 14, weight: FontWeight.w800, color: VColors.bloodText))),
+          ],
+        ),
+      );
+      if (ok != true) return;
+      reason = ctrl.text.trim().isEmpty ? null : ctrl.text.trim();
+    }
+    try {
+      await ref.read(communityRepoProvider).review(c.id, approve: approve, reason: reason);
+      HapticFeedback.mediumImpact();
+      ref.invalidate(checkinQueueProvider);
+      ref.invalidate(checkinFeedProvider);
+    } on ApiError catch (e) {
+      if (context.mounted) showSnack(context, e.message, error: true);
+    }
+  }
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final t = L10n.of(context);
+    final locale = ref.watch(localeCodeProvider);
+    final levels = ref.watch(levelMapProvider);
+    final queue = ref.watch(checkinQueueProvider);
+    final repo = ref.read(communityRepoProvider);
+    return RefreshIndicator(
+      color: VColors.frost,
+      onRefresh: () async => ref.invalidate(checkinQueueProvider),
+      child: queue.when(
+        skipLoadingOnReload: true,
+        loading: vLoading,
+        error: (e, _) => ListView(children: [Padding(padding: const EdgeInsets.all(24), child: Text('$e', style: VType.body(size: 12, color: VColors.ash)))]),
+        data: (list) => list.isEmpty
+            ? ListView(children: [
+                const SizedBox(height: 80),
+                const Center(child: VIcon(VIcons.image, size: 44, color: VColors.moss, stroke: 1.6)),
+                const SizedBox(height: 12),
+                Center(child: Text(t.teamPhotosEmpty, style: VType.body(size: 14, color: VColors.ash))),
+              ])
+            : ListView.separated(
+                padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
+                itemCount: list.length,
+                separatorBuilder: (_, _) => const SizedBox(height: 14),
+                itemBuilder: (_, i) {
+                  final c = list[i];
+                  return VCard(
+                    padding: EdgeInsets.zero,
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                      Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Row(children: [
+                          VPortrait(level: c.level, form: c.heroForm, size: 36),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                              Text(c.nickname, style: VType.body(size: 15, weight: FontWeight.w800)),
+                              Text('${romanLevel(c.level)} · ${levelName(levels, c.level, c.heroForm)} · ${t.visitsCount(c.visitCount)}',
+                                  style: VType.body(size: 12, weight: FontWeight.w600, color: VColors.ash)),
+                            ]),
+                          ),
+                          Text(formatDateTime(c.createdAt, locale: locale), style: VType.body(size: 11.5, weight: FontWeight.w700, color: VColors.ash)),
+                        ]),
+                      ),
+                      AspectRatio(
+                        aspectRatio: 4 / 5,
+                        child: Image.network(repo.photoUrl(c.photoPath), fit: BoxFit.cover, errorBuilder: (_, _, _) => Container(color: VColors.surface2)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(12),
+                        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                          if (c.caption != null) Text('„${c.caption}“', style: VType.body(size: 14, color: const Color(0xFFD6CAB4))),
+                          if (c.eventTitle != null)
+                            Padding(
+                              padding: const EdgeInsets.only(top: 6),
+                              child: Row(children: [
+                                const VIcon(VIcons.calendar, size: 14, color: VColors.frostBright, stroke: 2),
+                                const SizedBox(width: 6),
+                                Text(c.eventTitle!, style: VType.body(size: 12.5, weight: FontWeight.w800, color: VColors.frostBright)),
+                              ]),
+                            ),
+                          const SizedBox(height: 12),
+                          Row(children: [
+                            Expanded(
+                              child: OutlinedButton(
+                                onPressed: () => _review(context, ref, c, false),
+                                style: OutlinedButton.styleFrom(
+                                    foregroundColor: VColors.bloodText,
+                                    side: BorderSide(color: VColors.bloodText.withValues(alpha: .55)),
+                                    minimumSize: const Size(0, 46),
+                                    padding: const EdgeInsets.symmetric(horizontal: 8)),
+                                child: Text(t.staffReject, style: VType.body(size: 14.5, weight: FontWeight.w800, color: VColors.bloodText)),
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              flex: 2,
+                              child: FilledButton.icon(
+                                onPressed: () => _review(context, ref, c, true),
+                                style: FilledButton.styleFrom(backgroundColor: const Color(0xFF86B368), foregroundColor: const Color(0xFF0F1A0A), minimumSize: const Size(0, 46)),
+                                icon: const VIcon(VIcons.check, size: 18, color: Color(0xFF0F1A0A), stroke: 2.6),
+                                label: Text(t.approvePhoto, style: VType.body(size: 14.5, weight: FontWeight.w800, color: const Color(0xFF0F1A0A))),
+                              ),
+                            ),
+                          ]),
+                        ]),
+                      ),
+                    ]),
+                  );
+                },
+              ),
+      ),
+    );
   }
 }

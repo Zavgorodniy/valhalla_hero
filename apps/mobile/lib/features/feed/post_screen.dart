@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 import 'package:valhalla_core/valhalla_core.dart';
 
 import '../../shared/ui.dart';
-import '../home/home_screen.dart';
+import '../events/event_widgets.dart';
 
 /// Event or news post. Likes only: no comments and no RSVP by design.
 class PostScreen extends ConsumerStatefulWidget {

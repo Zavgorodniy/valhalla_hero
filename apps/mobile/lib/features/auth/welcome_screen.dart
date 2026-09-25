@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:valhalla_core/valhalla_core.dart';
 
+import '../../shared/locale.dart';
+import '../../shared/sheets.dart';
 import 'auth_service.dart';
 
 /// First screen for signed-out guests: the journey from Thrallin to Valkyrja,
@@ -132,6 +134,28 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
                 ),
               );
             }),
+          ),
+          SafeArea(
+            child: Align(
+              alignment: Alignment.topRight,
+              child: Padding(
+                padding: const EdgeInsets.all(12),
+                child: GestureDetector(
+                  onTap: () => showLanguageSheet(context, ref),
+                  child: Container(
+                    height: 36,
+                    padding: const EdgeInsets.symmetric(horizontal: 12),
+                    decoration: BoxDecoration(color: VColors.bg.withValues(alpha: .7), borderRadius: BorderRadius.circular(99), border: Border.all(color: VColors.border)),
+                    child: Row(mainAxisSize: MainAxisSize.min, children: [
+                      const VIcon(VIcons.globe, size: 16, color: VColors.parchment, stroke: 1.8),
+                      const SizedBox(width: 6),
+                      Text(languageName(ref.watch(uiLocaleProvider)), style: VType.body(size: 13, weight: FontWeight.w800)),
+                      const VIcon(VIcons.chevDown, size: 14, color: VColors.ash, stroke: 2),
+                    ]),
+                  ),
+                ),
+              ),
+            ),
           ),
         ]),
       ),

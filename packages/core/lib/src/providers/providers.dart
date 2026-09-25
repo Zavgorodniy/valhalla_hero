@@ -4,6 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import '../models/enums.dart';
 import '../models/models.dart';
 import '../repositories/admin_repository.dart';
+import '../repositories/community_repository.dart';
 import '../repositories/feed_repository.dart';
 import '../repositories/leaderboard_repository.dart';
 import '../repositories/profile_repository.dart';
@@ -28,6 +29,7 @@ final shopRepoProvider = Provider((ref) => ShopRepository(ref.watch(supabaseProv
 final feedRepoProvider = Provider((ref) => FeedRepository(ref.watch(supabaseProvider)));
 final leaderboardRepoProvider = Provider((ref) => LeaderboardRepository(ref.watch(supabaseProvider)));
 final adminRepoProvider = Provider((ref) => AdminRepository(ref.watch(supabaseProvider)));
+final communityRepoProvider = Provider((ref) => CommunityRepository(ref.watch(supabaseProvider)));
 
 // ---------- own profile ----------
 class ProfileNotifier extends AsyncNotifier<Profile?> {
@@ -117,7 +119,27 @@ final feedProvider = FutureProvider<List<Post>>((ref) => ref.watch(feedRepoProvi
 final leaderboardProvider = FutureProvider<List<PublicProfile>>((ref) => ref.watch(leaderboardRepoProvider).top());
 final myRankProvider = FutureProvider<PublicProfile?>((ref) => ref.watch(leaderboardRepoProvider).me());
 
+// ---------- community ----------
+final checkinFeedProvider = FutureProvider<List<FeedCheckin>>((ref) => ref.watch(communityRepoProvider).feed());
+final myCheckinsProvider = FutureProvider<List<Checkin>>((ref) => ref.watch(communityRepoProvider).mine());
+final playerCheckinsProvider = FutureProvider.family<List<FeedCheckin>, String>((ref, id) => ref.watch(communityRepoProvider).feedOf(id));
+
+/// The guest's check-in that is waiting for moderation, if any.
+final pendingCheckinProvider = Provider<Checkin?>((ref) =>
+    (ref.watch(myCheckinsProvider).valueOrNull ?? const <Checkin>[]).where((c) => c.status == CheckinStatus.pending).firstOrNull);
+
+/// Upcoming (and currently running) events, soonest first.
+final upcomingEventsProvider = Provider<List<Post>>((ref) {
+  final posts = ref.watch(feedProvider).valueOrNull ?? const <Post>[];
+  final now = DateTime.now();
+  return posts
+      .where((p) => p.type == PostType.event && p.startsAt != null && (p.endsAt ?? p.startsAt!.add(const Duration(hours: 3))).isAfter(now))
+      .toList()
+    ..sort((a, b) => a.startsAt!.compareTo(b.startsAt!));
+});
+
 // ---------- staff / admin ----------
+final checkinQueueProvider = FutureProvider<List<QueuedCheckin>>((ref) => ref.watch(communityRepoProvider).queue());
 final pendingClaimsProvider = FutureProvider<List<VisitClaim>>((ref) => ref.watch(visitRepoProvider).pendingClaims());
 final allClaimsProvider = FutureProvider<List<VisitClaim>>((ref) => ref.watch(visitRepoProvider).allClaims());
 final adminStatsProvider = FutureProvider<AdminStats>((ref) => ref.watch(adminRepoProvider).stats());
@@ -138,4 +160,6 @@ void invalidateUserData(WidgetRef ref) {
   ref.invalidate(leaderboardProvider);
   ref.invalidate(myRankProvider);
   ref.invalidate(rewardsProvider);
+  ref.invalidate(myCheckinsProvider);
+  ref.invalidate(checkinFeedProvider);
 }

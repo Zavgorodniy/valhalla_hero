@@ -30,11 +30,13 @@ class _NotificationsScreenState extends ConsumerState<NotificationsScreen> {
   static (VIcons, Color, String?) _style(String type) => switch (type) {
         'level_up' => (VIcons.arrowUp, VColors.frostBright, '/hero?seg=1'),
         'achievement' => (VIcons.star, VColors.goldBright, '/hero?seg=2'),
-        'visit_credited' => (VIcons.seal, VColors.moss, '/home'),
-        'claim_rejected' => (VIcons.close, VColors.bloodText, '/home'),
+        'visit_credited' => (VIcons.seal, VColors.moss, '/hero'),
+        'claim_rejected' => (VIcons.close, VColors.bloodText, '/hero'),
         'coins_expiring' => (VIcons.hourglass, VColors.amber, '/coins'),
         'voucher_redeemed' => (VIcons.ticket, VColors.goldBright, '/shop?seg=2'),
-        'event' || 'post' => (VIcons.music, VColors.frostBright, '/home'),
+        'event' || 'post' => (VIcons.music, VColors.frostBright, '/events'),
+        'checkin_approved' => (VIcons.check, VColors.moss, '/saga'),
+        'checkin_rejected' => (VIcons.close, VColors.bloodText, '/saga'),
         _ => (VIcons.horn, VColors.goldBright, null),
       };
 

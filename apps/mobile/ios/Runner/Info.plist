@@ -2,6 +2,23 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+	<string>Zum Scannen des QR-Codes auf deinem Beleg und für Fotos aus der Halle.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Um ein Foto aus deiner Mediathek in der Saga zu teilen oder einen Beleg-QR aus einem Bild zu lesen.</string>
+	<key>CFBundleLocalizations</key>
+	<array>
+		<string>de</string>
+		<string>en</string>
+		<string>ru</string>
+		<string>uk</string>
+		<string>nl</string>
+		<string>fr</string>
+		<string>it</string>
+		<string>es</string>
+		<string>pl</string>
+		<string>tr</string>
+	</array>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>

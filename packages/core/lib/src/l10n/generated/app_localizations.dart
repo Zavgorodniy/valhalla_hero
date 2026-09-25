@@ -7,6 +7,14 @@ import 'package:intl/intl.dart' as intl;
 
 import 'app_localizations_de.dart';
 import 'app_localizations_en.dart';
+import 'app_localizations_es.dart';
+import 'app_localizations_fr.dart';
+import 'app_localizations_it.dart';
+import 'app_localizations_nl.dart';
+import 'app_localizations_pl.dart';
+import 'app_localizations_ru.dart';
+import 'app_localizations_tr.dart';
+import 'app_localizations_uk.dart';
 
 // ignore_for_file: type=lint
 
@@ -95,6 +103,14 @@ abstract class L10n {
   static const List<Locale> supportedLocales = <Locale>[
     Locale('de'),
     Locale('en'),
+    Locale('es'),
+    Locale('fr'),
+    Locale('it'),
+    Locale('nl'),
+    Locale('pl'),
+    Locale('ru'),
+    Locale('tr'),
+    Locale('uk'),
   ];
 
   /// No description provided for @appName.
@@ -103,41 +119,11 @@ abstract class L10n {
   /// **'Valhalla Hero'**
   String get appName;
 
-  /// No description provided for @tabHome.
-  ///
-  /// In de, this message translates to:
-  /// **'Halle'**
-  String get tabHome;
-
-  /// No description provided for @tabFeed.
-  ///
-  /// In de, this message translates to:
-  /// **'Saga'**
-  String get tabFeed;
-
   /// No description provided for @tabShop.
   ///
   /// In de, this message translates to:
   /// **'Beute'**
   String get tabShop;
-
-  /// No description provided for @tabLeaderboard.
-  ///
-  /// In de, this message translates to:
-  /// **'Rangliste'**
-  String get tabLeaderboard;
-
-  /// No description provided for @tabProfile.
-  ///
-  /// In de, this message translates to:
-  /// **'Profil'**
-  String get tabProfile;
-
-  /// No description provided for @tabStaff.
-  ///
-  /// In de, this message translates to:
-  /// **'Team'**
-  String get tabStaff;
 
   /// No description provided for @signIn.
   ///
@@ -175,35 +161,11 @@ abstract class L10n {
   /// **'Nickname'**
   String get nickname;
 
-  /// No description provided for @nicknameHint.
-  ///
-  /// In de, this message translates to:
-  /// **'3–20 Zeichen, wird in der Rangliste angezeigt'**
-  String get nicknameHint;
-
   /// No description provided for @birthDate.
   ///
   /// In de, this message translates to:
   /// **'Geburtsdatum'**
   String get birthDate;
-
-  /// No description provided for @birthDatePick.
-  ///
-  /// In de, this message translates to:
-  /// **'Geburtsdatum wählen'**
-  String get birthDatePick;
-
-  /// No description provided for @ageGateTitle.
-  ///
-  /// In de, this message translates to:
-  /// **'Nur für Erwachsene'**
-  String get ageGateTitle;
-
-  /// No description provided for @ageGateBody.
-  ///
-  /// In de, this message translates to:
-  /// **'Valhalla Hero ist ein Treueprogramm einer Bar. Die Teilnahme ist ab 18 Jahren möglich.'**
-  String get ageGateBody;
 
   /// No description provided for @ageGateError.
   ///
@@ -211,29 +173,11 @@ abstract class L10n {
   /// **'Du musst mindestens 18 Jahre alt sein.'**
   String get ageGateError;
 
-  /// No description provided for @continueWithGoogle.
-  ///
-  /// In de, this message translates to:
-  /// **'Mit Google fortfahren'**
-  String get continueWithGoogle;
-
   /// No description provided for @continueWithApple.
   ///
   /// In de, this message translates to:
   /// **'Mit Apple fortfahren'**
   String get continueWithApple;
-
-  /// No description provided for @orDivider.
-  ///
-  /// In de, this message translates to:
-  /// **'oder'**
-  String get orDivider;
-
-  /// No description provided for @noAccountYet.
-  ///
-  /// In de, this message translates to:
-  /// **'Noch kein Konto?'**
-  String get noAccountYet;
 
   /// No description provided for @alreadyHaveAccount.
   ///
@@ -246,24 +190,6 @@ abstract class L10n {
   /// In de, this message translates to:
   /// **'Ich akzeptiere die Teilnahmebedingungen und habe die Datenschutzerklärung gelesen.'**
   String get termsAccept;
-
-  /// No description provided for @consentPush.
-  ///
-  /// In de, this message translates to:
-  /// **'Push-Nachrichten zu Aktionen und Events (optional)'**
-  String get consentPush;
-
-  /// No description provided for @consentOffers.
-  ///
-  /// In de, this message translates to:
-  /// **'Personalisierte Angebote auf Basis meiner Besuche (optional)'**
-  String get consentOffers;
-
-  /// No description provided for @consentsNote.
-  ///
-  /// In de, this message translates to:
-  /// **'Die optionalen Einwilligungen kannst du jederzeit in den Einstellungen widerrufen.'**
-  String get consentsNote;
 
   /// No description provided for @createAccount.
   ///
@@ -283,59 +209,17 @@ abstract class L10n {
   /// **'Anmeldung fehlgeschlagen: {message}'**
   String authError(String message);
 
-  /// No description provided for @levelLabel.
-  ///
-  /// In de, this message translates to:
-  /// **'Stufe {level}'**
-  String levelLabel(int level);
-
   /// No description provided for @xpLabel.
   ///
   /// In de, this message translates to:
   /// **'{xp} XP'**
   String xpLabel(int xp);
 
-  /// No description provided for @coinsLabel.
-  ///
-  /// In de, this message translates to:
-  /// **'{coins} Münzen'**
-  String coinsLabel(int coins);
-
-  /// No description provided for @xpToNextLevel.
-  ///
-  /// In de, this message translates to:
-  /// **'Noch {xp} XP bis {level}'**
-  String xpToNextLevel(int xp, String level);
-
-  /// No description provided for @maxLevelReached.
-  ///
-  /// In de, this message translates to:
-  /// **'Du hast Walhalla erreicht.'**
-  String get maxLevelReached;
-
   /// No description provided for @onBoard.
   ///
   /// In de, this message translates to:
   /// **'An Bord'**
   String get onBoard;
-
-  /// No description provided for @offBoard.
-  ///
-  /// In de, this message translates to:
-  /// **'Von Bord gegangen'**
-  String get offBoard;
-
-  /// No description provided for @onBoardHint.
-  ///
-  /// In de, this message translates to:
-  /// **'Besuche uns innerhalb von {days} Tagen, um an Bord zu bleiben.'**
-  String onBoardHint(int days);
-
-  /// No description provided for @streakWeeks.
-  ///
-  /// In de, this message translates to:
-  /// **'{weeks} Wochen in Folge'**
-  String streakWeeks(int weeks);
 
   /// No description provided for @visitsCount.
   ///
@@ -355,12 +239,6 @@ abstract class L10n {
   /// **'Besuch melden'**
   String get claimVisitTitle;
 
-  /// No description provided for @claimVisitBody.
-  ///
-  /// In de, this message translates to:
-  /// **'Gib den Rechnungsbetrag ein. Das Team bestätigt deinen Besuch, danach bekommst du XP und Münzen.'**
-  String get claimVisitBody;
-
   /// No description provided for @claimVenue.
   ///
   /// In de, this message translates to:
@@ -379,29 +257,11 @@ abstract class L10n {
   /// **'Notiz (optional)'**
   String get claimNote;
 
-  /// No description provided for @claimSubmit.
-  ///
-  /// In de, this message translates to:
-  /// **'Absenden'**
-  String get claimSubmit;
-
-  /// No description provided for @claimSubmitted.
-  ///
-  /// In de, this message translates to:
-  /// **'Besuch gemeldet. Das Team prüft ihn in Kürze.'**
-  String get claimSubmitted;
-
   /// No description provided for @claimTooManyPending.
   ///
   /// In de, this message translates to:
   /// **'Du hast zu viele offene Meldungen.'**
   String get claimTooManyPending;
-
-  /// No description provided for @claimStatusPending.
-  ///
-  /// In de, this message translates to:
-  /// **'Wartet auf Bestätigung'**
-  String get claimStatusPending;
 
   /// No description provided for @claimStatusApproved.
   ///
@@ -420,12 +280,6 @@ abstract class L10n {
   /// In de, this message translates to:
   /// **'Meine Meldungen'**
   String get myClaims;
-
-  /// No description provided for @recentActivity.
-  ///
-  /// In de, this message translates to:
-  /// **'Letzte Aktivität'**
-  String get recentActivity;
 
   /// No description provided for @achievements.
   ///
@@ -462,24 +316,6 @@ abstract class L10n {
   /// In de, this message translates to:
   /// **'Meine Gutscheine'**
   String get myVouchers;
-
-  /// No description provided for @redeem.
-  ///
-  /// In de, this message translates to:
-  /// **'Einlösen'**
-  String get redeem;
-
-  /// No description provided for @redeemConfirmTitle.
-  ///
-  /// In de, this message translates to:
-  /// **'{name} einlösen?'**
-  String redeemConfirmTitle(String name);
-
-  /// No description provided for @redeemConfirmBody.
-  ///
-  /// In de, this message translates to:
-  /// **'{price} Münzen werden abgezogen. Du erhältst einen Code, den du dem Team zeigst.'**
-  String redeemConfirmBody(int price);
 
   /// No description provided for @redeemed.
   ///
@@ -565,12 +401,6 @@ abstract class L10n {
   /// **'Event'**
   String get rewardTypeEventAccess;
 
-  /// No description provided for @buy.
-  ///
-  /// In de, this message translates to:
-  /// **'Kaufen'**
-  String get buy;
-
   /// No description provided for @owned.
   ///
   /// In de, this message translates to:
@@ -594,12 +424,6 @@ abstract class L10n {
   /// In de, this message translates to:
   /// **'Ablegen'**
   String get unequip;
-
-  /// No description provided for @purchaseConfirmTitle.
-  ///
-  /// In de, this message translates to:
-  /// **'{name} kaufen?'**
-  String purchaseConfirmTitle(String name);
 
   /// No description provided for @purchaseDone.
   ///
@@ -673,23 +497,11 @@ abstract class L10n {
   /// **'Legendär'**
   String get rarityLegendary;
 
-  /// No description provided for @customizeHero.
-  ///
-  /// In de, this message translates to:
-  /// **'Helden anpassen'**
-  String get customizeHero;
-
   /// No description provided for @leaderboardTitle.
   ///
   /// In de, this message translates to:
   /// **'Rangliste'**
   String get leaderboardTitle;
-
-  /// No description provided for @leaderboardSubtitle.
-  ///
-  /// In de, this message translates to:
-  /// **'Alle Zeiten · nach XP'**
-  String get leaderboardSubtitle;
 
   /// No description provided for @leaderboardYou.
   ///
@@ -702,24 +514,6 @@ abstract class L10n {
   /// In de, this message translates to:
   /// **'Du bist in der Rangliste ausgeblendet.'**
   String get leaderboardHidden;
-
-  /// No description provided for @feedTitle.
-  ///
-  /// In de, this message translates to:
-  /// **'Saga'**
-  String get feedTitle;
-
-  /// No description provided for @feedEmpty.
-  ///
-  /// In de, this message translates to:
-  /// **'Noch keine Neuigkeiten.'**
-  String get feedEmpty;
-
-  /// No description provided for @eventAt.
-  ///
-  /// In de, this message translates to:
-  /// **'{date}'**
-  String eventAt(String date);
 
   /// No description provided for @postTypeNews.
   ///
@@ -829,41 +623,17 @@ abstract class L10n {
   /// **'Schließen'**
   String get close;
 
+  /// No description provided for @gotIt.
+  ///
+  /// In de, this message translates to:
+  /// **'Verstanden'**
+  String get gotIt;
+
   /// No description provided for @retry.
   ///
   /// In de, this message translates to:
   /// **'Erneut versuchen'**
   String get retry;
-
-  /// No description provided for @loading.
-  ///
-  /// In de, this message translates to:
-  /// **'Lädt…'**
-  String get loading;
-
-  /// No description provided for @errorGeneric.
-  ///
-  /// In de, this message translates to:
-  /// **'Etwas ist schiefgelaufen.'**
-  String get errorGeneric;
-
-  /// No description provided for @responsibleDrinking.
-  ///
-  /// In de, this message translates to:
-  /// **'Genieße verantwortungsvoll. Punkte gibt es für Besuche, nicht fürs Trinken.'**
-  String get responsibleDrinking;
-
-  /// No description provided for @staffTitle.
-  ///
-  /// In de, this message translates to:
-  /// **'Team-Bereich'**
-  String get staffTitle;
-
-  /// No description provided for @staffClaims.
-  ///
-  /// In de, this message translates to:
-  /// **'Offene Meldungen'**
-  String get staffClaims;
 
   /// No description provided for @staffClaimsEmpty.
   ///
@@ -888,24 +658,6 @@ abstract class L10n {
   /// In de, this message translates to:
   /// **'Grund (optional)'**
   String get staffRejectReason;
-
-  /// No description provided for @staffVoucher.
-  ///
-  /// In de, this message translates to:
-  /// **'Gutschein einlösen'**
-  String get staffVoucher;
-
-  /// No description provided for @staffVoucherCode.
-  ///
-  /// In de, this message translates to:
-  /// **'Code eingeben'**
-  String get staffVoucherCode;
-
-  /// No description provided for @staffVoucherLookup.
-  ///
-  /// In de, this message translates to:
-  /// **'Suchen'**
-  String get staffVoucherLookup;
 
   /// No description provided for @staffVoucherConfirm.
   ///
@@ -1069,6 +821,18 @@ abstract class L10n {
   /// **'Beginn'**
   String get adminStartsAt;
 
+  /// No description provided for @adminEndsAt.
+  ///
+  /// In de, this message translates to:
+  /// **'Ende (optional)'**
+  String get adminEndsAt;
+
+  /// No description provided for @adminCategory.
+  ///
+  /// In de, this message translates to:
+  /// **'Kategorie'**
+  String get adminCategory;
+
   /// No description provided for @adminPrice.
   ///
   /// In de, this message translates to:
@@ -1219,53 +983,11 @@ abstract class L10n {
   /// **'Held'**
   String get tabHero;
 
-  /// No description provided for @tabFame.
-  ///
-  /// In de, this message translates to:
-  /// **'Ruhm'**
-  String get tabFame;
-
-  /// No description provided for @tabVisit.
-  ///
-  /// In de, this message translates to:
-  /// **'Besuch'**
-  String get tabVisit;
-
-  /// No description provided for @greetMorning.
-  ///
-  /// In de, this message translates to:
-  /// **'Guten Morgen, {name}'**
-  String greetMorning(String name);
-
-  /// No description provided for @greetDay.
-  ///
-  /// In de, this message translates to:
-  /// **'Hallo, {name}'**
-  String greetDay(String name);
-
-  /// No description provided for @greetEvening.
-  ///
-  /// In de, this message translates to:
-  /// **'Guten Abend, {name}'**
-  String greetEvening(String name);
-
-  /// No description provided for @levelOfTotal.
-  ///
-  /// In de, this message translates to:
-  /// **'Stufe {level} von 8'**
-  String levelOfTotal(int level);
-
   /// No description provided for @heroPath.
   ///
   /// In de, this message translates to:
   /// **'Heldenweg'**
   String get heroPath;
-
-  /// No description provided for @nextLevelHint.
-  ///
-  /// In de, this message translates to:
-  /// **'Noch {xp} XP – {visits, plural, =1{ein Besuch} other{etwa {visits} Besuche}} bis {level}.'**
-  String nextLevelHint(int xp, int visits, String level);
 
   /// No description provided for @statStreak.
   ///
@@ -1297,113 +1019,17 @@ abstract class L10n {
   /// **'{days, plural, =1{1 Tag} other{{days} Tage}}'**
   String daysCount(int days);
 
-  /// No description provided for @nextGoal.
-  ///
-  /// In de, this message translates to:
-  /// **'Dein nächstes Ziel'**
-  String get nextGoal;
-
-  /// No description provided for @goalStreakTitle.
-  ///
-  /// In de, this message translates to:
-  /// **'{weeks, plural, =1{Eine Woche an Bord} other{{weeks} Wochen an Bord}}'**
-  String goalStreakTitle(int weeks);
-
-  /// No description provided for @goalStreakBody.
-  ///
-  /// In de, this message translates to:
-  /// **'Ein Besuch bis Sonntag hält deine Serie am Leben.'**
-  String get goalStreakBody;
-
-  /// No description provided for @goalStreakLevelBody.
-  ///
-  /// In de, this message translates to:
-  /// **'Ein Besuch bis Sonntag hält deine Serie – und hebt dich auf {level}.'**
-  String goalStreakLevelBody(String level);
-
-  /// No description provided for @goalStartTitle.
-  ///
-  /// In de, this message translates to:
-  /// **'Starte deine Serie'**
-  String get goalStartTitle;
-
-  /// No description provided for @goalStartBody.
-  ///
-  /// In de, this message translates to:
-  /// **'Besuche uns jede Woche: ab der zweiten Woche gibt es Bonus-XP.'**
-  String get goalStartBody;
-
-  /// No description provided for @goalDoneTitle.
-  ///
-  /// In de, this message translates to:
-  /// **'Diese Woche an Bord'**
-  String get goalDoneTitle;
-
-  /// No description provided for @goalDoneBody.
-  ///
-  /// In de, this message translates to:
-  /// **'Deine Serie steht. Nächstes Ziel: {level}.'**
-  String goalDoneBody(String level);
-
-  /// No description provided for @goalMaxBody.
-  ///
-  /// In de, this message translates to:
-  /// **'Du hast Walhalla erreicht. Halte deine Serie für den Ruhm.'**
-  String get goalMaxBody;
-
   /// No description provided for @thisWeek.
   ///
   /// In de, this message translates to:
   /// **'Diese Woche'**
   String get thisWeek;
 
-  /// No description provided for @weekShort.
-  ///
-  /// In de, this message translates to:
-  /// **'KW {week}'**
-  String weekShort(int week);
-
-  /// No description provided for @daysLeft.
-  ///
-  /// In de, this message translates to:
-  /// **'{days, plural, =1{Noch 1 Tag} other{Noch {days} Tage}}'**
-  String daysLeft(int days);
-
-  /// No description provided for @rewardLabel.
-  ///
-  /// In de, this message translates to:
-  /// **'Belohnung'**
-  String get rewardLabel;
-
-  /// No description provided for @upcomingEvents.
-  ///
-  /// In de, this message translates to:
-  /// **'Demnächst in der Halle'**
-  String get upcomingEvents;
-
-  /// No description provided for @fromSaga.
-  ///
-  /// In de, this message translates to:
-  /// **'Aus der Saga'**
-  String get fromSaga;
-
   /// No description provided for @all.
   ///
   /// In de, this message translates to:
   /// **'Alle'**
   String get all;
-
-  /// No description provided for @pendingClaimTitle.
-  ///
-  /// In de, this message translates to:
-  /// **'Besuch wird geprüft'**
-  String get pendingClaimTitle;
-
-  /// No description provided for @pendingClaimBody.
-  ///
-  /// In de, this message translates to:
-  /// **'Zeig dem Team den Code {code}.'**
-  String pendingClaimBody(String code);
 
   /// No description provided for @claimSheetSub.
   ///
@@ -1633,12 +1259,6 @@ abstract class L10n {
   /// **'Ich bin jetzt {level} in Valhalla Hero!'**
   String shareLevelText(String level);
 
-  /// No description provided for @myHero.
-  ///
-  /// In de, this message translates to:
-  /// **'Mein Held'**
-  String get myHero;
-
   /// No description provided for @ownedOf.
   ///
   /// In de, this message translates to:
@@ -1650,12 +1270,6 @@ abstract class L10n {
   /// In de, this message translates to:
   /// **'Rein kosmetisch – kein Einfluss aufs Spiel'**
   String get cosmeticOnly;
-
-  /// No description provided for @emptySlot.
-  ///
-  /// In de, this message translates to:
-  /// **'Leer'**
-  String get emptySlot;
 
   /// No description provided for @heroForm.
   ///
@@ -2080,7 +1694,7 @@ abstract class L10n {
   /// No description provided for @teamModeCaption.
   ///
   /// In de, this message translates to:
-  /// **'Besuche bestätigen, Gutscheine prüfen'**
+  /// **'Besuche bestätigen, Fotos prüfen, Gutscheine checken'**
   String get teamModeCaption;
 
   /// No description provided for @legal.
@@ -2212,7 +1826,7 @@ abstract class L10n {
   /// No description provided for @welcomeBody.
   ///
   /// In de, this message translates to:
-  /// **'Melde Besuche, steig in acht Stufen auf und tausche Münzen gegen echte Beute.'**
+  /// **'Scanne Belege, teile Momente aus der Halle und tausche Münzen gegen Merch und exklusive Erlebnisse.'**
   String get welcomeBody;
 
   /// No description provided for @continueWithEmail.
@@ -2371,17 +1985,389 @@ abstract class L10n {
   /// **'SO'**
   String get daySun;
 
-  /// No description provided for @eventFrom.
-  ///
-  /// In de, this message translates to:
-  /// **'ab {time} Uhr'**
-  String eventFrom(String time);
-
   /// No description provided for @comingSoon.
   ///
   /// In de, this message translates to:
   /// **'Bald verfügbar'**
   String get comingSoon;
+
+  /// No description provided for @tabEvents.
+  ///
+  /// In de, this message translates to:
+  /// **'Events'**
+  String get tabEvents;
+
+  /// No description provided for @tabSaga.
+  ///
+  /// In de, this message translates to:
+  /// **'Saga'**
+  String get tabSaga;
+
+  /// No description provided for @tabScan.
+  ///
+  /// In de, this message translates to:
+  /// **'Scannen'**
+  String get tabScan;
+
+  /// No description provided for @tonight.
+  ///
+  /// In de, this message translates to:
+  /// **'Heute Abend'**
+  String get tonight;
+
+  /// No description provided for @tomorrow.
+  ///
+  /// In de, this message translates to:
+  /// **'Morgen'**
+  String get tomorrow;
+
+  /// No description provided for @liveNow.
+  ///
+  /// In de, this message translates to:
+  /// **'Läuft gerade'**
+  String get liveNow;
+
+  /// No description provided for @eventsEmpty.
+  ///
+  /// In de, this message translates to:
+  /// **'Gerade sind keine Events geplant.'**
+  String get eventsEmpty;
+
+  /// No description provided for @catMatch.
+  ///
+  /// In de, this message translates to:
+  /// **'Sport live'**
+  String get catMatch;
+
+  /// No description provided for @catLive.
+  ///
+  /// In de, this message translates to:
+  /// **'Live-Musik'**
+  String get catLive;
+
+  /// No description provided for @catQuiz.
+  ///
+  /// In de, this message translates to:
+  /// **'Quiz'**
+  String get catQuiz;
+
+  /// No description provided for @catParty.
+  ///
+  /// In de, this message translates to:
+  /// **'Party'**
+  String get catParty;
+
+  /// No description provided for @catSpecial.
+  ///
+  /// In de, this message translates to:
+  /// **'Special'**
+  String get catSpecial;
+
+  /// No description provided for @scanTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Beleg scannen'**
+  String get scanTitle;
+
+  /// No description provided for @scanHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Richte die Kamera auf den QR-Code auf deinem Beleg.'**
+  String get scanHint;
+
+  /// No description provided for @scanFromPhotos.
+  ///
+  /// In de, this message translates to:
+  /// **'Aus Fotos'**
+  String get scanFromPhotos;
+
+  /// No description provided for @scanEnterCode.
+  ///
+  /// In de, this message translates to:
+  /// **'Code eingeben'**
+  String get scanEnterCode;
+
+  /// No description provided for @scanCodeHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Steht unter dem QR-Code auf deinem Beleg.'**
+  String get scanCodeHint;
+
+  /// No description provided for @scanNoQr.
+  ///
+  /// In de, this message translates to:
+  /// **'Ohne QR melden'**
+  String get scanNoQr;
+
+  /// No description provided for @scanDemo.
+  ///
+  /// In de, this message translates to:
+  /// **'Demo-Beleg'**
+  String get scanDemo;
+
+  /// No description provided for @scanChecking.
+  ///
+  /// In de, this message translates to:
+  /// **'Beleg wird geprüft …'**
+  String get scanChecking;
+
+  /// No description provided for @torch.
+  ///
+  /// In de, this message translates to:
+  /// **'Licht'**
+  String get torch;
+
+  /// No description provided for @scanNoCamera.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Kamera verfügbar. Wähle ein Foto oder gib den Code ein.'**
+  String get scanNoCamera;
+
+  /// No description provided for @scanNothingInImage.
+  ///
+  /// In de, this message translates to:
+  /// **'Kein QR-Code im Bild gefunden.'**
+  String get scanNothingInImage;
+
+  /// No description provided for @scanOnce.
+  ///
+  /// In de, this message translates to:
+  /// **'Jeder Beleg zählt einmal – XP gibt es pro Besuch, Münzen nach Betrag.'**
+  String get scanOnce;
+
+  /// No description provided for @receiptErrUsed.
+  ///
+  /// In de, this message translates to:
+  /// **'Dieser Beleg wurde schon eingelöst.'**
+  String get receiptErrUsed;
+
+  /// No description provided for @receiptErrInvalid.
+  ///
+  /// In de, this message translates to:
+  /// **'Das ist kein gültiger Valhalla-Beleg.'**
+  String get receiptErrInvalid;
+
+  /// No description provided for @receiptErrTooOld.
+  ///
+  /// In de, this message translates to:
+  /// **'Dieser Beleg ist zu alt.'**
+  String get receiptErrTooOld;
+
+  /// No description provided for @receiptErrUnknownVenue.
+  ///
+  /// In de, this message translates to:
+  /// **'Der Beleg stammt nicht aus einer Valhalla-Bar.'**
+  String get receiptErrUnknownVenue;
+
+  /// No description provided for @receiptErrDailyLimit.
+  ///
+  /// In de, this message translates to:
+  /// **'Heute hast du hier schon einen Beleg eingelöst. Morgen wieder!'**
+  String get receiptErrDailyLimit;
+
+  /// No description provided for @sagaComposerTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Teile deinen Moment'**
+  String get sagaComposerTitle;
+
+  /// No description provided for @sagaComposerSub.
+  ///
+  /// In de, this message translates to:
+  /// **'Foto aus der Halle oder mit Valhalla-Merch · +{xp} XP · +{coins} Münzen'**
+  String sagaComposerSub(int xp, int coins);
+
+  /// No description provided for @checkinNewTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Foto teilen'**
+  String get checkinNewTitle;
+
+  /// No description provided for @takePhoto.
+  ///
+  /// In de, this message translates to:
+  /// **'Kamera'**
+  String get takePhoto;
+
+  /// No description provided for @pickPhoto.
+  ///
+  /// In de, this message translates to:
+  /// **'Mediathek'**
+  String get pickPhoto;
+
+  /// No description provided for @captionHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Was ist los in der Halle?'**
+  String get captionHint;
+
+  /// No description provided for @tagEvent.
+  ///
+  /// In de, this message translates to:
+  /// **'Zu einem Event'**
+  String get tagEvent;
+
+  /// No description provided for @noEvent.
+  ///
+  /// In de, this message translates to:
+  /// **'Kein Event'**
+  String get noEvent;
+
+  /// No description provided for @checkinRules.
+  ///
+  /// In de, this message translates to:
+  /// **'Nur Fotos aus der Halle oder mit Valhalla-Merch. Das Team prüft jedes Foto – danach erscheint es in der Saga.'**
+  String get checkinRules;
+
+  /// No description provided for @checkinReward.
+  ///
+  /// In de, this message translates to:
+  /// **'+{xp} XP · +{coins} Münzen nach Freigabe (einmal pro Tag)'**
+  String checkinReward(int xp, int coins);
+
+  /// No description provided for @checkinSubmit.
+  ///
+  /// In de, this message translates to:
+  /// **'Zur Prüfung senden'**
+  String get checkinSubmit;
+
+  /// No description provided for @checkinPendingTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Dein Foto wird geprüft'**
+  String get checkinPendingTitle;
+
+  /// No description provided for @checkinPendingBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Sobald das Team es freigibt, erscheint es in der Saga. Bis dahin kannst du kein weiteres Foto senden.'**
+  String get checkinPendingBody;
+
+  /// No description provided for @checkinWithdraw.
+  ///
+  /// In de, this message translates to:
+  /// **'Zurückziehen'**
+  String get checkinWithdraw;
+
+  /// No description provided for @checkinRejectedTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Foto nicht freigegeben'**
+  String get checkinRejectedTitle;
+
+  /// No description provided for @checkinErrPending.
+  ///
+  /// In de, this message translates to:
+  /// **'Du hast schon ein Foto in Prüfung.'**
+  String get checkinErrPending;
+
+  /// No description provided for @sagaEmpty.
+  ///
+  /// In de, this message translates to:
+  /// **'Noch keine Fotos. Mach den Anfang!'**
+  String get sagaEmpty;
+
+  /// No description provided for @justNow.
+  ///
+  /// In de, this message translates to:
+  /// **'gerade eben'**
+  String get justNow;
+
+  /// No description provided for @agoMinutes.
+  ///
+  /// In de, this message translates to:
+  /// **'vor {minutes} Min.'**
+  String agoMinutes(int minutes);
+
+  /// No description provided for @agoHours.
+  ///
+  /// In de, this message translates to:
+  /// **'vor {hours} Std.'**
+  String agoHours(int hours);
+
+  /// No description provided for @photosInSaga.
+  ///
+  /// In de, this message translates to:
+  /// **'Fotos in der Saga'**
+  String get photosInSaga;
+
+  /// No description provided for @teamPhotosTab.
+  ///
+  /// In de, this message translates to:
+  /// **'Fotos · {count}'**
+  String teamPhotosTab(int count);
+
+  /// No description provided for @teamPhotosEmpty.
+  ///
+  /// In de, this message translates to:
+  /// **'Keine Fotos zu prüfen.'**
+  String get teamPhotosEmpty;
+
+  /// No description provided for @approvePhoto.
+  ///
+  /// In de, this message translates to:
+  /// **'Freigeben'**
+  String get approvePhoto;
+
+  /// No description provided for @helpFeedback.
+  ///
+  /// In de, this message translates to:
+  /// **'Hilfe & Feedback'**
+  String get helpFeedback;
+
+  /// No description provided for @reportBug.
+  ///
+  /// In de, this message translates to:
+  /// **'Fehler melden'**
+  String get reportBug;
+
+  /// No description provided for @reportBugCaption.
+  ///
+  /// In de, this message translates to:
+  /// **'Etwas funktioniert nicht? Sag uns Bescheid.'**
+  String get reportBugCaption;
+
+  /// No description provided for @bugDescribe.
+  ///
+  /// In de, this message translates to:
+  /// **'Was ist passiert?'**
+  String get bugDescribe;
+
+  /// No description provided for @bugHint.
+  ///
+  /// In de, this message translates to:
+  /// **'Beschreibe kurz, was du gemacht hast und was schiefging.'**
+  String get bugHint;
+
+  /// No description provided for @bugIncludeInfo.
+  ///
+  /// In de, this message translates to:
+  /// **'App- und Geräteinfos mitsenden'**
+  String get bugIncludeInfo;
+
+  /// No description provided for @bugSend.
+  ///
+  /// In de, this message translates to:
+  /// **'Senden'**
+  String get bugSend;
+
+  /// No description provided for @bugThanks.
+  ///
+  /// In de, this message translates to:
+  /// **'Danke! Wir kümmern uns darum.'**
+  String get bugThanks;
+
+  /// No description provided for @chooseLanguage.
+  ///
+  /// In de, this message translates to:
+  /// **'Sprache wählen'**
+  String get chooseLanguage;
+
+  /// No description provided for @whoLikes.
+  ///
+  /// In de, this message translates to:
+  /// **'{count, plural, =0{Noch keine Likes} =1{1 Like} other{{count} Likes}}'**
+  String whoLikes(int count);
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {
@@ -2393,8 +2379,18 @@ class _L10nDelegate extends LocalizationsDelegate<L10n> {
   }
 
   @override
-  bool isSupported(Locale locale) =>
-      <String>['de', 'en'].contains(locale.languageCode);
+  bool isSupported(Locale locale) => <String>[
+    'de',
+    'en',
+    'es',
+    'fr',
+    'it',
+    'nl',
+    'pl',
+    'ru',
+    'tr',
+    'uk',
+  ].contains(locale.languageCode);
 
   @override
   bool shouldReload(_L10nDelegate old) => false;
@@ -2407,6 +2403,22 @@ L10n lookupL10n(Locale locale) {
       return L10nDe();
     case 'en':
       return L10nEn();
+    case 'es':
+      return L10nEs();
+    case 'fr':
+      return L10nFr();
+    case 'it':
+      return L10nIt();
+    case 'nl':
+      return L10nNl();
+    case 'pl':
+      return L10nPl();
+    case 'ru':
+      return L10nRu();
+    case 'tr':
+      return L10nTr();
+    case 'uk':
+      return L10nUk();
   }
 
   throw FlutterError(

@@ -7,6 +7,8 @@ import 'package:share_plus/share_plus.dart';
 import 'package:valhalla_core/valhalla_core.dart';
 
 import '../../shared/ui.dart';
+import '../../shared/locale.dart';
+import '../../shared/sheets.dart';
 import '../auth/auth_service.dart';
 
 class SettingsScreen extends ConsumerWidget {
@@ -66,6 +68,9 @@ class SettingsScreen extends ConsumerWidget {
                   const VIcon(VIcons.chevRight, size: 18, color: VColors.ash2, stroke: 2),
                 ]),
               ),
+              _Group(title: t.language, children: [
+                _Row(icon: VIcons.globe, title: t.chooseLanguage, value: languageName(ref.watch(uiLocaleProvider)), onTap: () => showLanguageSheet(context, ref)),
+              ]),
               _Group(title: t.heroForm, children: [
                 Padding(
                   padding: const EdgeInsets.all(12),
@@ -122,28 +127,14 @@ class SettingsScreen extends ConsumerWidget {
               _Group(title: t.account, children: [
                 _Row(icon: VIcons.held, title: t.heroName, value: profile.nickname, onTap: editName),
                 _Row(icon: VIcons.calendar, title: t.birthDate, value: formatDate(profile.birthDate, locale: profile.locale), trailing: const VIcon(VIcons.lock, size: 16, color: VColors.ash2)),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 12, 16, 14),
-                  child: Row(children: [
-                    const VIcon(VIcons.globe, size: 20, color: Color(0xFFCDBFA8), stroke: 1.8),
-                    const SizedBox(width: 14),
-                    Text(t.language, style: VType.body(size: 15, weight: FontWeight.w700)),
-                    const Spacer(),
-                    SizedBox(
-                      width: 170,
-                      child: VSegmented(
-                        labels: const ['Deutsch', 'English'],
-                        index: profile.locale == 'en' ? 1 : 0,
-                        onChanged: (i) => run(() => notifier.updateProfile(locale: i == 1 ? 'en' : 'de')),
-                      ),
-                    ),
-                  ]),
-                ),
               ]),
               if (profile.role.isStaff)
                 _Group(title: t.teamGroup, accent: VColors.frost, children: [
                   _Row(icon: VIcons.key, iconColor: VColors.frostBright, title: t.teamMode, caption: t.teamModeCaption, onTap: () => context.push('/team')),
                 ]),
+              _Group(title: t.helpFeedback, children: [
+                _Row(icon: VIcons.bug, title: t.reportBug, caption: t.reportBugCaption, onTap: () => showBugReportSheet(context, ref)),
+              ]),
               _Group(title: t.legal, children: [
                 for (final s in [t.terms, t.privacyPolicy, t.imprint]) _Row(icon: VIcons.doc, title: s, onTap: () => showSnack(context, t.comingSoon)),
               ]),

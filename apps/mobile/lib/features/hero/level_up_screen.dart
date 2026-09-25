@@ -120,7 +120,7 @@ class _LevelUpScreenState extends ConsumerState<LevelUpScreen> with SingleTicker
               Positioned(
                 top: 6,
                 right: 8,
-                child: VRoundButton(icon: VIcons.close, tooltip: t.close, onTap: () => context.go('/home')),
+                child: VRoundButton(icon: VIcons.close, tooltip: t.close, onTap: () => context.go('/hero')),
               ),
               Positioned(left: 0, right: 0, top: 18, child: Center(child: VEyebrow(t.levelReached(romanLevel(lvl)).replaceAll('!', ''), color: Color.lerp(c, Colors.white, .45)!, size: 13))),
               Positioned(
@@ -180,7 +180,7 @@ class _LevelUpScreenState extends ConsumerState<LevelUpScreen> with SingleTicker
                           icon: newItem == null ? null : slotIcon(newItem.slot),
                           busy: _busy,
                           onPressed: () async {
-                            if (newItem == null) return context.go('/home');
+                            if (newItem == null) return context.go('/hero');
                             setState(() => _busy = true);
                             try {
                               await ItemActions.equip(ref, newItem);
@@ -193,7 +193,7 @@ class _LevelUpScreenState extends ConsumerState<LevelUpScreen> with SingleTicker
                       const SizedBox(width: 10),
                       VRoundButton(icon: VIcons.share, tooltip: t.shareLevel, size: 54, background: VColors.surface2, onTap: () => Share.share(t.shareLevelText(name))),
                     ]),
-                    if (newItem != null) VGhostButton(label: t.later, onPressed: () => context.go('/home')),
+                    if (newItem != null) VGhostButton(label: t.later, onPressed: () => context.go('/hero')),
                     const SizedBox(height: 16),
                   ]),
                 ),

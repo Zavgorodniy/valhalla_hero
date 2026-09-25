@@ -79,8 +79,12 @@ class VColors {
 class VType {
   VType._();
 
+  /// Cinzel has no Cyrillic; Forum (same inscription style) covers Russian and Ukrainian.
+  static final _cyrillicFallback = [GoogleFonts.forum().fontFamily!];
+
   static TextStyle cinzel({double size = 20, FontWeight weight = FontWeight.w700, Color color = VColors.bone, double? spacing, double? height}) =>
-      GoogleFonts.cinzel(fontSize: size, fontWeight: weight, color: color, letterSpacing: spacing, height: height);
+      GoogleFonts.cinzel(fontSize: size, fontWeight: weight, color: color, letterSpacing: spacing, height: height)
+          .copyWith(fontFamilyFallback: _cyrillicFallback);
 
   static TextStyle body({double size = 15, FontWeight weight = FontWeight.w500, Color color = VColors.bone, double? height, double? spacing, bool tabular = false}) =>
       GoogleFonts.manrope(

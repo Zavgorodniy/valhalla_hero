@@ -24,7 +24,7 @@ class VTopBar extends StatelessWidget {
           VRoundButton(
             icon: VIcons.chevLeft,
             tooltip: MaterialLocalizations.of(context).backButtonTooltip,
-            onTap: onBack ?? () => context.canPop() ? context.pop() : context.go('/home'),
+            onTap: onBack ?? () => context.canPop() ? context.pop() : context.go('/hero'),
           )
         else
           const SizedBox(width: 8),

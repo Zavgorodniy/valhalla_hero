@@ -138,15 +138,27 @@ insert into equipment (user_id, slot, item_id)
 select 'a0000000-0000-0000-0000-000000000004', slot, id from items where asset_key in ('headgear_leather_cap', 'hand_horn', 'frame_iron')
 on conflict do nothing;
 
--- feed
-insert into posts (type, title, body, venue_id, starts_at, published_at, author_id, like_count) values
-  ('event', 'Skalden-Nacht: Live-Musik', 'Freitag ab 21 Uhr spielen die „Nordwind“ akustisch. Eintritt frei für alle an Bord.', '11111111-1111-1111-1111-111111111111', now() + interval '5 days' + interval '21 hours', now() - interval '2 days', 'a0000000-0000-0000-0000-000000000001', 0),
-  ('news', 'Neuer Hoodie im Shop', 'Der schwere Runen-Hoodie ist da. 5000 Münzen, nur 15 Stück.', null, null, now() - interval '4 days', 'a0000000-0000-0000-0000-000000000001', 0),
-  ('news', 'Doppelte Münzen am Donnerstag', 'Jeden Donnerstag im September gibt es doppelte Münzen auf alle Besuche.', '11111111-1111-1111-1111-111111111111', null, now() - interval '9 days', 'a0000000-0000-0000-0000-000000000001', 0),
-  ('event', 'Met-Verkostung', 'Sechs Sorten Met aus Skandinavien. Plätze begrenzt.', '11111111-1111-1111-1111-111111111111', now() + interval '12 days' + interval '19 hours', now() - interval '1 day', 'a0000000-0000-0000-0000-000000000001', 0),
-  ('news', 'Wir eröffnen in Hamburg', 'Im Winter öffnet Valhalla Hamburg. Wer beide Hallen besucht, wird Weltenbummler.', null, null, null, 'a0000000-0000-0000-0000-000000000001', 0);
+-- feed: events (with categories) and news
+insert into posts (type, category, title, body, venue_id, starts_at, ends_at, published_at, author_id, like_count) values
+  ('event', 'match', 'Bundesliga live: Union – Dortmund', 'Anpfiff um 18:30 auf der großen Leinwand. Wer ein Foto vom Spiel teilt, bekommt Punkte.', '11111111-1111-1111-1111-111111111111', ((current_date + 0) + time '18:30') at time zone 'Europe/Berlin', ((current_date + 0) + time '20:30') at time zone 'Europe/Berlin', now() - interval '3 days', 'a0000000-0000-0000-0000-000000000001', 0),
+  ('event', 'live', 'Skalden-Nacht: Live-Musik', 'Ab 21 Uhr spielen die „Nordwind“ akustisch. Eintritt frei für alle an Bord.', '11111111-1111-1111-1111-111111111111', ((current_date + 2) + time '21:00') at time zone 'Europe/Berlin', ((current_date + 2) + time '23:30') at time zone 'Europe/Berlin', now() - interval '2 days', 'a0000000-0000-0000-0000-000000000001', 0),
+  ('event', 'match', 'Champions League auf der Leinwand', 'Alle Spiele des Abends, Ton an, beste Plätze für Stammgäste.', '11111111-1111-1111-1111-111111111111', ((current_date + 4) + time '21:00') at time zone 'Europe/Berlin', ((current_date + 4) + time '23:00') at time zone 'Europe/Berlin', now() - interval '1 day', 'a0000000-0000-0000-0000-000000000001', 0),
+  ('event', 'quiz', 'Runen-Quiz', 'Sechs Runden rund um Nordmänner, Musik und Berlin. Teams bis sechs Personen.', '11111111-1111-1111-1111-111111111111', ((current_date + 6) + time '20:00') at time zone 'Europe/Berlin', ((current_date + 6) + time '22:30') at time zone 'Europe/Berlin', now() - interval '1 day', 'a0000000-0000-0000-0000-000000000001', 0),
+  ('event', 'special', 'Hnefatafl-Turnier', 'Das Brettspiel der Wikinger – Regeln erklären wir vor Ort. Die Siegerin bekommt einen legendären Rahmen.', '11111111-1111-1111-1111-111111111111', ((current_date + 9) + time '19:00') at time zone 'Europe/Berlin', ((current_date + 9) + time '22:00') at time zone 'Europe/Berlin', now(), 'a0000000-0000-0000-0000-000000000001', 0),
+  ('news', null, 'Neuer Hoodie im Shop', 'Der schwere Runen-Hoodie ist da. 5000 Münzen, nur 15 Stück.', null, null, null, now() - interval '4 days', 'a0000000-0000-0000-0000-000000000001', 0),
+  ('news', null, 'Doppelte Münzen am Donnerstag', 'Jeden Donnerstag im September gibt es doppelte Münzen auf alle Besuche.', '11111111-1111-1111-1111-111111111111', null, null, now() - interval '9 days', 'a0000000-0000-0000-0000-000000000001', 0),
+  ('news', null, 'Wir eröffnen in Hamburg', 'Im Winter öffnet Valhalla Hamburg. Wer beide Hallen besucht, wird Weltenbummler.', null, null, null, null, 'a0000000-0000-0000-0000-000000000001', 0);
 
 insert into post_likes (post_id, user_id)
 select p.id, u.id from posts p cross join (select id from profiles where role = 'user') u
 where p.published_at is not null and random() < 0.6;
 update posts set like_count = (select count(*) from post_likes where post_id = posts.id);
+
+-- receipts: demo POS register (serial printed in the TSE QR) and one-time codes
+insert into venue_registers (serial, venue_id, label) values ('VH-BERLIN-KASSE-1', '11111111-1111-1111-1111-111111111111', 'Demo-Kasse Theke');
+insert into receipt_codes (code, venue_id, amount_cents) values
+  ('VH-7Q4K-2M', '11111111-1111-1111-1111-111111111111', 3800), ('VH-3X9P-5T', '11111111-1111-1111-1111-111111111111', 2450), ('VH-8N2D-6R', '11111111-1111-1111-1111-111111111111', 5120), ('VH-4H7W-9C', '11111111-1111-1111-1111-111111111111', 1890),
+  ('VH-6J3B-8L', '11111111-1111-1111-1111-111111111111', 4200), ('VH-2F5V-7Q', '11111111-1111-1111-1111-111111111111', 3150), ('VH-9K8T-3D', '11111111-1111-1111-1111-111111111111', 6600), ('VH-5M2R-4X', '11111111-1111-1111-1111-111111111111', 2780),
+  ('VH-1W6C-2P', '11111111-1111-1111-1111-111111111111', 4450), ('VH-7T3N-5J', '11111111-1111-1111-1111-111111111111', 3320);
+-- demo: accept old test receipts (production default is 48 hours)
+update economy_config set receipt_max_age_hours = 0 where id = 1;

@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 
 import '../models/enums.dart';
 import '../theme/valhalla_theme.dart';
@@ -155,17 +156,9 @@ class VCoinPill extends StatelessWidget {
   }
 }
 
-String _fmt(int n) {
-  final s = n.abs().toString();
-  final b = StringBuffer();
-  for (var i = 0; i < s.length; i++) {
-    if (i > 0 && (s.length - i) % 3 == 0) b.write('.');
-    b.write(s[i]);
-  }
-  return '${n < 0 ? '−' : ''}$b';
-}
+String _fmt(int n) => '${n < 0 ? '−' : ''}${NumberFormat.decimalPattern(Intl.defaultLocale ?? 'de').format(n.abs())}';
 
-/// German thousands grouping ("1.640").
+/// Thousands grouping in the UI language ("1.640", "1 640", "1,640").
 String vNum(int n) => _fmt(n);
 
 // ---------------------------------------------------------------- progress

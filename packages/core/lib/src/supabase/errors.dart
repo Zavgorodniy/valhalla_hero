@@ -16,6 +16,13 @@ enum ApiErrorCode {
   voucherExpired,
   ageRestricted,
   nicknameTaken,
+  receiptUsed,
+  receiptInvalid,
+  receiptTooOld,
+  receiptUnknownVenue,
+  receiptDailyLimit,
+  checkinPending,
+  checkinInvalid,
   unknown,
 }
 

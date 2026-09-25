@@ -43,6 +43,8 @@ class FeedRepository {
     String? imageUrl,
     String? venueId,
     DateTime? startsAt,
+    DateTime? endsAt,
+    EventCategory? category,
     bool publish = false,
   }) =>
       guard(() async {
@@ -54,6 +56,8 @@ class FeedRepository {
           'image_url': imageUrl,
           'venue_id': venueId,
           'starts_at': startsAt?.toUtc().toIso8601String(),
+          'ends_at': endsAt?.toUtc().toIso8601String(),
+          'category': category == null ? null : enumWire(category),
           'published_at': publish ? DateTime.now().toUtc().toIso8601String() : null,
           'author_id': _db.auth.currentUser!.id,
         };

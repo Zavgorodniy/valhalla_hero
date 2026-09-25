@@ -1,7 +1,7 @@
 import 'package:intl/intl.dart';
 
 String formatEuro(int cents, {String locale = 'de'}) =>
-    NumberFormat.currency(locale: locale == 'de' ? 'de_DE' : 'en_GB', symbol: '€').format(cents / 100);
+    NumberFormat.currency(locale: locale, symbol: '€').format(cents / 100);
 
 String formatDate(DateTime d, {String locale = 'de'}) => DateFormat.yMMMd(locale).format(d.toLocal());
 

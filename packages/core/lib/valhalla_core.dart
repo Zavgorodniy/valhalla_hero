@@ -2,10 +2,12 @@
 library;
 
 export 'src/l10n/generated/app_localizations.dart';
+export 'src/l10n/languages.dart';
 export 'src/models/enums.dart';
 export 'src/models/models.dart';
 export 'src/providers/providers.dart';
 export 'src/repositories/admin_repository.dart';
+export 'src/repositories/community_repository.dart';
 export 'src/repositories/feed_repository.dart';
 export 'src/repositories/leaderboard_repository.dart';
 export 'src/repositories/profile_repository.dart';

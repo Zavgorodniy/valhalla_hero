@@ -39,6 +39,12 @@ enum VoucherStatus { active, redeemed, expired, cancelled }
 @JsonEnum(fieldRename: FieldRename.snake)
 enum PostType { news, event }
 
+@JsonEnum(fieldRename: FieldRename.snake)
+enum EventCategory { match, live, quiz, party, special }
+
+@JsonEnum(fieldRename: FieldRename.snake)
+enum CheckinStatus { pending, approved, rejected }
+
 /// Base hero art: Held or Heldin. Purely cosmetic; progress is shared.
 @JsonEnum(fieldRename: FieldRename.snake)
 enum HeroForm { hero, heroine }

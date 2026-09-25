@@ -30,6 +30,11 @@ abstract class EconomyConfig with _$EconomyConfig {
     required int coinExpiryMonths,
     required int onboardWindowDays,
     required int streakBonusXp,
+    @Default(30) int checkinXp,
+    @Default(50) int checkinCoins,
+    @Default(1) int checkinDailyRewarded,
+    @Default(48) int receiptMaxAgeHours,
+    @Default(1) int receiptDailyLimit,
   }) = _EconomyConfig;
   factory EconomyConfig.fromJson(Map<String, dynamic> json) => _$EconomyConfigFromJson(json);
 }
@@ -245,11 +250,13 @@ abstract class Post with _$Post {
   const factory Post({
     required String id,
     @Default(PostType.news) PostType type,
+    EventCategory? category,
     required String title,
     required String body,
     String? imageUrl,
     String? venueId,
     DateTime? startsAt,
+    DateTime? endsAt,
     DateTime? publishedAt,
     String? authorId,
     @Default(0) int likeCount,
@@ -350,4 +357,81 @@ abstract class VoucherLookup with _$VoucherLookup {
     required ClaimProfile user,
   }) = _VoucherLookup;
   factory VoucherLookup.fromJson(Map<String, dynamic> json) => _$VoucherLookupFromJson(json);
+}
+
+/// Approved photo check-in as shown in the Saga feed (view `checkin_feed`).
+@freezed
+abstract class FeedCheckin with _$FeedCheckin {
+  const factory FeedCheckin({
+    required String id,
+    required String userId,
+    String? venueId,
+    String? eventId,
+    required String photoPath,
+    String? caption,
+    @Default(0) int likeCount,
+    required DateTime createdAt,
+    required String nickname,
+    @Default(1) int level,
+    @Default(HeroForm.hero) HeroForm heroForm,
+    String? eventTitle,
+    @Default(false) bool likedByMe,
+  }) = _FeedCheckin;
+  factory FeedCheckin.fromJson(Map<String, dynamic> json) => _$FeedCheckinFromJson(json);
+}
+
+/// The signed-in guest's own check-in, any status.
+@freezed
+abstract class Checkin with _$Checkin {
+  const factory Checkin({
+    required String id,
+    required String userId,
+    String? eventId,
+    required String photoPath,
+    String? caption,
+    @Default(CheckinStatus.pending) CheckinStatus status,
+    String? rejectReason,
+    @Default(false) bool rewarded,
+    @Default(0) int likeCount,
+    DateTime? reviewedAt,
+    required DateTime createdAt,
+  }) = _Checkin;
+  factory Checkin.fromJson(Map<String, dynamic> json) => _$CheckinFromJson(json);
+}
+
+/// Pending check-in in the staff moderation queue (view `checkin_queue`).
+@freezed
+abstract class QueuedCheckin with _$QueuedCheckin {
+  const factory QueuedCheckin({
+    required String id,
+    required String userId,
+    String? eventId,
+    required String photoPath,
+    String? caption,
+    required DateTime createdAt,
+    required String nickname,
+    @Default(1) int level,
+    @Default(HeroForm.hero) HeroForm heroForm,
+    @Default(0) int visitCount,
+    String? eventTitle,
+  }) = _QueuedCheckin;
+  factory QueuedCheckin.fromJson(Map<String, dynamic> json) => _$QueuedCheckinFromJson(json);
+}
+
+/// What `redeem_receipt` credited.
+@freezed
+abstract class ReceiptResult with _$ReceiptResult {
+  const factory ReceiptResult({
+    required String visitId,
+    required String venueId,
+    required int amountCents,
+    @Default(0) int xpGained,
+    @Default(0) int coinsGained,
+    @Default(1) int levelBefore,
+    @Default(1) int levelAfter,
+    @Default(0) int streakWeeks,
+    /// Keys of achievements unlocked by this receipt.
+    @Default(<String>[]) List<String> achievements,
+  }) = _ReceiptResult;
+  factory ReceiptResult.fromJson(Map<String, dynamic> json) => _$ReceiptResultFromJson(json);
 }

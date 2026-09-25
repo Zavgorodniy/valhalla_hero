@@ -6,7 +6,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:valhalla_core/valhalla_core.dart';
 
-import '../features/claim/claim_sheet.dart';
 
 /// Four tabs around a raised "Besuch" action: the core loop is one tap away.
 class AppShell extends ConsumerWidget {
@@ -22,7 +21,7 @@ class AppShell extends ConsumerWidget {
       bottomNavigationBar: VTabBar(
         index: shell.currentIndex,
         onTab: (i) => shell.goBranch(i, initialLocation: i == shell.currentIndex),
-        onVisit: () => openClaimSheet(context),
+        onVisit: () => context.push('/scan'),
       ),
     );
   }
@@ -68,7 +67,13 @@ class VTabBar extends StatelessWidget {
                     ),
                 ]),
                 const SizedBox(height: 5),
-                Text(label, style: VType.body(size: 11, weight: on ? FontWeight.w800 : FontWeight.w700, color: on ? VColors.bone : const Color(0xFF9A8F80))),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 2),
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(label, maxLines: 1, style: VType.body(size: 11, weight: on ? FontWeight.w800 : FontWeight.w700, color: on ? VColors.bone : const Color(0xFF9A8F80))),
+                  ),
+                ),
               ]),
             ),
           ),
@@ -101,11 +106,11 @@ class VTabBar extends StatelessWidget {
               ),
             ),
             Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              tab(0, VIcons.halle, t.tabHome),
-              tab(1, VIcons.held, t.tabHero),
-              Expanded(child: _VisitButton(label: t.tabVisit, onTap: onVisit)),
-              tab(2, VIcons.beute, t.tabShop),
-              tab(3, VIcons.ruhm, t.tabFame),
+              tab(0, VIcons.held, t.tabHero),
+              tab(1, VIcons.calendar, t.tabEvents),
+              Expanded(child: _VisitButton(label: t.tabScan, onTap: onVisit)),
+              tab(2, VIcons.saga, t.tabSaga),
+              tab(3, VIcons.beute, t.tabShop),
             ]),
           ]),
         ),
@@ -121,7 +126,7 @@ class _VisitButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Semantics(
         button: true,
-        label: L10n.of(context).claimVisit,
+        label: L10n.of(context).scanTitle,
         excludeSemantics: true,
         child: GestureDetector(
           onTap: () {
@@ -143,10 +148,13 @@ class _VisitButton extends StatelessWidget {
                   border: Border.all(color: VColors.bg, width: 3),
                   boxShadow: [BoxShadow(color: VColors.gold.withValues(alpha: .3), blurRadius: 22, offset: const Offset(0, 6))],
                 ),
-                child: const Center(child: VIcon(VIcons.seal, size: 28, color: Color(0xFF2A1A08), stroke: 2.1)),
+                child: const Center(child: VIcon(VIcons.scan, size: 28, color: Color(0xFF2A1A08), stroke: 2.1)),
               ),
               const SizedBox(height: 4),
-              Text(label, style: VType.body(size: 11, weight: FontWeight.w800, color: VColors.goldBright)),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(label, maxLines: 1, style: VType.body(size: 11, weight: FontWeight.w800, color: VColors.goldBright)),
+              ),
             ]),
           ),
           ),

@@ -14,6 +14,8 @@ class PostsScreen extends ConsumerWidget {
     PostType type = p?.type ?? PostType.news;
     String? venueId = p?.venueId;
     DateTime? startsAt = p?.startsAt;
+    DateTime? endsAt = p?.endsAt;
+    EventCategory category = p?.category ?? EventCategory.special;
     final title = TextEditingController(text: p?.title);
     final body = TextEditingController(text: p?.body);
     final image = TextEditingController(text: p?.imageUrl);
@@ -42,18 +44,39 @@ class PostsScreen extends ConsumerWidget {
                 Field(t.adminTitle, title),
                 Field(t.adminBody, body, lines: 5),
                 Field(t.adminImageUrl, image),
-                if (type == PostType.event)
-                  OutlinedButton.icon(
-                    onPressed: () async {
-                      final d = await showDatePicker(context: ctx, initialDate: startsAt ?? DateTime.now(), firstDate: DateTime.now().subtract(const Duration(days: 1)), lastDate: DateTime.now().add(const Duration(days: 365)));
-                      if (d == null || !ctx.mounted) return;
-                      final tm = await showTimePicker(context: ctx, initialTime: TimeOfDay.fromDateTime(startsAt ?? DateTime.now()));
-                      if (tm == null) return;
-                      setS(() => startsAt = DateTime(d.year, d.month, d.day, tm.hour, tm.minute));
-                    },
-                    icon: const Icon(Icons.event),
-                    label: Text(startsAt == null ? t.adminStartsAt : formatDateTime(startsAt!)),
+                if (type == PostType.event) ...[
+                  DropdownButtonFormField<EventCategory>(
+                    initialValue: category,
+                    items: [for (final c in EventCategory.values) DropdownMenuItem(value: c, child: Text(_categoryName(t, c)))],
+                    onChanged: (v) => setS(() => category = v!),
+                    decoration: InputDecoration(labelText: t.adminCategory, isDense: true),
                   ),
+                  const SizedBox(height: 10),
+                  Row(children: [
+                    Expanded(
+                      child: OutlinedButton.icon(
+                        onPressed: () async {
+                          final v = await _pickDateTime(ctx, startsAt);
+                          if (v != null) setS(() => startsAt = v);
+                        },
+                        icon: const Icon(Icons.event),
+                        label: Text(startsAt == null ? t.adminStartsAt : formatDateTime(startsAt!)),
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: OutlinedButton.icon(
+                        onPressed: () async {
+                          final v = await _pickDateTime(ctx, endsAt ?? startsAt?.add(const Duration(hours: 3)));
+                          if (v != null) setS(() => endsAt = v);
+                        },
+                        icon: const Icon(Icons.event_available),
+                        label: Text(endsAt == null ? t.adminEndsAt : formatDateTime(endsAt!)),
+                      ),
+                    ),
+                    if (endsAt != null) IconButton(onPressed: () => setS(() => endsAt = null), icon: const Icon(Icons.close)),
+                  ]),
+                ],
               ]),
             ),
           ),
@@ -75,12 +98,31 @@ class PostsScreen extends ConsumerWidget {
             imageUrl: image.text.trim().isEmpty ? null : image.text.trim(),
             venueId: venueId,
             startsAt: type == PostType.event ? startsAt : null,
+            endsAt: type == PostType.event ? endsAt : null,
+            category: type == PostType.event ? category : null,
             publish: result == 'publish' || (p?.isPublished ?? false),
           );
       ref.invalidate(adminPostsProvider);
       ref.invalidate(feedProvider);
     }, success: t.adminSaved);
   }
+
+  static Future<DateTime?> _pickDateTime(BuildContext ctx, DateTime? initial) async {
+    final now = DateTime.now();
+    final d = await showDatePicker(context: ctx, initialDate: initial ?? now, firstDate: now.subtract(const Duration(days: 1)), lastDate: now.add(const Duration(days: 365)));
+    if (d == null || !ctx.mounted) return null;
+    final tm = await showTimePicker(context: ctx, initialTime: TimeOfDay.fromDateTime(initial ?? now));
+    if (tm == null) return null;
+    return DateTime(d.year, d.month, d.day, tm.hour, tm.minute);
+  }
+
+  static String _categoryName(L10n t, EventCategory c) => switch (c) {
+        EventCategory.match => t.catMatch,
+        EventCategory.live => t.catLive,
+        EventCategory.quiz => t.catQuiz,
+        EventCategory.party => t.catParty,
+        EventCategory.special => t.catSpecial,
+      };
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -100,7 +142,9 @@ class PostsScreen extends ConsumerWidget {
               child: ListTile(
                 leading: Icon(p.type == PostType.event ? Icons.event : Icons.article_outlined, color: p.isPublished ? VColors.gold : VColors.ash),
                 title: Text(p.title, style: TextStyle(color: p.isPublished ? VColors.bone : VColors.ash)),
-                subtitle: Text('${p.isPublished ? formatDate(p.publishedAt!, locale: locale) : t.adminDraft}${p.startsAt != null ? ' · ${formatDateTime(p.startsAt!, locale: locale)}' : ''} · ♥ ${p.likeCount}'),
+                subtitle: Text('${p.isPublished ? formatDate(p.publishedAt!, locale: locale) : t.adminDraft}'
+                    '${p.category != null ? ' · ${_categoryName(t, p.category!)}' : ''}'
+                    '${p.startsAt != null ? ' · ${formatDateTime(p.startsAt!, locale: locale)}' : ''} · ♥ ${p.likeCount}'),
                 trailing: Row(mainAxisSize: MainAxisSize.min, children: [
                   IconButton(onPressed: () => _edit(context, ref, p), icon: const Icon(Icons.edit_outlined)),
                   IconButton(

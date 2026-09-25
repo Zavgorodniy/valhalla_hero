@@ -5,15 +5,15 @@ import 'package:valhalla_core/valhalla_core.dart';
 
 import '../../shared/ui.dart';
 
-/// Ruhmeshalle: the top three on plinths, everyone else in rank order, your
-/// own rank pinned, and statues for those who reached level VIII.
-class FameScreen extends ConsumerStatefulWidget {
-  const FameScreen({super.key});
+/// Ruhmeshalle as a sliver group: podium, own rank, everyone in order, and the
+/// avenue of statues for those who reached level VIII.
+class FameSliver extends ConsumerStatefulWidget {
+  const FameSliver({super.key});
   @override
-  ConsumerState<FameScreen> createState() => _FameScreenState();
+  ConsumerState<FameSliver> createState() => _FameSliverState();
 }
 
-class _FameScreenState extends ConsumerState<FameScreen> {
+class _FameSliverState extends ConsumerState<FameSliver> {
   bool _onBoardOnly = false;
 
   @override
@@ -29,143 +29,115 @@ class _FameScreenState extends ConsumerState<FameScreen> {
     final rest = list.skip(3).toList();
     final immortals = all.where((p) => p.level >= 8).toList();
     final above = myRank == null ? null : all.where((p) => p.rank == myRank.rank - 1).firstOrNull;
-    final showPinned = myRank != null && myRank.rank > 3;
 
-    return Scaffold(
-      backgroundColor: VColors.bg,
-      body: VBackground(
-        child: Stack(children: [
-          RefreshIndicator(
-            color: VColors.gold,
-            onRefresh: () async {
-              ref.invalidate(leaderboardProvider);
-              ref.invalidate(myRankProvider);
-            },
-            child: CustomScrollView(slivers: [
-              SliverToBoxAdapter(
-                child: SizedBox(
-                  height: 560,
-                  child: Stack(children: [
-                    Positioned.fill(child: Opacity(opacity: .6, child: VArt.image(VArt.scene('hall')))),
-                    const Positioned.fill(
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [Color(0xBF0E0B09), Color(0x590E0B09), Color(0x990E0B09), VColors.bg],
-                            stops: [0, .3, .7, 1],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const Positioned.fill(
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(gradient: RadialGradient(center: Alignment(0, .1), radius: .7, colors: [Color(0x2EE3A645), Color(0x00E3A645)])),
-                      ),
-                    ),
-                    const Positioned.fill(child: VEmbers(opacity: .7)),
-                    SafeArea(
-                      bottom: false,
-                      child: Column(children: [
-                        VTopBar(title: t.fameTitle, actions: [
-                          VRoundButton(icon: VIcons.info, tooltip: t.leaderboardSubtitle, onTap: () => showSnack(context, '${t.leaderboardSubtitle} · ${t.showInFameCaption}')),
-                        ]),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 6),
-                          child: VSegmented(labels: [t.allHeroes, t.onBoard], index: _onBoardOnly ? 1 : 0, onChanged: (i) => setState(() => _onBoardOnly = i == 1)),
-                        ),
-                      ]),
-                    ),
-                    if (board.isLoading && all.isEmpty) Positioned.fill(child: vLoading()),
-                    if (top.length > 1) _PodiumHero(p: top[1], place: 2, levels: levels, cx: -115),
-                    if (top.length > 2) _PodiumHero(p: top[2], place: 3, levels: levels, cx: 115),
-                    if (top.isNotEmpty) _PodiumHero(p: top[0], place: 1, levels: levels, cx: 0),
-                  ]),
-                ),
-              ),
-              if (me != null && !me.leaderboardVisible)
-                SliverPadding(
-                  padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
-                  sliver: SliverToBoxAdapter(child: Text(t.leaderboardHidden, style: VType.body(size: 12.5, color: VColors.ash))),
-                ),
-              SliverPadding(
-                padding: const EdgeInsets.fromLTRB(30, 4, 34, 6),
-                sliver: SliverToBoxAdapter(
-                  child: Row(children: [
-                    Text(t.rankHeader, style: VType.body(size: 11, weight: FontWeight.w800, color: VColors.ash2, spacing: 1.2)),
-                    const Spacer(),
-                    Text('XP', style: VType.body(size: 11, weight: FontWeight.w800, color: VColors.ash2, spacing: 1.2)),
-                  ]),
-                ),
-              ),
-              SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                sliver: SliverList.separated(
-                  itemCount: rest.length,
-                  separatorBuilder: (_, _) => const SizedBox(height: 8),
-                  itemBuilder: (_, i) => FameRow(p: rest[i], levels: levels, me: rest[i].id == me?.id),
-                ),
-              ),
-              SliverPadding(padding: const EdgeInsets.fromLTRB(0, 30, 0, 10), sliver: SliverToBoxAdapter(child: VSectionHeader(t.alleyTitle))),
-              SliverPadding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                sliver: SliverToBoxAdapter(child: Text(t.alleyBody, style: VType.body(size: 13.5, color: VColors.ash, height: 1.45))),
-              ),
-              SliverPadding(
-                padding: const EdgeInsets.fromLTRB(20, 14, 20, 0),
-                sliver: SliverToBoxAdapter(child: _Alley(immortals: immortals)),
-              ),
-              SliverToBoxAdapter(child: SizedBox(height: kTabBarSpace + (showPinned ? 80 : 0))),
-            ]),
-          ),
-          if (showPinned)
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 66 + MediaQuery.paddingOf(context).bottom,
-              child: GestureDetector(
-                onTap: () => context.push('/player/${myRank.id}'),
-                child: Container(
-                  height: 72,
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color(0xFF221910), Color(0xFF140F0C)]),
-                    border: Border(top: BorderSide(color: VColors.gold.withValues(alpha: .55))),
+    return SliverMainAxisGroup(slivers: [
+      SliverToBoxAdapter(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: VSegmented(labels: [t.allHeroes, t.onBoard], index: _onBoardOnly ? 1 : 0, onChanged: (i) => setState(() => _onBoardOnly = i == 1)),
+        ),
+      ),
+      SliverToBoxAdapter(
+        child: SizedBox(
+          height: 450,
+          child: Stack(children: [
+            Positioned.fill(child: Opacity(opacity: .5, child: VArt.image(VArt.scene('hall')))),
+            const Positioned.fill(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [VColors.bg, Color(0x590E0B09), Color(0x990E0B09), VColors.bg],
+                    stops: [0, .25, .7, 1],
                   ),
-                  child: Row(children: [
-                    SizedBox(width: 30, child: Text('${myRank.rank}', textAlign: TextAlign.center, style: VType.cinzel(size: 20, color: VColors.goldBright))),
-                    const SizedBox(width: 8),
-                    VPortrait(level: myRank.level, form: myRank.heroForm, size: 38),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(mainAxisAlignment: MainAxisAlignment.center, crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        Text(t.yourPosition, style: VType.body(size: 14.5, weight: FontWeight.w800)),
-                        if (above != null)
-                          Row(children: [
-                            const VIcon(VIcons.arrowUp, size: 14, color: VColors.frostBright, stroke: 2.2),
-                            const SizedBox(width: 4),
-                            Text(t.xpToRank(vNum(above.xp - myRank.xp + 1), above.rank), style: VType.body(size: 12.5, weight: FontWeight.w700, color: VColors.frostBright)),
-                          ]),
-                      ]),
-                    ),
-                    Text(vNum(myRank.xp), style: VType.body(size: 16, weight: FontWeight.w800, tabular: true)),
-                  ]),
                 ),
               ),
             ),
-        ]),
+            const Positioned.fill(
+              child: DecoratedBox(
+                decoration: BoxDecoration(gradient: RadialGradient(center: Alignment(0, .1), radius: .7, colors: [Color(0x2EE3A645), Color(0x00E3A645)])),
+              ),
+            ),
+            const Positioned.fill(child: VEmbers(opacity: .6)),
+            if (board.isLoading && all.isEmpty) Positioned.fill(child: vLoading()),
+            if (top.length > 1) _PodiumHero(p: top[1], place: 2, levels: levels, cx: -115, dy: -120),
+            if (top.length > 2) _PodiumHero(p: top[2], place: 3, levels: levels, cx: 115, dy: -120),
+            if (top.isNotEmpty) _PodiumHero(p: top[0], place: 1, levels: levels, cx: 0, dy: -120),
+          ]),
+        ),
       ),
-    );
+      if (me != null && !me.leaderboardVisible)
+        SliverPadding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 12),
+          sliver: SliverToBoxAdapter(child: Text(t.leaderboardHidden, style: VType.body(size: 12.5, color: VColors.ash))),
+        ),
+      if (myRank != null && myRank.rank > 3)
+        SliverPadding(
+          padding: const EdgeInsets.fromLTRB(20, 0, 20, 14),
+          sliver: SliverToBoxAdapter(
+            child: VCard(
+              borderColor: VColors.gold.withValues(alpha: .55),
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+              child: Row(children: [
+                SizedBox(width: 30, child: Text('${myRank.rank}', textAlign: TextAlign.center, style: VType.cinzel(size: 20, color: VColors.goldBright))),
+                const SizedBox(width: 8),
+                VPortrait(level: myRank.level, form: myRank.heroForm, size: 36),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Text(t.yourPosition, style: VType.body(size: 14.5, weight: FontWeight.w800)),
+                    if (above != null)
+                      Row(children: [
+                        const VIcon(VIcons.arrowUp, size: 14, color: VColors.frostBright, stroke: 2.2),
+                        const SizedBox(width: 4),
+                        Flexible(
+                          child: Text(t.xpToRank(vNum(above.xp - myRank.xp + 1), above.rank),
+                              overflow: TextOverflow.ellipsis, style: VType.body(size: 12.5, weight: FontWeight.w700, color: VColors.frostBright)),
+                        ),
+                      ]),
+                  ]),
+                ),
+                Text(vNum(myRank.xp), style: VType.body(size: 16, weight: FontWeight.w800, tabular: true)),
+              ]),
+            ),
+          ),
+        ),
+      SliverPadding(
+        padding: const EdgeInsets.fromLTRB(30, 4, 34, 6),
+        sliver: SliverToBoxAdapter(
+          child: Row(children: [
+            Text(t.rankHeader, style: VType.body(size: 11, weight: FontWeight.w800, color: VColors.ash2, spacing: 1.2)),
+            const Spacer(),
+            Text('XP', style: VType.body(size: 11, weight: FontWeight.w800, color: VColors.ash2, spacing: 1.2)),
+          ]),
+        ),
+      ),
+      SliverPadding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        sliver: SliverList.separated(
+          itemCount: rest.length,
+          separatorBuilder: (_, _) => const SizedBox(height: 8),
+          itemBuilder: (_, i) => FameRow(p: rest[i], levels: levels, me: rest[i].id == me?.id),
+        ),
+      ),
+      SliverPadding(padding: const EdgeInsets.fromLTRB(0, 30, 0, 10), sliver: SliverToBoxAdapter(child: VSectionHeader(t.alleyTitle))),
+      SliverPadding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        sliver: SliverToBoxAdapter(child: Text(t.alleyBody, style: VType.body(size: 13.5, color: VColors.ash, height: 1.45))),
+      ),
+      SliverPadding(padding: const EdgeInsets.fromLTRB(20, 14, 20, 0), sliver: SliverToBoxAdapter(child: _Alley(immortals: immortals))),
+    ]);
   }
 }
 
 class _PodiumHero extends StatelessWidget {
-  const _PodiumHero({required this.p, required this.place, required this.levels, required this.cx});
+  const _PodiumHero({required this.p, required this.place, required this.levels, required this.cx, this.dy = 0});
   final PublicProfile p;
   final int place;
   final Map<int, Level> levels;
   final double cx;
+  final double dy;
 
   @override
   Widget build(BuildContext context) {
@@ -174,7 +146,7 @@ class _PodiumHero extends StatelessWidget {
     final w = h * 380 / 916;
     final plinthW = first ? 140.0 : 112.0;
     final plinthH = first ? 62.0 : 46.0;
-    final top = first ? 150.0 : 206.0;
+    final top = (first ? 150.0 : 206.0) + dy;
     final metal = switch (place) { 1 => const [Color(0xFFFFE3A0), Color(0xFFC98F35)], 2 => const [Color(0xFFF2F0EA), Color(0xFF9C9A94)], _ => const [Color(0xFFF2C08F), Color(0xFFB06C3C)] };
     return Positioned(
       left: 0,

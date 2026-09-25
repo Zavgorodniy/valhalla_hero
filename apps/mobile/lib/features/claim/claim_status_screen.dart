@@ -20,14 +20,12 @@ class ClaimStatusScreen extends ConsumerStatefulWidget {
 class _ClaimStatusScreenState extends ConsumerState<ClaimStatusScreen> {
   Timer? _poll;
   Profile? _before;
-  Set<String> _achBefore = const {};
   bool _credited = false;
 
   @override
   void initState() {
     super.initState();
     _before = ref.read(profileProvider).valueOrNull;
-    _achBefore = (ref.read(myAchievementsProvider).valueOrNull ?? const []).map((a) => a.achievementKey).toSet();
     _poll = Timer.periodic(const Duration(seconds: 4), (_) => ref.invalidate(myClaimsProvider));
   }
 
@@ -62,7 +60,7 @@ class _ClaimStatusScreenState extends ConsumerState<ClaimStatusScreen> {
               null => vLoading(),
               ClaimStatus.pending => _Pending(key: const ValueKey('p'), claim: claim!),
               ClaimStatus.rejected => _Rejected(key: const ValueKey('r'), claim: claim!),
-              ClaimStatus.approved => _Credited(key: const ValueKey('a'), before: _before, achievementsBefore: _achBefore),
+              ClaimStatus.approved => CreditReveal(key: const ValueKey('a'), before: _before, since: claim!.createdAt),
             },
           ),
         ),
@@ -79,7 +77,7 @@ class _Pending extends StatelessWidget {
     final t = L10n.of(context);
     final time = TimeOfDay.fromDateTime(claim.createdAt.toLocal()).format(context);
     return Column(children: [
-      VTopBar(actions: [VRoundButton(icon: VIcons.close, tooltip: t.close, background: VColors.surface2, onTap: () => context.go('/home'))]),
+      VTopBar(actions: [VRoundButton(icon: VIcons.close, tooltip: t.close, background: VColors.surface2, onTap: () => context.go('/hero'))]),
       Expanded(
         child: ListView(padding: const EdgeInsets.symmetric(horizontal: 20), children: [
           const Center(child: _Seal()),
@@ -125,7 +123,7 @@ class _Pending extends StatelessWidget {
             const SizedBox(width: 8),
             Text(t.hornWillCall, style: VType.body(size: 13, weight: FontWeight.w600, color: VColors.ash)),
           ]),
-          VGhostButton(label: t.toHall, onPressed: () => context.go('/home')),
+          VGhostButton(label: t.toHall, onPressed: () => context.go('/hero')),
           const SizedBox(height: 16),
         ]),
       ),
@@ -215,7 +213,7 @@ class _Rejected extends StatelessWidget {
   Widget build(BuildContext context) {
     final t = L10n.of(context);
     return Column(children: [
-      VTopBar(actions: [VRoundButton(icon: VIcons.close, tooltip: t.close, background: VColors.surface2, onTap: () => context.go('/home'))]),
+      VTopBar(actions: [VRoundButton(icon: VIcons.close, tooltip: t.close, background: VColors.surface2, onTap: () => context.go('/hero'))]),
       const Spacer(),
       Container(
         width: 96,
@@ -231,15 +229,37 @@ class _Rejected extends StatelessWidget {
         child: Text(claim.rejectReason ?? t.claimRejectedBody, textAlign: TextAlign.center, style: VType.body(size: 15, color: VColors.ash, height: 1.5)),
       ),
       const Spacer(),
-      Padding(padding: const EdgeInsets.all(20), child: VSecondaryButton(label: t.toHall, onPressed: () => context.go('/home'))),
+      Padding(padding: const EdgeInsets.all(20), child: VSecondaryButton(label: t.toHall, onPressed: () => context.go('/hero'))),
     ]);
   }
 }
 
-class _Credited extends ConsumerWidget {
-  const _Credited({super.key, required this.before, required this.achievementsBefore});
+/// Snapshot taken before a credit, so the reveal can show what changed.
+/// The last redeemed receipt, handed from the scanner to [CreditRevealScreen].
+final lastReceiptProvider = StateProvider<ReceiptResult?>((ref) => null);
+
+/// Full-screen reward reveal after a scanned receipt.
+class CreditRevealScreen extends ConsumerWidget {
+  const CreditRevealScreen({super.key});
+  @override
+  Widget build(BuildContext context, WidgetRef ref) => VScreen(
+        glow: VColors.gold,
+        child: Stack(children: [
+          const Positioned.fill(child: VEmbers(opacity: .5)),
+          SafeArea(child: CreditReveal(result: ref.watch(lastReceiptProvider))),
+        ]),
+      );
+}
+
+class CreditReveal extends ConsumerWidget {
+  const CreditReveal({super.key, this.result, this.before, this.since});
+
+  /// Receipt path: gains as computed by the server.
+  final ReceiptResult? result;
+
+  /// Claim path: profile before the claim and when it was made.
   final Profile? before;
-  final Set<String> achievementsBefore;
+  final DateTime? since;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -249,13 +269,17 @@ class _Credited extends ConsumerWidget {
     final levels = ref.watch(levelMapProvider);
     final achievements = ref.watch(achievementsProvider).valueOrNull ?? const <Achievement>[];
     final items = ref.watch(itemsProvider).valueOrNull ?? const <Item>[];
-    final mine = (ref.watch(myAchievementsProvider).valueOrNull ?? const <UserAchievement>[]).map((a) => a.achievementKey).toSet();
+    final mine = ref.watch(myAchievementsProvider).valueOrNull ?? const <UserAchievement>[];
     if (now == null) return vLoading();
     final b = before ?? now;
-    final xpGain = now.xp - b.xp;
-    final coinGain = now.coinBalance - b.coinBalance;
-    final leveledUp = now.level > b.level;
-    final newAch = achievements.where((a) => mine.contains(a.key) && !achievementsBefore.contains(a.key)).toList();
+    final r = result;
+    final xpGain = r?.xpGained ?? now.xp - b.xp;
+    final coinGain = r?.coinsGained ?? now.coinBalance - b.coinBalance;
+    final levelBefore = r?.levelBefore ?? b.level;
+    final leveledUp = (r?.levelAfter ?? now.level) > levelBefore;
+    final newKeys = r?.achievements.toSet() ??
+        {for (final a in mine) if (since != null && !a.unlockedAt.isBefore(since!)) a.achievementKey};
+    final newAch = achievements.where((a) => newKeys.contains(a.key)).toList();
     final ach = newAch.firstOrNull;
     final achItem = ach == null ? null : items.where((i) => i.unlockAchievementKey == ach.key).firstOrNull;
     final cur = levels[now.level];
@@ -263,7 +287,7 @@ class _Credited extends ConsumerWidget {
     final progress = leveledUp ? 1.0 : next == null ? 1.0 : (now.xp - (cur?.xpThreshold ?? 0)) / (next.xpThreshold - (cur?.xpThreshold ?? 0));
 
     return Column(children: [
-      VTopBar(actions: [VRoundButton(icon: VIcons.close, tooltip: t.close, background: VColors.surface2, onTap: () => context.go('/home'))]),
+      VTopBar(actions: [VRoundButton(icon: VIcons.close, tooltip: t.close, background: VColors.surface2, onTap: () => context.go('/hero'))]),
       Expanded(
         child: ListView(padding: const EdgeInsets.symmetric(horizontal: 20), children: [
           Center(child: VStatusPill(label: t.visitConfirmed.toUpperCase(), color: VColors.moss, icon: VIcons.check)),
@@ -352,7 +376,7 @@ class _Credited extends ConsumerWidget {
           const SizedBox(height: 8),
           VXpBar(progress: progress),
           const SizedBox(height: 24),
-          VPrimaryButton(label: t.continueLabel, onPressed: () => context.go(leveledUp ? '/levelup?from=${b.level}' : '/home')),
+          VPrimaryButton(label: t.continueLabel, onPressed: () => context.go(leveledUp ? '/levelup?from=$levelBefore' : '/hero')),
           const SizedBox(height: 20),
         ]),
       ),

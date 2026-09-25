@@ -1,33 +1,18 @@
 {
   "@@locale": "en",
   "appName": "Valhalla Hero",
-  "tabHome": "Hall",
-  "tabFeed": "Saga",
   "tabShop": "Loot",
-  "tabLeaderboard": "Ranking",
-  "tabProfile": "Profile",
-  "tabStaff": "Team",
   "signIn": "Sign in",
   "signUp": "Sign up",
   "signOut": "Sign out",
   "email": "Email",
   "password": "Password",
   "nickname": "Nickname",
-  "nicknameHint": "3–20 characters, shown on the leaderboard",
   "birthDate": "Date of birth",
-  "birthDatePick": "Pick date of birth",
-  "ageGateTitle": "Adults only",
-  "ageGateBody": "Valhalla Hero is a bar loyalty programme. You must be 18 or older to take part.",
   "ageGateError": "You must be at least 18 years old.",
-  "continueWithGoogle": "Continue with Google",
   "continueWithApple": "Continue with Apple",
-  "orDivider": "or",
-  "noAccountYet": "No account yet?",
   "alreadyHaveAccount": "Already have an account?",
   "termsAccept": "I accept the terms of participation and have read the privacy policy.",
-  "consentPush": "Push notifications about promotions and events (optional)",
-  "consentOffers": "Personalised offers based on my visits (optional)",
-  "consentsNote": "You can withdraw the optional consents at any time in settings.",
   "createAccount": "Create account",
   "completeProfile": "Complete profile",
   "authError": "Sign-in failed: {message}",
@@ -35,14 +20,6 @@
     "placeholders": {
       "message": {
         "type": "String"
-      }
-    }
-  },
-  "levelLabel": "Level {level}",
-  "@levelLabel": {
-    "placeholders": {
-      "level": {
-        "type": "int"
       }
     }
   },
@@ -54,44 +31,7 @@
       }
     }
   },
-  "coinsLabel": "{coins} coins",
-  "@coinsLabel": {
-    "placeholders": {
-      "coins": {
-        "type": "int"
-      }
-    }
-  },
-  "xpToNextLevel": "{xp} XP to {level}",
-  "@xpToNextLevel": {
-    "placeholders": {
-      "xp": {
-        "type": "int"
-      },
-      "level": {
-        "type": "String"
-      }
-    }
-  },
-  "maxLevelReached": "You have reached Valhalla.",
   "onBoard": "On board",
-  "offBoard": "Left the ship",
-  "onBoardHint": "Visit us within {days} days to stay on board.",
-  "@onBoardHint": {
-    "placeholders": {
-      "days": {
-        "type": "int"
-      }
-    }
-  },
-  "streakWeeks": "{weeks} weeks in a row",
-  "@streakWeeks": {
-    "placeholders": {
-      "weeks": {
-        "type": "int"
-      }
-    }
-  },
   "visitsCount": "{count} visits",
   "@visitsCount": {
     "placeholders": {
@@ -102,18 +42,13 @@
   },
   "claimVisit": "Report visit",
   "claimVisitTitle": "Report a visit",
-  "claimVisitBody": "Enter your bill amount. The team confirms your visit, then you receive XP and coins.",
   "claimVenue": "Bar",
   "claimAmount": "Bill amount (€)",
   "claimNote": "Note (optional)",
-  "claimSubmit": "Submit",
-  "claimSubmitted": "Visit reported. The team will review it shortly.",
   "claimTooManyPending": "You have too many pending reports.",
-  "claimStatusPending": "Awaiting confirmation",
   "claimStatusApproved": "Confirmed",
   "claimStatusRejected": "Rejected",
   "myClaims": "My reports",
-  "recentActivity": "Recent activity",
   "achievements": "Achievements",
   "achievementsUnlocked": "{unlocked} of {total} unlocked",
   "@achievementsUnlocked": {
@@ -130,23 +65,6 @@
   "rewards": "Rewards",
   "gear": "Gear",
   "myVouchers": "My vouchers",
-  "redeem": "Redeem",
-  "redeemConfirmTitle": "Redeem {name}?",
-  "@redeemConfirmTitle": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
-  "redeemConfirmBody": "{price} coins will be deducted. You get a code to show to the team.",
-  "@redeemConfirmBody": {
-    "placeholders": {
-      "price": {
-        "type": "int"
-      }
-    }
-  },
   "redeemed": "Redeemed! Show this code at the bar.",
   "insufficientCoins": "Not enough coins.",
   "outOfStock": "Sold out",
@@ -175,19 +93,10 @@
   "rewardTypeDiscount": "Discount",
   "rewardTypePriorityBooking": "Booking",
   "rewardTypeEventAccess": "Event",
-  "buy": "Buy",
   "owned": "Owned",
   "equip": "Equip",
   "equipped": "Equipped",
   "unequip": "Unequip",
-  "purchaseConfirmTitle": "Buy {name}?",
-  "@purchaseConfirmTitle": {
-    "placeholders": {
-      "name": {
-        "type": "String"
-      }
-    }
-  },
   "purchaseDone": "Purchased. You can equip it now.",
   "unlockAtLevel": "From level {level}",
   "@unlockAtLevel": {
@@ -214,21 +123,9 @@
   "rarityCommon": "Common",
   "rarityRare": "Rare",
   "rarityLegendary": "Legendary",
-  "customizeHero": "Customise hero",
   "leaderboardTitle": "Ranking",
-  "leaderboardSubtitle": "All time · by XP",
   "leaderboardYou": "You",
   "leaderboardHidden": "You are hidden from the ranking.",
-  "feedTitle": "Saga",
-  "feedEmpty": "No news yet.",
-  "eventAt": "{date}",
-  "@eventAt": {
-    "placeholders": {
-      "date": {
-        "type": "String"
-      }
-    }
-  },
   "postTypeNews": "News",
   "postTypeEvent": "Event",
   "notifications": "Messages",
@@ -254,19 +151,12 @@
   "confirm": "Confirm",
   "save": "Save",
   "close": "Close",
+  "gotIt": "Got it",
   "retry": "Retry",
-  "loading": "Loading…",
-  "errorGeneric": "Something went wrong.",
-  "responsibleDrinking": "Enjoy responsibly. Points are for visits, not for drinking.",
-  "staffTitle": "Team area",
-  "staffClaims": "Pending reports",
   "staffClaimsEmpty": "No pending reports.",
   "staffApprove": "Approve",
   "staffReject": "Reject",
   "staffRejectReason": "Reason (optional)",
-  "staffVoucher": "Redeem voucher",
-  "staffVoucherCode": "Enter code",
-  "staffVoucherLookup": "Look up",
   "staffVoucherConfirm": "Mark as redeemed",
   "staffVoucherNotFound": "No voucher with this code.",
   "staffVoucherDone": "Voucher redeemed.",
@@ -294,6 +184,8 @@
   "adminBody": "Body",
   "adminImageUrl": "Image URL",
   "adminStartsAt": "Starts at",
+  "adminEndsAt": "Ends (optional)",
+  "adminCategory": "Category",
   "adminPrice": "Price (coins)",
   "adminStock": "Stock (empty = unlimited)",
   "adminValidityDays": "Validity (days)",
@@ -319,37 +211,14 @@
   "coinReasonExpiry": "Expiry",
   "coinReasonRefund": "Refund",
   "tabHero": "Hero",
-  "tabFame": "Fame",
-  "tabVisit": "Visit",
-  "greetMorning": "Good morning, {name}",
-  "greetDay": "Hello, {name}",
-  "greetEvening": "Good evening, {name}",
-  "levelOfTotal": "Level {level} of 8",
   "heroPath": "Hero path",
-  "nextLevelHint": "{xp} XP to go – {visits, plural, =1{one visit} other{about {visits} visits}} to {level}.",
   "statStreak": "Streak",
   "statOnBoard": "On board",
   "statVisits": "Visits",
   "weeksCount": "{weeks, plural, =1{1 week} other{{weeks} weeks}}",
   "daysCount": "{days, plural, =1{1 day} other{{days} days}}",
-  "nextGoal": "Your next goal",
-  "goalStreakTitle": "{weeks, plural, =1{One week on board} other{{weeks} weeks on board}}",
-  "goalStreakBody": "One visit by Sunday keeps your streak alive.",
-  "goalStreakLevelBody": "One visit by Sunday keeps your streak – and takes you to {level}.",
-  "goalStartTitle": "Start your streak",
-  "goalStartBody": "Visit us every week: from the second week on you earn bonus XP.",
-  "goalDoneTitle": "On board this week",
-  "goalDoneBody": "Your streak is safe. Next goal: {level}.",
-  "goalMaxBody": "You reached Valhalla. Keep your streak for the glory.",
   "thisWeek": "This week",
-  "weekShort": "W{week}",
-  "daysLeft": "{days, plural, =1{1 day left} other{{days} days left}}",
-  "rewardLabel": "Reward",
-  "upcomingEvents": "Coming up in the hall",
-  "fromSaga": "From the saga",
   "all": "All",
-  "pendingClaimTitle": "Visit is being checked",
-  "pendingClaimBody": "Show the team code {code}.",
   "claimSheetSub": "The team at the bar confirms your visit.",
   "claimWhere": "Where are you?",
   "change": "Change",
@@ -388,10 +257,8 @@
   "later": "Later",
   "shareLevel": "Share level-up",
   "shareLevelText": "I just became {level} in Valhalla Hero!",
-  "myHero": "My hero",
   "ownedOf": "{owned} of {total} owned",
   "cosmeticOnly": "Cosmetic only – no gameplay effect",
-  "emptySlot": "Empty",
   "heroForm": "Hero form",
   "heroFormHero": "Hero",
   "heroFormHeroine": "Heroine",
@@ -462,7 +329,7 @@
   "editHeroName": "Change hero name",
   "teamGroup": "Team",
   "teamMode": "Open team mode",
-  "teamModeCaption": "Confirm visits, check vouchers",
+  "teamModeCaption": "Confirm visits, review photos, check vouchers",
   "legal": "Legal",
   "terms": "Terms of participation",
   "privacyPolicy": "Privacy policy",
@@ -484,7 +351,7 @@
   "voucherValid": "Valid",
   "voucherUsedHint": "The code is used up afterwards. Only admins can undo it.",
   "welcomeHeadline": "Every visit writes your saga.",
-  "welcomeBody": "Report visits, rise through eight levels and trade coins for real loot.",
+  "welcomeBody": "Scan receipts, share moments from the hall and trade coins for merch and exclusive perks.",
   "continueWithEmail": "Email",
   "adultsOnlyFooter": "Guests aged 18+ only",
   "emailSignInTitle": "Sign in with email",
@@ -511,6 +378,68 @@
   "dayFri": "FRI",
   "daySat": "SAT",
   "daySun": "SUN",
-  "eventFrom": "from {time}",
-  "comingSoon": "Coming soon"
+  "comingSoon": "Coming soon",
+  "tabEvents": "Events",
+  "tabSaga": "Saga",
+  "tabScan": "Scan",
+  "tonight": "Tonight",
+  "tomorrow": "Tomorrow",
+  "liveNow": "On now",
+  "eventsEmpty": "No events planned right now.",
+  "catMatch": "Live sports",
+  "catLive": "Live music",
+  "catQuiz": "Quiz",
+  "catParty": "Party",
+  "catSpecial": "Special",
+  "scanTitle": "Scan receipt",
+  "scanHint": "Point the camera at the QR code on your receipt.",
+  "scanFromPhotos": "From photos",
+  "scanEnterCode": "Enter code",
+  "scanCodeHint": "Printed below the QR code on your receipt.",
+  "scanNoQr": "Report without QR",
+  "scanDemo": "Demo receipt",
+  "scanChecking": "Checking receipt …",
+  "torch": "Light",
+  "scanNoCamera": "No camera available. Pick a photo or enter the code.",
+  "scanNothingInImage": "No QR code found in the image.",
+  "scanOnce": "Each receipt counts once – XP per visit, coins by amount.",
+  "receiptErrUsed": "This receipt has already been redeemed.",
+  "receiptErrInvalid": "This is not a valid Valhalla receipt.",
+  "receiptErrTooOld": "This receipt is too old.",
+  "receiptErrUnknownVenue": "This receipt is not from a Valhalla bar.",
+  "receiptErrDailyLimit": "You already redeemed a receipt here today. See you tomorrow!",
+  "sagaComposerTitle": "Share your moment",
+  "sagaComposerSub": "Photo from the hall or with Valhalla merch · +{xp} XP · +{coins} coins",
+  "checkinNewTitle": "Share photo",
+  "takePhoto": "Camera",
+  "pickPhoto": "Library",
+  "captionHint": "What is happening in the hall?",
+  "tagEvent": "Tag an event",
+  "noEvent": "No event",
+  "checkinRules": "Only photos from the hall or with Valhalla merch. The team reviews every photo before it appears in the saga.",
+  "checkinReward": "+{xp} XP · +{coins} coins after approval (once per day)",
+  "checkinSubmit": "Send for review",
+  "checkinPendingTitle": "Your photo is being reviewed",
+  "checkinPendingBody": "As soon as the team approves it, it appears in the saga. Until then you cannot send another photo.",
+  "checkinWithdraw": "Withdraw",
+  "checkinRejectedTitle": "Photo not approved",
+  "checkinErrPending": "You already have a photo under review.",
+  "sagaEmpty": "No photos yet. Be the first!",
+  "justNow": "just now",
+  "agoMinutes": "{minutes} min ago",
+  "agoHours": "{hours} h ago",
+  "photosInSaga": "Photos in the saga",
+  "teamPhotosTab": "Photos · {count}",
+  "teamPhotosEmpty": "No photos to review.",
+  "approvePhoto": "Approve",
+  "helpFeedback": "Help & feedback",
+  "reportBug": "Report a bug",
+  "reportBugCaption": "Something not working? Let us know.",
+  "bugDescribe": "What happened?",
+  "bugHint": "Briefly describe what you did and what went wrong.",
+  "bugIncludeInfo": "Include app and device info",
+  "bugSend": "Send",
+  "bugThanks": "Thanks! We are on it.",
+  "chooseLanguage": "Choose language",
+  "whoLikes": "{count, plural, =0{No likes yet} =1{1 like} other{{count} likes}}"
 }

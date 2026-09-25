@@ -7,11 +7,14 @@ import 'features/auth/email_login_screen.dart';
 import 'features/auth/onboarding_flow.dart';
 import 'features/auth/welcome_screen.dart';
 import 'features/claim/claim_status_screen.dart';
+import 'features/events/events_screen.dart';
+import 'features/hero/path_screen.dart';
+import 'features/saga/checkin_composer.dart';
+import 'features/saga/saga_screen.dart';
+import 'features/scan/scan_screen.dart';
 import 'features/feed/post_screen.dart';
 import 'features/hero/hero_screen.dart';
 import 'features/hero/level_up_screen.dart';
-import 'features/home/home_screen.dart';
-import 'features/leaderboard/fame_screen.dart';
 import 'features/leaderboard/player_screen.dart';
 import 'features/profile/notifications_screen.dart';
 import 'features/profile/settings_screen.dart';
@@ -44,7 +47,7 @@ final routerProvider = Provider<GoRouter>((ref) {
 
   return GoRouter(
     navigatorKey: rootKey,
-    initialLocation: '/home',
+    initialLocation: '/hero',
     refreshListenable: refresh,
     redirect: (context, state) {
       final user = ref.read(currentUserProvider);
@@ -56,8 +59,8 @@ final routerProvider = Provider<GoRouter>((ref) {
       if (profile.isLoading && !profile.hasValue) return loc == '/splash' ? null : '/splash';
       if (profile.hasError) return loc == '/splash' ? null : '/splash';
       if (profile.valueOrNull == null) return loc == '/onboarding' ? null : '/onboarding';
-      if (isAuthRoute || loc == '/splash' || loc == '/onboarding') return '/home';
-      if (loc == '/team' && !(profile.valueOrNull!.role.isStaff)) return '/home';
+      if (isAuthRoute || loc == '/splash' || loc == '/onboarding' || loc == '/home') return '/hero';
+      if (loc == '/team' && !(profile.valueOrNull!.role.isStaff)) return '/hero';
       return null;
     },
     routes: [
@@ -79,17 +82,22 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(path: '/notifications', parentNavigatorKey: rootKey, builder: (_, _) => const NotificationsScreen()),
       GoRoute(path: '/settings', parentNavigatorKey: rootKey, builder: (_, _) => const SettingsScreen()),
       GoRoute(path: '/team', parentNavigatorKey: rootKey, builder: (_, _) => const StaffScreen()),
+      GoRoute(path: '/home', redirect: (_, _) => '/hero'),
+      GoRoute(path: '/scan', parentNavigatorKey: rootKey, pageBuilder: (_, s) => _fade(const ScanScreen(), s)),
+      GoRoute(path: '/credited', parentNavigatorKey: rootKey, pageBuilder: (_, s) => _fade(const CreditRevealScreen(), s)),
+      GoRoute(path: '/path', parentNavigatorKey: rootKey, builder: (_, _) => const PathScreen()),
+      GoRoute(path: '/checkin/new', parentNavigatorKey: rootKey, builder: (_, _) => const CheckinComposer()),
       StatefulShellRoute.indexedStack(
         builder: (context, state, shell) => AppShell(shell: shell),
         branches: [
-          StatefulShellBranch(routes: [GoRoute(path: '/home', builder: (_, _) => const HomeScreen())]),
           StatefulShellBranch(routes: [
             GoRoute(path: '/hero', builder: (_, s) => HeroScreen(initialSegment: int.tryParse(s.uri.queryParameters['seg'] ?? '') ?? 0)),
           ]),
+          StatefulShellBranch(routes: [GoRoute(path: '/events', builder: (_, _) => const EventsScreen())]),
+          StatefulShellBranch(routes: [GoRoute(path: '/saga', builder: (_, _) => const SagaScreen())]),
           StatefulShellBranch(routes: [
             GoRoute(path: '/shop', builder: (_, s) => ShopScreen(initialSegment: int.tryParse(s.uri.queryParameters['seg'] ?? '') ?? 0)),
           ]),
-          StatefulShellBranch(routes: [GoRoute(path: '/fame', builder: (_, _) => const FameScreen())]),
         ],
       ),
     ],
