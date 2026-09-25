@@ -1,0 +1,45 @@
+name: valhalla_core
+description: Shared models, repositories, theme and i18n for Valhalla Hero.
+version: 0.1.0
+publish_to: none
+resolution: workspace
+
+environment:
+  sdk: ^3.12.0
+  flutter: ">=3.44.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  supabase_flutter: ^2.9.0
+  flutter_riverpod: ^2.6.1
+  riverpod_annotation: ^2.6.1
+  freezed_annotation: ^3.0.0
+  json_annotation: ^4.9.0
+  intl: any
+  flutter_svg: ^2.0.17
+  google_fonts: ^8.2.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  build_runner: ^2.4.15
+  freezed: ^3.0.6
+  json_serializable: ^6.9.5
+  riverpod_generator: ^2.6.5
+
+flutter:
+  generate: true
+  assets:
+    - assets/heroes/
+    - assets/items/
+    - assets/rewards/
+    - assets/art/heroes/
+    - assets/art/portraits/
+    - assets/art/stages/
+    - assets/art/items/
+    - assets/art/scenes/
+    - assets/art/tex/

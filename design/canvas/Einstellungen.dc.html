@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap">
+  <style>
+    body { margin: 0; background: #0C0B0A; color: #EFE7D8; font-family: Manrope, 'Segoe UI', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #E0A045; text-decoration: none; } a:hover { color: #F4BF63; }
+    * { box-sizing: border-box; }
+    .phone { position: relative; width: 390px; height: 844px; overflow: hidden; background: #0C0B0A; background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22140%22%20height%3D%22140%22%3E%3Cfilter%20id%3D%22n%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.9%22%20numOctaves%3D%222%22%20stitchTiles%3D%22stitch%22/%3E%3CfeColorMatrix%20values%3D%220%200%200%200%201%200%200%200%200%200.95%200%200%200%200%200.85%200%200%200%200.06%200%22/%3E%3C/filter%3E%3Crect%20width%3D%22140%22%20height%3D%22140%22%20filter%3D%22url%28%23n%29%22/%3E%3C/svg%3E"); }
+    .display { font-family: Cinzel, 'Times New Roman', serif; font-weight: 700; letter-spacing: 0.06em; }
+    .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #756B5E; }
+    .h1 { font-family: Cinzel, 'Times New Roman', serif; font-weight: 700; font-size: 24px; letter-spacing: 0.06em; color: #EFE7D8; line-height: 1.1; }
+    .h2 { font-size: 18px; font-weight: 800; letter-spacing: -0.01em; }
+    .body { font-size: 14px; line-height: 1.45; color: #EFE7D8; }
+    .sub { font-size: 13px; line-height: 1.4; color: #AFA393; }
+    .cap { font-size: 11.5px; color: #756B5E; }
+    .num { font-family: Cinzel, 'Times New Roman', serif; font-weight: 600; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; }
+    .card { background: #151311; border: 1px solid #2F2A25; border-radius: 12px; }
+    .card2 { background: #1D1A17; border: 1px solid #2F2A25; border-radius: 12px; }
+    .btn { display: flex; align-items: center; justify-content: center; gap: 10px; height: 52px; padding: 0 20px; border-radius: 8px; font-weight: 800; font-size: 15px; letter-spacing: 0.01em; }
+    .btn-primary { background: linear-gradient(180deg, #F4BF63, #E0A045); color: #1A1308; box-shadow: 0 1px 0 rgba(255,255,255,0.25) inset, 0 8px 24px -10px rgba(224,160,69,0.6); }
+    .btn-secondary { background: transparent; color: #EFE7D8; border: 1px solid #453E36; }
+    .btn-ghost { background: transparent; color: #E0A045; height: 44px; }
+    .btn-danger { background: #C4573F; color: #EFE7D8; }
+    .btn-sm { height: 44px; font-size: 13.5px; padding: 0 14px; }
+    .input { display: flex; align-items: center; height: 52px; padding: 0 16px; background: #1D1A17; border: 1px solid #2F2A25; border-radius: 8px; color: #EFE7D8; font-size: 15px; }
+    .input .lbl { position: absolute; top: -8px; left: 12px; padding: 0 5px; background: #1D1A17; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #756B5E; font-weight: 700; }
+    .field { position: relative; }
+    .input.focus { border-color: #E0A045; box-shadow: 0 0 0 3px rgba(224,160,69,0.14); }
+    .pill { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.02em; }
+    .pill-coin { background: rgba(224,160,69,0.14); color: #F4BF63; border: 1px solid rgba(224,160,69,0.35); font-family: Cinzel, serif; letter-spacing: 0.05em; }
+    .pill-ok { background: rgba(127,181,138,0.14); color: #7FB58A; border: 1px solid rgba(127,181,138,0.4); }
+    .pill-off { background: rgba(117,107,94,0.14); color: #AFA393; border: 1px solid #453E36; }
+    .pill-danger { background: rgba(196,87,63,0.14); color: #E27A63; border: 1px solid rgba(196,87,63,0.4); }
+    .pill-frost { background: rgba(143,184,207,0.12); color: #8FB8CF; border: 1px solid rgba(143,184,207,0.35); }
+    .level { display: inline-flex; align-items: center; gap: 8px; height: 28px; padding: 0 10px 0 8px; border-radius: 6px; border: 1px solid; font-family: Cinzel, serif; font-weight: 700; font-size: 12px; letter-spacing: 0.1em; }
+    .ic { width: 22px; height: 22px; flex: none; }
+    .ic-sm { width: 18px; height: 18px; }
+    .nav { position: absolute; left: 0; right: 0; bottom: 0; height: 84px; padding: 8px 6px 22px; display: flex; justify-content: space-around; align-items: flex-start; background: rgba(12,11,10,0.94); border-top: 1px solid #2F2A25; backdrop-filter: blur(12px); }
+    .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 62px; color: #756B5E; font-size: 10.5px; font-weight: 700; letter-spacing: 0.04em; }
+    .nav-item.on { color: #E0A045; }
+    .nav-item.on .ic { filter: drop-shadow(0 0 6px rgba(224,160,69,0.6)); }
+    .rune { display: flex; align-items: center; gap: 8px; color: #453E36; }
+    .rune::before, .rune::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #453E36); }
+    .rune::after { background: linear-gradient(90deg, #453E36, transparent); }
+    .row { display: flex; align-items: center; gap: 14px; padding: 14px 16px; }
+    .row + .row { border-top: 1px solid #2F2A25; }
+    .xp { position: relative; height: 6px; border-radius: 3px; background: #282420; overflow: hidden; }
+    .xp > div { height: 100%; border-radius: 3px; background: linear-gradient(90deg, #E0A045, #F4BF63); box-shadow: 0 0 12px rgba(224,160,69,0.6); }
+    .ticks { display: flex; justify-content: space-between; margin-top: 4px; }
+    .ticks i { display: block; width: 1px; height: 4px; background: #453E36; }
+    .tab { flex: 1; text-align: center; padding: 15px 0 13px; font-size: 14px; font-weight: 700; color: #756B5E; border-bottom: 2px solid transparent; }
+    .tab.on { color: #E0A045; border-bottom-color: #E0A045; }
+    .chip { display: inline-flex; align-items: center; gap: 6px; height: 44px; padding: 0 14px; border-radius: 8px; border: 1px solid #453E36; color: #AFA393; font-size: 13px; font-weight: 700; }
+    .chip.on { background: rgba(224,160,69,0.14); border-color: #E0A045; color: #F4BF63; }
+    .seg { display: flex; padding: 3px; background: #1D1A17; border: 1px solid #2F2A25; border-radius: 8px; }
+    .seg > div { flex: 1; text-align: center; padding: 12px 0; border-radius: 6px; font-size: 13px; font-weight: 700; color: #AFA393; }
+    .seg > div.on { background: #282420; color: #EFE7D8; box-shadow: 0 1px 0 rgba(255,255,255,0.05) inset; }
+    .toggle { width: 44px; height: 26px; border-radius: 13px; background: #282420; border: 1px solid #453E36; position: relative; flex: none; }
+    .toggle::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #AFA393; }
+    .toggle.on { background: #E0A045; border-color: #E0A045; }
+    .toggle.on::after { left: 21px; background: #1A1308; }
+    .medal { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex: none; }
+    .medal.on { background: rgba(224,160,69,0.14); border: 1px solid rgba(224,160,69,0.45); color: #F4BF63; }
+    .medal.off { background: #1D1A17; border: 1px solid #2F2A25; color: #756B5E; }
+    .glow { background: radial-gradient(60% 50% at 50% 35%, rgba(224,160,69,0.22), transparent 70%); }
+    .rarity { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+    .rarity i { display: block; width: 7px; height: 7px; transform: rotate(45deg); }
+    .divider { height: 1px; background: #2F2A25; }
+</style>
+</helmet>
+
+<div class="phone">
+  <div style="display:flex;align-items:center;gap:8px;padding:58px 16px 12px 20px;min-height:110px">
+  <div style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#AFA393"><svg class="ic" style="width:22px;height:22px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M15 6l-6 6 6 6"/></svg></div><div class="h1" style="flex:1">Einstellungen</div>
+</div>
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:24px 20px 10px"><span class="eyebrow">Sprache</span></div>
+  <div style="padding:0 20px"><div class="seg"><div class="on">Deutsch</div><div>English</div></div></div>
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:24px 20px 10px"><span class="eyebrow">Datenschutz</span></div>
+  <div class="card" style="margin:0 20px">
+    <div class="row"><div style="flex:1"><div class="body" style="font-weight:600">In der Rangliste sichtbar</div><div class="cap" style="margin-top:2px">Nur Nickname und Held, nie dein Name</div></div><div class="toggle on"></div></div>
+    <div class="row"><div style="flex:1"><div class="body" style="font-weight:600">Push zu Aktionen und Events</div></div><div class="toggle"></div></div>
+    <div class="row"><div style="flex:1"><div class="body" style="font-weight:600">Personalisierte Angebote</div></div><div class="toggle"></div></div>
+  </div>
+  <div class="cap" style="padding:10px 20px 0">Optionale Einwilligungen kannst du jederzeit widerrufen.</div>
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:24px 20px 10px"><span class="eyebrow">Konto</span></div>
+  <div class="card" style="margin:0 20px">
+    <div class="row"><span style="color:#AFA393"><svg class="ic" style="width:22px;height:22px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 4v11M7 10l5 5 5-5M4 20h16"/></svg></span><span class="body" style="flex:1;font-weight:600">Meine Daten exportieren</span><span style="color:#756B5E"><svg class="ic-sm" style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M9 6l6 6-6 6"/></svg></span></div>
+    <div class="row"><span style="color:#C4573F"><svg class="ic" style="width:22px;height:22px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg></span><span class="body" style="flex:1;font-weight:600;color:#E27A63">Konto löschen</span></div>
+  </div>
+  <div class="cap" style="padding:24px 20px;text-align:center">Valhalla Hero 0.1 · Teilnahmebedingungen · Datenschutz</div>
+</div>
+</x-dc>
+</body>
+</html>

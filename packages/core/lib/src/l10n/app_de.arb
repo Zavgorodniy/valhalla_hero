@@ -1,0 +1,825 @@
+{
+  "@@locale": "de",
+  "appName": "Valhalla Hero",
+  "tabHome": "Halle",
+  "tabFeed": "Saga",
+  "tabShop": "Beute",
+  "tabLeaderboard": "Rangliste",
+  "tabProfile": "Profil",
+  "tabStaff": "Team",
+  "signIn": "Anmelden",
+  "signUp": "Registrieren",
+  "signOut": "Abmelden",
+  "email": "E-Mail",
+  "password": "Passwort",
+  "nickname": "Nickname",
+  "nicknameHint": "3–20 Zeichen, wird in der Rangliste angezeigt",
+  "birthDate": "Geburtsdatum",
+  "birthDatePick": "Geburtsdatum wählen",
+  "ageGateTitle": "Nur für Erwachsene",
+  "ageGateBody": "Valhalla Hero ist ein Treueprogramm einer Bar. Die Teilnahme ist ab 18 Jahren möglich.",
+  "ageGateError": "Du musst mindestens 18 Jahre alt sein.",
+  "continueWithGoogle": "Mit Google fortfahren",
+  "continueWithApple": "Mit Apple fortfahren",
+  "orDivider": "oder",
+  "noAccountYet": "Noch kein Konto?",
+  "alreadyHaveAccount": "Schon ein Konto?",
+  "termsAccept": "Ich akzeptiere die Teilnahmebedingungen und habe die Datenschutzerklärung gelesen.",
+  "consentPush": "Push-Nachrichten zu Aktionen und Events (optional)",
+  "consentOffers": "Personalisierte Angebote auf Basis meiner Besuche (optional)",
+  "consentsNote": "Die optionalen Einwilligungen kannst du jederzeit in den Einstellungen widerrufen.",
+  "createAccount": "Konto erstellen",
+  "completeProfile": "Profil vervollständigen",
+  "authError": "Anmeldung fehlgeschlagen: {message}",
+  "@authError": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "levelLabel": "Stufe {level}",
+  "@levelLabel": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "xpLabel": "{xp} XP",
+  "@xpLabel": {
+    "placeholders": {
+      "xp": {
+        "type": "int",
+        "format": "decimalPattern"
+      }
+    }
+  },
+  "coinsLabel": "{coins} Münzen",
+  "@coinsLabel": {
+    "placeholders": {
+      "coins": {
+        "type": "int",
+        "format": "decimalPattern"
+      }
+    }
+  },
+  "xpToNextLevel": "Noch {xp} XP bis {level}",
+  "@xpToNextLevel": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      },
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "maxLevelReached": "Du hast Walhalla erreicht.",
+  "onBoard": "An Bord",
+  "offBoard": "Von Bord gegangen",
+  "onBoardHint": "Besuche uns innerhalb von {days} Tagen, um an Bord zu bleiben.",
+  "@onBoardHint": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "streakWeeks": "{weeks} Wochen in Folge",
+  "@streakWeeks": {
+    "placeholders": {
+      "weeks": {
+        "type": "int"
+      }
+    }
+  },
+  "visitsCount": "{count} Besuche",
+  "@visitsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "claimVisit": "Besuch melden",
+  "claimVisitTitle": "Besuch melden",
+  "claimVisitBody": "Gib den Rechnungsbetrag ein. Das Team bestätigt deinen Besuch, danach bekommst du XP und Münzen.",
+  "claimVenue": "Bar",
+  "claimAmount": "Rechnungsbetrag (€)",
+  "claimNote": "Notiz (optional)",
+  "claimSubmit": "Absenden",
+  "claimSubmitted": "Besuch gemeldet. Das Team prüft ihn in Kürze.",
+  "claimTooManyPending": "Du hast zu viele offene Meldungen.",
+  "claimStatusPending": "Wartet auf Bestätigung",
+  "claimStatusApproved": "Bestätigt",
+  "claimStatusRejected": "Abgelehnt",
+  "myClaims": "Meine Meldungen",
+  "recentActivity": "Letzte Aktivität",
+  "achievements": "Erfolge",
+  "achievementsUnlocked": "{unlocked} von {total} freigeschaltet",
+  "@achievementsUnlocked": {
+    "placeholders": {
+      "unlocked": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "locked": "Gesperrt",
+  "rewards": "Belohnungen",
+  "gear": "Ausrüstung",
+  "myVouchers": "Meine Gutscheine",
+  "redeem": "Einlösen",
+  "redeemConfirmTitle": "{name} einlösen?",
+  "@redeemConfirmTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "redeemConfirmBody": "{price} Münzen werden abgezogen. Du erhältst einen Code, den du dem Team zeigst.",
+  "@redeemConfirmBody": {
+    "placeholders": {
+      "price": {
+        "type": "int"
+      }
+    }
+  },
+  "redeemed": "Eingelöst! Zeige diesen Code an der Theke.",
+  "insufficientCoins": "Nicht genug Münzen.",
+  "outOfStock": "Ausverkauft",
+  "stockLeft": "Noch {count}",
+  "@stockLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "validUntil": "Gültig bis {date}",
+  "@validUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "voucherActive": "Aktiv",
+  "voucherRedeemed": "Eingelöst",
+  "voucherExpired": "Abgelaufen",
+  "voucherCancelled": "Storniert",
+  "rewardTypeMerch": "Merch",
+  "rewardTypeDrink": "Getränk",
+  "rewardTypeDiscount": "Rabatt",
+  "rewardTypePriorityBooking": "Reservierung",
+  "rewardTypeEventAccess": "Event",
+  "buy": "Kaufen",
+  "owned": "Im Besitz",
+  "equip": "Anlegen",
+  "equipped": "Angelegt",
+  "unequip": "Ablegen",
+  "purchaseConfirmTitle": "{name} kaufen?",
+  "@purchaseConfirmTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "purchaseDone": "Gekauft. Du kannst es jetzt anlegen.",
+  "unlockAtLevel": "Ab Stufe {level}",
+  "@unlockAtLevel": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "unlockByAchievement": "Erfolg: {name}",
+  "@unlockByAchievement": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "unlockByEvent": "Nur bei Events",
+  "slotHeadgear": "Kopf",
+  "slotHandItem": "Hand",
+  "slotCape": "Umhang",
+  "slotCompanion": "Gefährte",
+  "slotFrame": "Rahmen",
+  "rarityCommon": "Gewöhnlich",
+  "rarityRare": "Selten",
+  "rarityLegendary": "Legendär",
+  "customizeHero": "Helden anpassen",
+  "leaderboardTitle": "Rangliste",
+  "leaderboardSubtitle": "Alle Zeiten · nach XP",
+  "leaderboardYou": "Du",
+  "leaderboardHidden": "Du bist in der Rangliste ausgeblendet.",
+  "feedTitle": "Saga",
+  "feedEmpty": "Noch keine Neuigkeiten.",
+  "eventAt": "{date}",
+  "@eventAt": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "postTypeNews": "News",
+  "postTypeEvent": "Event",
+  "notifications": "Nachrichten",
+  "notificationsEmpty": "Keine Nachrichten.",
+  "settings": "Einstellungen",
+  "language": "Sprache",
+  "leaderboardVisible": "In der Rangliste sichtbar",
+  "privacy": "Datenschutz",
+  "exportData": "Meine Daten exportieren",
+  "exportDataDone": "Export erstellt.",
+  "deleteAccount": "Konto löschen",
+  "deleteAccountTitle": "Konto wirklich löschen?",
+  "deleteAccountBody": "Alle Daten, XP und {coins} Münzen werden unwiderruflich gelöscht.",
+  "@deleteAccountBody": {
+    "placeholders": {
+      "coins": {
+        "type": "int"
+      }
+    }
+  },
+  "delete": "Löschen",
+  "cancel": "Abbrechen",
+  "confirm": "Bestätigen",
+  "save": "Speichern",
+  "close": "Schließen",
+  "retry": "Erneut versuchen",
+  "loading": "Lädt…",
+  "errorGeneric": "Etwas ist schiefgelaufen.",
+  "responsibleDrinking": "Genieße verantwortungsvoll. Punkte gibt es für Besuche, nicht fürs Trinken.",
+  "staffTitle": "Team-Bereich",
+  "staffClaims": "Offene Meldungen",
+  "staffClaimsEmpty": "Keine offenen Meldungen.",
+  "staffApprove": "Bestätigen",
+  "staffReject": "Ablehnen",
+  "staffRejectReason": "Grund (optional)",
+  "staffVoucher": "Gutschein einlösen",
+  "staffVoucherCode": "Code eingeben",
+  "staffVoucherLookup": "Suchen",
+  "staffVoucherConfirm": "Als eingelöst markieren",
+  "staffVoucherNotFound": "Kein Gutschein mit diesem Code.",
+  "staffVoucherDone": "Gutschein eingelöst.",
+  "staffCredit": "Besuch manuell gutschreiben",
+  "adminDashboard": "Übersicht",
+  "adminUsers": "Gäste",
+  "adminClaims": "Meldungen",
+  "adminRewards": "Belohnungen",
+  "adminItems": "Ausrüstung",
+  "adminPosts": "Saga",
+  "adminVenues": "Bars",
+  "adminEconomy": "Ökonomie",
+  "adminStatUsers": "Gäste",
+  "adminStatOnBoard": "An Bord",
+  "adminStatVisits30": "Besuche (30 Tage)",
+  "adminStatRevenue30": "Umsatz (30 Tage)",
+  "adminStatPending": "Offene Meldungen",
+  "adminStatCoins": "Münzen im Umlauf",
+  "adminStatVouchersActive": "Aktive Gutscheine",
+  "adminStatVouchersRedeemed30": "Eingelöst (30 Tage)",
+  "adminNewPost": "Neuer Beitrag",
+  "adminPublish": "Veröffentlichen",
+  "adminDraft": "Entwurf",
+  "adminTitle": "Titel",
+  "adminBody": "Text",
+  "adminImageUrl": "Bild-URL",
+  "adminStartsAt": "Beginn",
+  "adminPrice": "Preis (Münzen)",
+  "adminStock": "Bestand (leer = unbegrenzt)",
+  "adminValidityDays": "Gültigkeit (Tage)",
+  "adminActive": "Aktiv",
+  "adminRole": "Rolle",
+  "adminSearch": "Suchen",
+  "adminEconomyXpPerVisit": "XP pro Besuch",
+  "adminEconomyCoinsPerEuro": "Münzen pro Euro",
+  "adminEconomyDailyCap": "Tageslimit Münzen",
+  "adminEconomyExpiryMonths": "Verfall (Monate)",
+  "adminEconomyOnboardDays": "An Bord (Tage)",
+  "adminEconomyStreakBonus": "Streak-Bonus XP",
+  "adminLevels": "Stufen",
+  "adminLevelThreshold": "XP-Schwelle",
+  "adminLevelMultiplier": "Münz-Multiplikator",
+  "adminSaved": "Gespeichert.",
+  "adminNotAllowed": "Nur für Administratoren.",
+  "coinReasonVisit": "Besuch",
+  "coinReasonAchievement": "Erfolg",
+  "coinReasonManual": "Team-Gutschrift",
+  "coinReasonReward": "Belohnung",
+  "coinReasonItem": "Ausrüstung",
+  "coinReasonExpiry": "Verfall",
+  "coinReasonRefund": "Erstattung",
+  "tabHero": "Held",
+  "tabFame": "Ruhm",
+  "tabVisit": "Besuch",
+  "greetMorning": "Guten Morgen, {name}",
+  "@greetMorning": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "greetDay": "Hallo, {name}",
+  "@greetDay": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "greetEvening": "Guten Abend, {name}",
+  "@greetEvening": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "levelOfTotal": "Stufe {level} von 8",
+  "@levelOfTotal": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "heroPath": "Heldenweg",
+  "nextLevelHint": "Noch {xp} XP – {visits, plural, =1{ein Besuch} other{etwa {visits} Besuche}} bis {level}.",
+  "@nextLevelHint": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      },
+      "visits": {
+        "type": "int"
+      },
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "statStreak": "Serie",
+  "statOnBoard": "An Bord",
+  "statVisits": "Besuche",
+  "weeksCount": "{weeks, plural, =1{1 Woche} other{{weeks} Wochen}}",
+  "@weeksCount": {
+    "placeholders": {
+      "weeks": {
+        "type": "int"
+      }
+    }
+  },
+  "daysCount": "{days, plural, =1{1 Tag} other{{days} Tage}}",
+  "@daysCount": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "nextGoal": "Dein nächstes Ziel",
+  "goalStreakTitle": "{weeks, plural, =1{Eine Woche an Bord} other{{weeks} Wochen an Bord}}",
+  "@goalStreakTitle": {
+    "placeholders": {
+      "weeks": {
+        "type": "int"
+      }
+    }
+  },
+  "goalStreakBody": "Ein Besuch bis Sonntag hält deine Serie am Leben.",
+  "goalStreakLevelBody": "Ein Besuch bis Sonntag hält deine Serie – und hebt dich auf {level}.",
+  "@goalStreakLevelBody": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "goalStartTitle": "Starte deine Serie",
+  "goalStartBody": "Besuche uns jede Woche: ab der zweiten Woche gibt es Bonus-XP.",
+  "goalDoneTitle": "Diese Woche an Bord",
+  "goalDoneBody": "Deine Serie steht. Nächstes Ziel: {level}.",
+  "@goalDoneBody": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "goalMaxBody": "Du hast Walhalla erreicht. Halte deine Serie für den Ruhm.",
+  "thisWeek": "Diese Woche",
+  "weekShort": "KW {week}",
+  "@weekShort": {
+    "placeholders": {
+      "week": {
+        "type": "int"
+      }
+    }
+  },
+  "daysLeft": "{days, plural, =1{Noch 1 Tag} other{Noch {days} Tage}}",
+  "@daysLeft": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "rewardLabel": "Belohnung",
+  "upcomingEvents": "Demnächst in der Halle",
+  "fromSaga": "Aus der Saga",
+  "all": "Alle",
+  "pendingClaimTitle": "Besuch wird geprüft",
+  "pendingClaimBody": "Zeig dem Team den Code {code}.",
+  "@pendingClaimBody": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "claimSheetSub": "Das Team an der Theke bestätigt deinen Besuch.",
+  "claimWhere": "Wo bist du?",
+  "change": "Ändern",
+  "claimAmountLabel": "Rechnungsbetrag",
+  "claimAmountHint": "Bestimmt nur deine Münzen. XP gibt es pro Besuch – nie pro Euro.",
+  "claimNoteLabel": "Notiz fürs Team (optional)",
+  "claimNoteHint": "z. B. Tisch 7",
+  "claimPreview": "Nach der Bestätigung erhältst du",
+  "streakBonus": "+{xp} Serienbonus",
+  "@streakBonus": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
+  "claimSentTitle": "Besuch gemeldet",
+  "claimSentBody": "Zeig dem Team diesen Code – dann geht’s am schnellsten.",
+  "yourVisitCode": "Dein Besuchscode",
+  "stepReported": "Gemeldet",
+  "stepChecking": "Wird geprüft",
+  "stepCheckingSub": "Meist in unter 5 Minuten",
+  "stepCredited": "Gutgeschrieben",
+  "stepCreditedSub": "XP, Serienbonus und Münzen",
+  "hornWillCall": "Wir melden uns per Hornruf.",
+  "toHall": "Zur Halle",
+  "claimRejectedTitle": "Besuch abgelehnt",
+  "claimRejectedBody": "Sprich kurz mit dem Team an der Theke.",
+  "visitConfirmed": "Besuch bestätigt",
+  "hallHonours": "Die Halle ehrt dich, {name}",
+  "@hallHonours": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "experience": "Erfahrung",
+  "coinsWord": "Münzen",
+  "streakNow": "{weeks, plural, =1{1 Woche an Bord} other{{weeks} Wochen an Bord!}}",
+  "@streakNow": {
+    "placeholders": {
+      "weeks": {
+        "type": "int"
+      }
+    }
+  },
+  "streakKept": "Serie gehalten – weiter so.",
+  "achievementUnlocked": "Erfolg freigeschaltet",
+  "continueLabel": "Weiter",
+  "levelReached": "Stufe {level} erreicht!",
+  "@levelReached": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "coinBonus": "Münz-Bonus ×{mult}",
+  "@coinBonus": {
+    "placeholders": {
+      "mult": {
+        "type": "String"
+      }
+    }
+  },
+  "coinBonusSub": "Vorher ×{mult} – auf jeden Besuch",
+  "@coinBonusSub": {
+    "placeholders": {
+      "mult": {
+        "type": "String"
+      }
+    }
+  },
+  "newGear": "Neu in deiner Ausrüstung",
+  "newBackdrop": "Neue Kulisse",
+  "equipItem": "{item} anlegen",
+  "@equipItem": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "later": "Später",
+  "shareLevel": "Aufstieg teilen",
+  "shareLevelText": "Ich bin jetzt {level} in Valhalla Hero!",
+  "@shareLevelText": {
+    "placeholders": {
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "myHero": "Mein Held",
+  "ownedOf": "{owned} von {total} im Besitz",
+  "@ownedOf": {
+    "placeholders": {
+      "owned": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "cosmeticOnly": "Rein kosmetisch – kein Einfluss aufs Spiel",
+  "emptySlot": "Leer",
+  "heroForm": "Heldenform",
+  "heroFormHero": "Held",
+  "heroFormHeroine": "Heldin",
+  "heroFormHint": "Held oder Heldin – dein Fortschritt bleibt",
+  "levelOfEight": "Stufe {roman} von VIII",
+  "@levelOfEight": {
+    "placeholders": {
+      "roman": {
+        "type": "String"
+      }
+    }
+  },
+  "xpToValhalla": "{xp} von {max} XP bis Walhalla",
+  "@xpToValhalla": {
+    "placeholders": {
+      "xp": {
+        "type": "String"
+      },
+      "max": {
+        "type": "String"
+      }
+    }
+  },
+  "yourLevel": "Deine Stufe",
+  "nextUp": "Als Nächstes",
+  "fromXp": "ab {xp} XP",
+  "@fromXp": {
+    "placeholders": {
+      "xp": {
+        "type": "String"
+      }
+    }
+  },
+  "xpLeft": "noch {xp} XP",
+  "@xpLeft": {
+    "placeholders": {
+      "xp": {
+        "type": "String"
+      }
+    }
+  },
+  "reached": "Erreicht",
+  "almostThere": "Fast geschafft: {name}",
+  "@almostThere": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "longestStreak": "Rekord {weeks}",
+  "@longestStreak": {
+    "placeholders": {
+      "weeks": {
+        "type": "int"
+      }
+    }
+  },
+  "rewardsRedeemed": "Beute eingelöst",
+  "itemsOwned": "Ausrüstung im Besitz",
+  "yourBalance": "Dein Guthaben",
+  "coinPurse": "Münzbeutel",
+  "coinsExpireSoon": "{coins} Münzen verfallen am {date}",
+  "@coinsExpireSoon": {
+    "placeholders": {
+      "coins": {
+        "type": "int"
+      },
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "redeemBeforeExpiry": "Tausche sie vorher in der Beute ein.",
+  "segVouchers": "Gutscheine",
+  "allRewards": "Alle Belohnungen",
+  "missingCoins": "Dir fehlen {coins}",
+  "@missingCoins": {
+    "placeholders": {
+      "coins": {
+        "type": "String"
+      }
+    }
+  },
+  "holdToRedeem": "Gedrückt halten zum Eintauschen",
+  "holdHint": "Kein versehentliches Ausgeben – erst nach dem Halten bestätigt.",
+  "priceLabel": "Preis",
+  "balanceAfter": "Guthaben danach",
+  "validLabel": "Gültig",
+  "validDays": "{days} Tage ab Eintausch",
+  "@validDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "redeemHow": "Einlösen",
+  "showCodeAtBar": "Code an der Theke zeigen",
+  "noVouchers": "Noch keine Gutscheine. Tausche Münzen gegen Beute ein.",
+  "showThisCode": "Zeig diesen Code an der Theke",
+  "validUntilDays": "Gültig bis {date} · {days, plural, =1{noch 1 Tag} other{noch {days} Tage}}",
+  "@validUntilDays": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "redeemedOn": "Eingelöst am {date}",
+  "@redeemedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "exchangedOn": "Eingetauscht am {date} · {coins} Münzen",
+  "@exchangedOn": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      },
+      "coins": {
+        "type": "String"
+      }
+    }
+  },
+  "stepShowCode": "Code zeigen",
+  "stepTeamConfirms": "Team bestätigt",
+  "stepEnjoy": "Vorteil genießen",
+  "voucherLiveNote": "Der Status aktualisiert sich live, sobald das Team bestätigt.",
+  "expiryInfo": "Münzen verfallen nach {months} Monaten",
+  "@expiryInfo": {
+    "placeholders": {
+      "months": {
+        "type": "int"
+      }
+    }
+  },
+  "xpNeverExpires": "XP verfallen nie",
+  "coinsNoCash": "Münzen sind ein freiwilliger Treue-Vorteil ohne Geldwert und werden nicht ausgezahlt.",
+  "toShop": "Zur Beute",
+  "fameTitle": "Ruhmeshalle",
+  "allHeroes": "Alle Helden",
+  "rankHeader": "PLATZ · HELD",
+  "yourPosition": "Deine Position",
+  "xpToRank": "Noch {xp} XP bis Platz {rank}",
+  "@xpToRank": {
+    "placeholders": {
+      "xp": {
+        "type": "String"
+      },
+      "rank": {
+        "type": "int"
+      }
+    }
+  },
+  "alleyTitle": "Allee der Unsterblichen",
+  "alleyBody": "Wer Stufe VIII erreicht – als Einherjar oder Valkyrja –, bekommt hier für immer eine Statue.",
+  "alleyFree": "Noch frei",
+  "rankInFame": "Platz {rank} der Ruhmeshalle",
+  "@rankInFame": {
+    "placeholders": {
+      "rank": {
+        "type": "int"
+      }
+    }
+  },
+  "reportName": "Heldennamen melden",
+  "reportThanks": "Danke – wir sehen uns das an.",
+  "share": "Teilen",
+  "directions": "Route",
+  "eventsNews": "Events & Neuigkeiten",
+  "optionalRevocable": "Freiwillig · jederzeit widerrufbar",
+  "personalOffers": "Persönliche Angebote",
+  "personalOffersCaption": "Freiwillig · auf Basis deiner Besuche",
+  "serviceNotifications": "Besuche & Belohnungen",
+  "serviceNotificationsCaption": "Bestätigungen, Level-Ups, ablaufende Münzen",
+  "alwaysOn": "Immer an",
+  "showInFame": "In der Ruhmeshalle zeigen",
+  "showInFameCaption": "Nur Heldenname und Held – nie dein Klarname",
+  "account": "Konto",
+  "heroName": "Heldenname",
+  "editHeroName": "Heldenname ändern",
+  "teamGroup": "Team",
+  "teamMode": "Team-Modus öffnen",
+  "teamModeCaption": "Besuche bestätigen, Gutscheine prüfen",
+  "legal": "Rechtliches",
+  "terms": "Teilnahmebedingungen",
+  "privacyPolicy": "Datenschutzerklärung",
+  "imprint": "Impressum",
+  "myData": "Meine Daten",
+  "exportCaption": "JSON-Datei mit allen deinen Daten",
+  "deleteCaption": "Deine Münzen und Gutscheine verfallen dabei.",
+  "hornCalls": "Hornrufe",
+  "markAllRead": "Alle gelesen",
+  "today": "Heute",
+  "earlier": "Früher",
+  "counter": "Theke",
+  "teamModeBadge": "TEAM-MODUS",
+  "exitTeam": "Beenden",
+  "claimsTab": "Besuche · {count}",
+  "@claimsTab": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "voucherCheckTab": "Gutschein prüfen",
+  "highAmount": "Hoher Betrag – bitte Beleg ansehen",
+  "voucherCodeLabel": "Gutschein-Code des Gastes",
+  "voucherValid": "Gültig",
+  "voucherUsedHint": "Danach ist der Code verbraucht. Rückgängig nur durch Admins.",
+  "welcomeHeadline": "Jeder Besuch schreibt deine Saga.",
+  "welcomeBody": "Melde Besuche, steig in acht Stufen auf und tausche Münzen gegen echte Beute.",
+  "continueWithEmail": "E-Mail",
+  "adultsOnlyFooter": "Nur für Gäste ab 18",
+  "emailSignInTitle": "Mit E-Mail anmelden",
+  "newHereCreate": "Neu hier? Konto erstellen",
+  "beforeYouEnter": "Bevor du die Halle betrittst",
+  "ageBody": "Valhalla Hero ist nur für Gäste ab 18 Jahren. Dein Geburtsdatum bleibt privat.",
+  "ageOk": "Alles klar – du bist dabei.",
+  "consentsTitle": "Einwilligungen",
+  "eventsNewsConsentCaption": "Push-Nachrichten, wenn in der Halle etwas los ist.",
+  "offersConsentCaption": "Angebote auf Basis deiner Besuche.",
+  "consentsFootnote": "Beides freiwillig und jederzeit in den Einstellungen änderbar. Bestätigungen zu deinen Besuchen bekommst du immer.",
+  "stepOf": "Schritt {step} von {total}",
+  "@stepOf": {
+    "placeholders": {
+      "step": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "heroAwakes": "Dein Held erwacht",
+  "chooseForm": "Wähle deine Heldenform. Jederzeit änderbar – dein Fortschritt bleibt.",
+  "heroNameLabel": "Name deines Helden",
+  "heroNameHint": "Sichtbar in der Ruhmeshalle. Bitte keinen Klarnamen.",
+  "startJourney": "Heldenreise beginnen",
+  "eightLevels": "8 Stufen",
+  "appTagline": "Deine Besuche. Deine Legende.",
+  "dayMon": "MO",
+  "dayTue": "DI",
+  "dayWed": "MI",
+  "dayThu": "DO",
+  "dayFri": "FR",
+  "daySat": "SA",
+  "daySun": "SO",
+  "eventFrom": "ab {time} Uhr",
+  "@eventFrom": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "comingSoon": "Bald verfügbar"
+}

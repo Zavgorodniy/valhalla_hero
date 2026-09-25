@@ -1,0 +1,221 @@
+{
+  "pages": [
+    {
+      "id": "screens",
+      "name": "Screens"
+    },
+    {
+      "id": "system",
+      "name": "Design-System"
+    },
+    {
+      "id": "alt",
+      "name": "Alternativen"
+    }
+  ],
+  "artboards": [
+    {
+      "file": "Login.dc.html",
+      "title": "Login",
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "page": "screens"
+    },
+    {
+      "file": "Registrieren.dc.html",
+      "title": "Registrieren",
+      "x": 480,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "page": "screens"
+    },
+    {
+      "file": "Main.dc.html",
+      "title": "Halle",
+      "x": 960,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "page": "screens"
+    },
+    {
+      "file": "BesuchMelden.dc.html",
+      "title": "Besuch melden",
+      "x": 1440,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "page": "screens"
+    },
+    {
+      "file": "Saga.dc.html",
+      "title": "Saga",
+      "x": 1920,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "page": "screens"
+    },
+    {
+      "file": "Beute.dc.html",
+      "title": "Beute",
+      "x": 2400,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "page": "screens"
+    },
+    {
+      "file": "BeuteEinloesen.dc.html",
+      "title": "Beute · Einlösen",
+      "x": 2880,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "page": "screens"
+    },
+    {
+      "file": "Ausruestung.dc.html",
+      "title": "Beute · Ausrüstung",
+      "x": 3360,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "page": "screens"
+    },
+    {
+      "file": "HeldAnpassen.dc.html",
+      "title": "Helden anpassen",
+      "x": 3840,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "page": "screens"
+    },
+    {
+      "file": "Rangliste.dc.html",
+      "title": "Rangliste",
+      "x": 0,
+      "y": 1000,
+      "w": 390,
+      "h": 844,
+      "page": "screens"
+    },
+    {
+      "file": "Profil.dc.html",
+      "title": "Profil",
+      "x": 480,
+      "y": 1000,
+      "w": 390,
+      "h": 844,
+      "page": "screens"
+    },
+    {
+      "file": "Einstellungen.dc.html",
+      "title": "Einstellungen",
+      "x": 960,
+      "y": 1000,
+      "w": 390,
+      "h": 844,
+      "page": "screens"
+    },
+    {
+      "file": "Gutscheine.dc.html",
+      "title": "Gutscheine",
+      "x": 1440,
+      "y": 1000,
+      "w": 390,
+      "h": 844,
+      "page": "screens"
+    },
+    {
+      "file": "Erfolge.dc.html",
+      "title": "Erfolge",
+      "x": 1920,
+      "y": 1000,
+      "w": 390,
+      "h": 844,
+      "page": "screens"
+    },
+    {
+      "file": "Nachrichten.dc.html",
+      "title": "Nachrichten",
+      "x": 2400,
+      "y": 1000,
+      "w": 390,
+      "h": 844,
+      "page": "screens"
+    },
+    {
+      "file": "TeamMeldungen.dc.html",
+      "title": "Team · Meldungen",
+      "x": 2880,
+      "y": 1000,
+      "w": 390,
+      "h": 844,
+      "page": "screens"
+    },
+    {
+      "file": "TeamGutschein.dc.html",
+      "title": "Team · Gutschein",
+      "x": 3360,
+      "y": 1000,
+      "w": 390,
+      "h": 844,
+      "page": "screens"
+    },
+    {
+      "file": "DesignSystem.dc.html",
+      "title": "Design-System",
+      "x": 0,
+      "y": 0,
+      "w": 1240,
+      "h": 3900,
+      "page": "system",
+      "expand": "fill"
+    },
+    {
+      "file": "RichtungB.dc.html",
+      "title": "Richtung B · Taverne / Holzschnitt",
+      "x": 0,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "page": "alt"
+    },
+    {
+      "file": "RichtungC.dc.html",
+      "title": "Richtung C · Frost / Minimal",
+      "x": 480,
+      "y": 0,
+      "w": 390,
+      "h": 844,
+      "page": "alt"
+    }
+  ],
+  "annotations": [
+    {
+      "id": "note-brief",
+      "x": 0,
+      "y": -170,
+      "w": 460,
+      "page": "screens",
+      "text": "Richtung A „Glut & Asche“: warmes Schwarz, eine Aktionsfarbe (Glut), Cinzel für Titel, Stufen und Zahlen, Manrope für alles andere.\nStatische Mockups, 390×844. Heldenbüsten sind Platzhalter bis die Illustrationen da sind."
+    },
+    {
+      "id": "note-alt",
+      "x": 0,
+      "y": -150,
+      "w": 420,
+      "page": "alt",
+      "text": "Zwei Low-Fi-Alternativen nur für den Home-Screen.\nB: Taverne/Holzschnitt, Serif, harte Kanten, Ocker. Wärmer, rustikaler, weniger „App“.\nC: Frost/Minimal, kühles Blau, dünne Linien, viel Luft. Edler, aber weniger Bar."
+    }
+  ],
+  "launch": {
+    "view": "canvas",
+    "page": "screens"
+  }
+}

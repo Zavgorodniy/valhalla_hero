@@ -1,0 +1,17 @@
+.dart_tool/
+.packages
+build/
+.flutter-plugins*
+*.iml
+.idea/
+.vscode/
+pubspec_overrides.yaml
+.env
+supabase/.temp/
+supabase/.branches/
+**/ios/Pods/
+**/ios/.symlinks/
+**/android/.gradle/
+**/android/local.properties
+*.g.dart
+*.freezed.dart

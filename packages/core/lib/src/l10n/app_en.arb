@@ -1,0 +1,516 @@
+{
+  "@@locale": "en",
+  "appName": "Valhalla Hero",
+  "tabHome": "Hall",
+  "tabFeed": "Saga",
+  "tabShop": "Loot",
+  "tabLeaderboard": "Ranking",
+  "tabProfile": "Profile",
+  "tabStaff": "Team",
+  "signIn": "Sign in",
+  "signUp": "Sign up",
+  "signOut": "Sign out",
+  "email": "Email",
+  "password": "Password",
+  "nickname": "Nickname",
+  "nicknameHint": "3–20 characters, shown on the leaderboard",
+  "birthDate": "Date of birth",
+  "birthDatePick": "Pick date of birth",
+  "ageGateTitle": "Adults only",
+  "ageGateBody": "Valhalla Hero is a bar loyalty programme. You must be 18 or older to take part.",
+  "ageGateError": "You must be at least 18 years old.",
+  "continueWithGoogle": "Continue with Google",
+  "continueWithApple": "Continue with Apple",
+  "orDivider": "or",
+  "noAccountYet": "No account yet?",
+  "alreadyHaveAccount": "Already have an account?",
+  "termsAccept": "I accept the terms of participation and have read the privacy policy.",
+  "consentPush": "Push notifications about promotions and events (optional)",
+  "consentOffers": "Personalised offers based on my visits (optional)",
+  "consentsNote": "You can withdraw the optional consents at any time in settings.",
+  "createAccount": "Create account",
+  "completeProfile": "Complete profile",
+  "authError": "Sign-in failed: {message}",
+  "@authError": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+  "levelLabel": "Level {level}",
+  "@levelLabel": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "xpLabel": "{xp} XP",
+  "@xpLabel": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
+  "coinsLabel": "{coins} coins",
+  "@coinsLabel": {
+    "placeholders": {
+      "coins": {
+        "type": "int"
+      }
+    }
+  },
+  "xpToNextLevel": "{xp} XP to {level}",
+  "@xpToNextLevel": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      },
+      "level": {
+        "type": "String"
+      }
+    }
+  },
+  "maxLevelReached": "You have reached Valhalla.",
+  "onBoard": "On board",
+  "offBoard": "Left the ship",
+  "onBoardHint": "Visit us within {days} days to stay on board.",
+  "@onBoardHint": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      }
+    }
+  },
+  "streakWeeks": "{weeks} weeks in a row",
+  "@streakWeeks": {
+    "placeholders": {
+      "weeks": {
+        "type": "int"
+      }
+    }
+  },
+  "visitsCount": "{count} visits",
+  "@visitsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "claimVisit": "Report visit",
+  "claimVisitTitle": "Report a visit",
+  "claimVisitBody": "Enter your bill amount. The team confirms your visit, then you receive XP and coins.",
+  "claimVenue": "Bar",
+  "claimAmount": "Bill amount (€)",
+  "claimNote": "Note (optional)",
+  "claimSubmit": "Submit",
+  "claimSubmitted": "Visit reported. The team will review it shortly.",
+  "claimTooManyPending": "You have too many pending reports.",
+  "claimStatusPending": "Awaiting confirmation",
+  "claimStatusApproved": "Confirmed",
+  "claimStatusRejected": "Rejected",
+  "myClaims": "My reports",
+  "recentActivity": "Recent activity",
+  "achievements": "Achievements",
+  "achievementsUnlocked": "{unlocked} of {total} unlocked",
+  "@achievementsUnlocked": {
+    "placeholders": {
+      "unlocked": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "locked": "Locked",
+  "rewards": "Rewards",
+  "gear": "Gear",
+  "myVouchers": "My vouchers",
+  "redeem": "Redeem",
+  "redeemConfirmTitle": "Redeem {name}?",
+  "@redeemConfirmTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "redeemConfirmBody": "{price} coins will be deducted. You get a code to show to the team.",
+  "@redeemConfirmBody": {
+    "placeholders": {
+      "price": {
+        "type": "int"
+      }
+    }
+  },
+  "redeemed": "Redeemed! Show this code at the bar.",
+  "insufficientCoins": "Not enough coins.",
+  "outOfStock": "Sold out",
+  "stockLeft": "{count} left",
+  "@stockLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "validUntil": "Valid until {date}",
+  "@validUntil": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "voucherActive": "Active",
+  "voucherRedeemed": "Redeemed",
+  "voucherExpired": "Expired",
+  "voucherCancelled": "Cancelled",
+  "rewardTypeMerch": "Merch",
+  "rewardTypeDrink": "Drink",
+  "rewardTypeDiscount": "Discount",
+  "rewardTypePriorityBooking": "Booking",
+  "rewardTypeEventAccess": "Event",
+  "buy": "Buy",
+  "owned": "Owned",
+  "equip": "Equip",
+  "equipped": "Equipped",
+  "unequip": "Unequip",
+  "purchaseConfirmTitle": "Buy {name}?",
+  "@purchaseConfirmTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "purchaseDone": "Purchased. You can equip it now.",
+  "unlockAtLevel": "From level {level}",
+  "@unlockAtLevel": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "unlockByAchievement": "Achievement: {name}",
+  "@unlockByAchievement": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "unlockByEvent": "Events only",
+  "slotHeadgear": "Head",
+  "slotHandItem": "Hand",
+  "slotCape": "Cape",
+  "slotCompanion": "Companion",
+  "slotFrame": "Frame",
+  "rarityCommon": "Common",
+  "rarityRare": "Rare",
+  "rarityLegendary": "Legendary",
+  "customizeHero": "Customise hero",
+  "leaderboardTitle": "Ranking",
+  "leaderboardSubtitle": "All time · by XP",
+  "leaderboardYou": "You",
+  "leaderboardHidden": "You are hidden from the ranking.",
+  "feedTitle": "Saga",
+  "feedEmpty": "No news yet.",
+  "eventAt": "{date}",
+  "@eventAt": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "postTypeNews": "News",
+  "postTypeEvent": "Event",
+  "notifications": "Messages",
+  "notificationsEmpty": "No messages.",
+  "settings": "Settings",
+  "language": "Language",
+  "leaderboardVisible": "Visible on the leaderboard",
+  "privacy": "Privacy",
+  "exportData": "Export my data",
+  "exportDataDone": "Export created.",
+  "deleteAccount": "Delete account",
+  "deleteAccountTitle": "Really delete your account?",
+  "deleteAccountBody": "All data, XP and {coins} coins will be deleted permanently.",
+  "@deleteAccountBody": {
+    "placeholders": {
+      "coins": {
+        "type": "int"
+      }
+    }
+  },
+  "delete": "Delete",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "save": "Save",
+  "close": "Close",
+  "retry": "Retry",
+  "loading": "Loading…",
+  "errorGeneric": "Something went wrong.",
+  "responsibleDrinking": "Enjoy responsibly. Points are for visits, not for drinking.",
+  "staffTitle": "Team area",
+  "staffClaims": "Pending reports",
+  "staffClaimsEmpty": "No pending reports.",
+  "staffApprove": "Approve",
+  "staffReject": "Reject",
+  "staffRejectReason": "Reason (optional)",
+  "staffVoucher": "Redeem voucher",
+  "staffVoucherCode": "Enter code",
+  "staffVoucherLookup": "Look up",
+  "staffVoucherConfirm": "Mark as redeemed",
+  "staffVoucherNotFound": "No voucher with this code.",
+  "staffVoucherDone": "Voucher redeemed.",
+  "staffCredit": "Credit visit manually",
+  "adminDashboard": "Dashboard",
+  "adminUsers": "Guests",
+  "adminClaims": "Reports",
+  "adminRewards": "Rewards",
+  "adminItems": "Gear",
+  "adminPosts": "Saga",
+  "adminVenues": "Bars",
+  "adminEconomy": "Economy",
+  "adminStatUsers": "Guests",
+  "adminStatOnBoard": "On board",
+  "adminStatVisits30": "Visits (30 days)",
+  "adminStatRevenue30": "Revenue (30 days)",
+  "adminStatPending": "Pending reports",
+  "adminStatCoins": "Coins outstanding",
+  "adminStatVouchersActive": "Active vouchers",
+  "adminStatVouchersRedeemed30": "Redeemed (30 days)",
+  "adminNewPost": "New post",
+  "adminPublish": "Publish",
+  "adminDraft": "Draft",
+  "adminTitle": "Title",
+  "adminBody": "Body",
+  "adminImageUrl": "Image URL",
+  "adminStartsAt": "Starts at",
+  "adminPrice": "Price (coins)",
+  "adminStock": "Stock (empty = unlimited)",
+  "adminValidityDays": "Validity (days)",
+  "adminActive": "Active",
+  "adminRole": "Role",
+  "adminSearch": "Search",
+  "adminEconomyXpPerVisit": "XP per visit",
+  "adminEconomyCoinsPerEuro": "Coins per euro",
+  "adminEconomyDailyCap": "Daily coin cap",
+  "adminEconomyExpiryMonths": "Expiry (months)",
+  "adminEconomyOnboardDays": "On board (days)",
+  "adminEconomyStreakBonus": "Streak bonus XP",
+  "adminLevels": "Levels",
+  "adminLevelThreshold": "XP threshold",
+  "adminLevelMultiplier": "Coin multiplier",
+  "adminSaved": "Saved.",
+  "adminNotAllowed": "Administrators only.",
+  "coinReasonVisit": "Visit",
+  "coinReasonAchievement": "Achievement",
+  "coinReasonManual": "Team credit",
+  "coinReasonReward": "Reward",
+  "coinReasonItem": "Gear",
+  "coinReasonExpiry": "Expiry",
+  "coinReasonRefund": "Refund",
+  "tabHero": "Hero",
+  "tabFame": "Fame",
+  "tabVisit": "Visit",
+  "greetMorning": "Good morning, {name}",
+  "greetDay": "Hello, {name}",
+  "greetEvening": "Good evening, {name}",
+  "levelOfTotal": "Level {level} of 8",
+  "heroPath": "Hero path",
+  "nextLevelHint": "{xp} XP to go – {visits, plural, =1{one visit} other{about {visits} visits}} to {level}.",
+  "statStreak": "Streak",
+  "statOnBoard": "On board",
+  "statVisits": "Visits",
+  "weeksCount": "{weeks, plural, =1{1 week} other{{weeks} weeks}}",
+  "daysCount": "{days, plural, =1{1 day} other{{days} days}}",
+  "nextGoal": "Your next goal",
+  "goalStreakTitle": "{weeks, plural, =1{One week on board} other{{weeks} weeks on board}}",
+  "goalStreakBody": "One visit by Sunday keeps your streak alive.",
+  "goalStreakLevelBody": "One visit by Sunday keeps your streak – and takes you to {level}.",
+  "goalStartTitle": "Start your streak",
+  "goalStartBody": "Visit us every week: from the second week on you earn bonus XP.",
+  "goalDoneTitle": "On board this week",
+  "goalDoneBody": "Your streak is safe. Next goal: {level}.",
+  "goalMaxBody": "You reached Valhalla. Keep your streak for the glory.",
+  "thisWeek": "This week",
+  "weekShort": "W{week}",
+  "daysLeft": "{days, plural, =1{1 day left} other{{days} days left}}",
+  "rewardLabel": "Reward",
+  "upcomingEvents": "Coming up in the hall",
+  "fromSaga": "From the saga",
+  "all": "All",
+  "pendingClaimTitle": "Visit is being checked",
+  "pendingClaimBody": "Show the team code {code}.",
+  "claimSheetSub": "The team at the bar confirms your visit.",
+  "claimWhere": "Where are you?",
+  "change": "Change",
+  "claimAmountLabel": "Bill amount",
+  "claimAmountHint": "Only sets your coins. XP is per visit – never per euro.",
+  "claimNoteLabel": "Note for the team (optional)",
+  "claimNoteHint": "e.g. table 7",
+  "claimPreview": "After confirmation you get",
+  "streakBonus": "+{xp} streak bonus",
+  "claimSentTitle": "Visit reported",
+  "claimSentBody": "Show the team this code – that’s the fastest way.",
+  "yourVisitCode": "Your visit code",
+  "stepReported": "Reported",
+  "stepChecking": "Being checked",
+  "stepCheckingSub": "Usually under 5 minutes",
+  "stepCredited": "Credited",
+  "stepCreditedSub": "XP, streak bonus and coins",
+  "hornWillCall": "We’ll sound the horn when it’s done.",
+  "toHall": "Back to the hall",
+  "claimRejectedTitle": "Visit rejected",
+  "claimRejectedBody": "Have a quick word with the team at the bar.",
+  "visitConfirmed": "Visit confirmed",
+  "hallHonours": "The hall honours you, {name}",
+  "experience": "Experience",
+  "coinsWord": "Coins",
+  "streakNow": "{weeks, plural, =1{1 week on board} other{{weeks} weeks on board!}}",
+  "streakKept": "Streak kept – keep it up.",
+  "achievementUnlocked": "Achievement unlocked",
+  "continueLabel": "Continue",
+  "levelReached": "Level {level} reached!",
+  "coinBonus": "Coin bonus ×{mult}",
+  "coinBonusSub": "Before ×{mult} – on every visit",
+  "newGear": "New in your gear",
+  "newBackdrop": "New backdrop",
+  "equipItem": "Equip {item}",
+  "later": "Later",
+  "shareLevel": "Share level-up",
+  "shareLevelText": "I just became {level} in Valhalla Hero!",
+  "myHero": "My hero",
+  "ownedOf": "{owned} of {total} owned",
+  "cosmeticOnly": "Cosmetic only – no gameplay effect",
+  "emptySlot": "Empty",
+  "heroForm": "Hero form",
+  "heroFormHero": "Hero",
+  "heroFormHeroine": "Heroine",
+  "heroFormHint": "Hero or heroine – your progress stays",
+  "levelOfEight": "Level {roman} of VIII",
+  "xpToValhalla": "{xp} of {max} XP to Valhalla",
+  "yourLevel": "Your level",
+  "nextUp": "Next up",
+  "fromXp": "from {xp} XP",
+  "xpLeft": "{xp} XP to go",
+  "reached": "Unlocked",
+  "almostThere": "Almost there: {name}",
+  "longestStreak": "Best {weeks}",
+  "rewardsRedeemed": "Rewards redeemed",
+  "itemsOwned": "Gear owned",
+  "yourBalance": "Your balance",
+  "coinPurse": "Coin purse",
+  "coinsExpireSoon": "{coins} coins expire on {date}",
+  "redeemBeforeExpiry": "Spend them in the shop before then.",
+  "segVouchers": "Vouchers",
+  "allRewards": "All rewards",
+  "missingCoins": "You need {coins} more",
+  "holdToRedeem": "Hold to redeem",
+  "holdHint": "No accidental spending – confirmed only after holding.",
+  "priceLabel": "Price",
+  "balanceAfter": "Balance after",
+  "validLabel": "Valid",
+  "validDays": "{days} days from redemption",
+  "redeemHow": "How to redeem",
+  "showCodeAtBar": "Show code at the bar",
+  "noVouchers": "No vouchers yet. Trade coins for loot.",
+  "showThisCode": "Show this code at the bar",
+  "validUntilDays": "Valid until {date} · {days, plural, =1{1 day left} other{{days} days left}}",
+  "redeemedOn": "Redeemed on {date}",
+  "exchangedOn": "Redeemed on {date} · {coins} coins",
+  "stepShowCode": "Show code",
+  "stepTeamConfirms": "Team confirms",
+  "stepEnjoy": "Enjoy",
+  "voucherLiveNote": "The status updates live as soon as the team confirms.",
+  "expiryInfo": "Coins expire after {months} months",
+  "xpNeverExpires": "XP never expires",
+  "coinsNoCash": "Coins are a voluntary loyalty perk without cash value and are never paid out.",
+  "toShop": "To the shop",
+  "fameTitle": "Hall of Fame",
+  "allHeroes": "All heroes",
+  "rankHeader": "RANK · HERO",
+  "yourPosition": "Your position",
+  "xpToRank": "{xp} XP to rank {rank}",
+  "alleyTitle": "Avenue of the Immortals",
+  "alleyBody": "Reach level VIII – as Einherjar or Valkyrja – and you get a statue here forever.",
+  "alleyFree": "Still free",
+  "rankInFame": "Rank {rank} in the Hall of Fame",
+  "reportName": "Report hero name",
+  "reportThanks": "Thanks – we’ll take a look.",
+  "share": "Share",
+  "directions": "Directions",
+  "eventsNews": "Events & news",
+  "optionalRevocable": "Optional · revocable any time",
+  "personalOffers": "Personal offers",
+  "personalOffersCaption": "Optional · based on your visits",
+  "serviceNotifications": "Visits & rewards",
+  "serviceNotificationsCaption": "Confirmations, level-ups, expiring coins",
+  "alwaysOn": "Always on",
+  "showInFame": "Show in the Hall of Fame",
+  "showInFameCaption": "Only hero name and hero – never your real name",
+  "account": "Account",
+  "heroName": "Hero name",
+  "editHeroName": "Change hero name",
+  "teamGroup": "Team",
+  "teamMode": "Open team mode",
+  "teamModeCaption": "Confirm visits, check vouchers",
+  "legal": "Legal",
+  "terms": "Terms of participation",
+  "privacyPolicy": "Privacy policy",
+  "imprint": "Imprint",
+  "myData": "My data",
+  "exportCaption": "JSON file with all your data",
+  "deleteCaption": "Your coins and vouchers will be lost.",
+  "hornCalls": "Horn calls",
+  "markAllRead": "Mark all read",
+  "today": "Today",
+  "earlier": "Earlier",
+  "counter": "Counter",
+  "teamModeBadge": "TEAM MODE",
+  "exitTeam": "Exit",
+  "claimsTab": "Visits · {count}",
+  "voucherCheckTab": "Check voucher",
+  "highAmount": "High amount – please check the receipt",
+  "voucherCodeLabel": "Guest voucher code",
+  "voucherValid": "Valid",
+  "voucherUsedHint": "The code is used up afterwards. Only admins can undo it.",
+  "welcomeHeadline": "Every visit writes your saga.",
+  "welcomeBody": "Report visits, rise through eight levels and trade coins for real loot.",
+  "continueWithEmail": "Email",
+  "adultsOnlyFooter": "Guests aged 18+ only",
+  "emailSignInTitle": "Sign in with email",
+  "newHereCreate": "New here? Create account",
+  "beforeYouEnter": "Before you enter the hall",
+  "ageBody": "Valhalla Hero is for guests aged 18+ only. Your date of birth stays private.",
+  "ageOk": "All set – you’re in.",
+  "consentsTitle": "Consents",
+  "eventsNewsConsentCaption": "Push messages when something is on in the hall.",
+  "offersConsentCaption": "Offers based on your visits.",
+  "consentsFootnote": "Both optional and changeable any time in settings. You always get confirmations about your visits.",
+  "stepOf": "Step {step} of {total}",
+  "heroAwakes": "Your hero awakens",
+  "chooseForm": "Choose your hero form. Change it any time – your progress stays.",
+  "heroNameLabel": "Your hero’s name",
+  "heroNameHint": "Shown in the Hall of Fame. Please no real names.",
+  "startJourney": "Begin the journey",
+  "eightLevels": "8 levels",
+  "appTagline": "Your visits. Your legend.",
+  "dayMon": "MON",
+  "dayTue": "TUE",
+  "dayWed": "WED",
+  "dayThu": "THU",
+  "dayFri": "FRI",
+  "daySat": "SAT",
+  "daySun": "SUN",
+  "eventFrom": "from {time}",
+  "comingSoon": "Coming soon"
+}

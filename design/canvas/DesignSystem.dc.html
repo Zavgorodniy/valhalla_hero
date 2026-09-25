@@ -1,0 +1,348 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap">
+  <style>
+    body { margin: 0; background: #0C0B0A; color: #EFE7D8; font-family: Manrope, 'Segoe UI', system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: #E0A045; text-decoration: none; } a:hover { color: #F4BF63; }
+    * { box-sizing: border-box; }
+    .phone { position: relative; width: 390px; height: 844px; overflow: hidden; background: #0C0B0A; background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22140%22%20height%3D%22140%22%3E%3Cfilter%20id%3D%22n%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.9%22%20numOctaves%3D%222%22%20stitchTiles%3D%22stitch%22/%3E%3CfeColorMatrix%20values%3D%220%200%200%200%201%200%200%200%200%200.95%200%200%200%200%200.85%200%200%200%200.06%200%22/%3E%3C/filter%3E%3Crect%20width%3D%22140%22%20height%3D%22140%22%20filter%3D%22url%28%23n%29%22/%3E%3C/svg%3E"); }
+    .display { font-family: Cinzel, 'Times New Roman', serif; font-weight: 700; letter-spacing: 0.06em; }
+    .eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #756B5E; }
+    .h1 { font-family: Cinzel, 'Times New Roman', serif; font-weight: 700; font-size: 24px; letter-spacing: 0.06em; color: #EFE7D8; line-height: 1.1; }
+    .h2 { font-size: 18px; font-weight: 800; letter-spacing: -0.01em; }
+    .body { font-size: 14px; line-height: 1.45; color: #EFE7D8; }
+    .sub { font-size: 13px; line-height: 1.4; color: #AFA393; }
+    .cap { font-size: 11.5px; color: #756B5E; }
+    .num { font-family: Cinzel, 'Times New Roman', serif; font-weight: 600; letter-spacing: 0.04em; font-variant-numeric: tabular-nums; }
+    .card { background: #151311; border: 1px solid #2F2A25; border-radius: 12px; }
+    .card2 { background: #1D1A17; border: 1px solid #2F2A25; border-radius: 12px; }
+    .btn { display: flex; align-items: center; justify-content: center; gap: 10px; height: 52px; padding: 0 20px; border-radius: 8px; font-weight: 800; font-size: 15px; letter-spacing: 0.01em; }
+    .btn-primary { background: linear-gradient(180deg, #F4BF63, #E0A045); color: #1A1308; box-shadow: 0 1px 0 rgba(255,255,255,0.25) inset, 0 8px 24px -10px rgba(224,160,69,0.6); }
+    .btn-secondary { background: transparent; color: #EFE7D8; border: 1px solid #453E36; }
+    .btn-ghost { background: transparent; color: #E0A045; height: 44px; }
+    .btn-danger { background: #C4573F; color: #EFE7D8; }
+    .btn-sm { height: 44px; font-size: 13.5px; padding: 0 14px; }
+    .input { display: flex; align-items: center; height: 52px; padding: 0 16px; background: #1D1A17; border: 1px solid #2F2A25; border-radius: 8px; color: #EFE7D8; font-size: 15px; }
+    .input .lbl { position: absolute; top: -8px; left: 12px; padding: 0 5px; background: #1D1A17; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: #756B5E; font-weight: 700; }
+    .field { position: relative; }
+    .input.focus { border-color: #E0A045; box-shadow: 0 0 0 3px rgba(224,160,69,0.14); }
+    .pill { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 6px; font-size: 12px; font-weight: 700; letter-spacing: 0.02em; }
+    .pill-coin { background: rgba(224,160,69,0.14); color: #F4BF63; border: 1px solid rgba(224,160,69,0.35); font-family: Cinzel, serif; letter-spacing: 0.05em; }
+    .pill-ok { background: rgba(127,181,138,0.14); color: #7FB58A; border: 1px solid rgba(127,181,138,0.4); }
+    .pill-off { background: rgba(117,107,94,0.14); color: #AFA393; border: 1px solid #453E36; }
+    .pill-danger { background: rgba(196,87,63,0.14); color: #E27A63; border: 1px solid rgba(196,87,63,0.4); }
+    .pill-frost { background: rgba(143,184,207,0.12); color: #8FB8CF; border: 1px solid rgba(143,184,207,0.35); }
+    .level { display: inline-flex; align-items: center; gap: 8px; height: 28px; padding: 0 10px 0 8px; border-radius: 6px; border: 1px solid; font-family: Cinzel, serif; font-weight: 700; font-size: 12px; letter-spacing: 0.1em; }
+    .ic { width: 22px; height: 22px; flex: none; }
+    .ic-sm { width: 18px; height: 18px; }
+    .nav { position: absolute; left: 0; right: 0; bottom: 0; height: 84px; padding: 8px 6px 22px; display: flex; justify-content: space-around; align-items: flex-start; background: rgba(12,11,10,0.94); border-top: 1px solid #2F2A25; backdrop-filter: blur(12px); }
+    .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; width: 62px; color: #756B5E; font-size: 10.5px; font-weight: 700; letter-spacing: 0.04em; }
+    .nav-item.on { color: #E0A045; }
+    .nav-item.on .ic { filter: drop-shadow(0 0 6px rgba(224,160,69,0.6)); }
+    .rune { display: flex; align-items: center; gap: 8px; color: #453E36; }
+    .rune::before, .rune::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, #453E36); }
+    .rune::after { background: linear-gradient(90deg, #453E36, transparent); }
+    .row { display: flex; align-items: center; gap: 14px; padding: 14px 16px; }
+    .row + .row { border-top: 1px solid #2F2A25; }
+    .xp { position: relative; height: 6px; border-radius: 3px; background: #282420; overflow: hidden; }
+    .xp > div { height: 100%; border-radius: 3px; background: linear-gradient(90deg, #E0A045, #F4BF63); box-shadow: 0 0 12px rgba(224,160,69,0.6); }
+    .ticks { display: flex; justify-content: space-between; margin-top: 4px; }
+    .ticks i { display: block; width: 1px; height: 4px; background: #453E36; }
+    .tab { flex: 1; text-align: center; padding: 15px 0 13px; font-size: 14px; font-weight: 700; color: #756B5E; border-bottom: 2px solid transparent; }
+    .tab.on { color: #E0A045; border-bottom-color: #E0A045; }
+    .chip { display: inline-flex; align-items: center; gap: 6px; height: 44px; padding: 0 14px; border-radius: 8px; border: 1px solid #453E36; color: #AFA393; font-size: 13px; font-weight: 700; }
+    .chip.on { background: rgba(224,160,69,0.14); border-color: #E0A045; color: #F4BF63; }
+    .seg { display: flex; padding: 3px; background: #1D1A17; border: 1px solid #2F2A25; border-radius: 8px; }
+    .seg > div { flex: 1; text-align: center; padding: 12px 0; border-radius: 6px; font-size: 13px; font-weight: 700; color: #AFA393; }
+    .seg > div.on { background: #282420; color: #EFE7D8; box-shadow: 0 1px 0 rgba(255,255,255,0.05) inset; }
+    .toggle { width: 44px; height: 26px; border-radius: 13px; background: #282420; border: 1px solid #453E36; position: relative; flex: none; }
+    .toggle::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #AFA393; }
+    .toggle.on { background: #E0A045; border-color: #E0A045; }
+    .toggle.on::after { left: 21px; background: #1A1308; }
+    .medal { width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex: none; }
+    .medal.on { background: rgba(224,160,69,0.14); border: 1px solid rgba(224,160,69,0.45); color: #F4BF63; }
+    .medal.off { background: #1D1A17; border: 1px solid #2F2A25; color: #756B5E; }
+    .glow { background: radial-gradient(60% 50% at 50% 35%, rgba(224,160,69,0.22), transparent 70%); }
+    .rarity { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+    .rarity i { display: block; width: 7px; height: 7px; transform: rotate(45deg); }
+    .divider { height: 1px; background: #2F2A25; }
+</style>
+</helmet>
+
+<div style="width:1240px;min-height:3900px;background:#0C0B0A;background-image:url(&quot;data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%22140%22%20height%3D%22140%22%3E%3Cfilter%20id%3D%22n%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.9%22%20numOctaves%3D%222%22%20stitchTiles%3D%22stitch%22/%3E%3CfeColorMatrix%20values%3D%220%200%200%200%201%200%200%200%200%200.95%200%200%200%200%200.85%200%200%200%200.06%200%22/%3E%3C/filter%3E%3Crect%20width%3D%22140%22%20height%3D%22140%22%20filter%3D%22url%28%23n%29%22/%3E%3C/svg%3E&quot;);padding:56px 64px 80px;color:#EFE7D8">
+  <div style="display:flex;justify-content:space-between;align-items:flex-end;padding-bottom:28px">
+    <div><div class="eyebrow" style="color:#E0A045">Design-System · v1</div><div class="display" style="font-size:44px;letter-spacing:.12em;margin-top:8px">VALHALLA HERO</div><div class="sub" style="margin-top:8px;max-width:620px">Dunkel, warm, nordisch. Glut als einzige Aktionsfarbe, Cinzel für Wortmarke, Titel, Stufen und Zahlen, alles andere ruhig in Manrope. Kein Chrome, kein Glanz: Kontrast, Rhythmus, eine Ornamentlinie.</div></div>
+    <div style="display:flex;gap:10px"><span class="level" style="color:#7CA2BF;border-color:#7CA2BF66;background:#7CA2BF1F;"><span>IV</span><span style="opacity:.55">·</span><span>Huskarl</span></span><span class="pill pill-coin" style=""><svg class="ic-sm" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.5 10.5c0-1 1-1.5 2.5-1.5s2.5.5 2.5 1.5-1 1.5-2.5 1.5-2.5.5-2.5 1.5 1 1.5 2.5 1.5 2.5-.5 2.5-1.5"/></svg>1 786</span></div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:18px;padding:36px 0;border-top:1px solid #2F2A25">
+  <div><div class="h1" style="font-size:20px">Farben</div><div class="sub" style="margin-top:6px;max-width:640px">Warme Schwarztöne statt Grau. Glut ist die einzige Aktionsfarbe und steht für Münzen und XP; Frost, Moos und Blut sind Zustandsfarben. Jede Stufe hat eine Kennfarbe.</div></div>
+  <div style="display:flex;flex-wrap:wrap;gap:20px">
+<div style="display:flex;flex-direction:column;gap:8px;width:132px">
+  <div style="height:72px;border-radius:10px;background:#0C0B0A;border:1px solid #453E36"></div>
+  <div><div class="body" style="font-weight:700">Grund</div><div class="cap" style="font-family:ui-monospace,monospace">#0C0B0A</div><div class="cap">Hintergrund, warmes Schwarz</div></div>
+</div><div style="display:flex;flex-direction:column;gap:8px;width:132px">
+  <div style="height:72px;border-radius:10px;background:#151311;border:1px solid #453E36"></div>
+  <div><div class="body" style="font-weight:700">Fläche 1</div><div class="cap" style="font-family:ui-monospace,monospace">#151311</div><div class="cap">Karten</div></div>
+</div><div style="display:flex;flex-direction:column;gap:8px;width:132px">
+  <div style="height:72px;border-radius:10px;background:#1D1A17;border:1px solid #453E36"></div>
+  <div><div class="body" style="font-weight:700">Fläche 2</div><div class="cap" style="font-family:ui-monospace,monospace">#1D1A17</div><div class="cap">Eingaben, Kacheln</div></div>
+</div><div style="display:flex;flex-direction:column;gap:8px;width:132px">
+  <div style="height:72px;border-radius:10px;background:#282420;border:1px solid #453E36"></div>
+  <div><div class="body" style="font-weight:700">Fläche 3</div><div class="cap" style="font-family:ui-monospace,monospace">#282420</div><div class="cap">Angehoben</div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;width:132px">
+  <div style="height:72px;border-radius:10px;background:#2F2A25;border:1px solid #453E36"></div>
+  <div><div class="body" style="font-weight:700">Linie</div><div class="cap" style="font-family:ui-monospace,monospace">#2F2A25</div><div class="cap">Rahmen</div></div>
+</div><div style="display:flex;flex-direction:column;gap:8px;width:132px">
+  <div style="height:72px;border-radius:10px;background:#453E36;border:1px solid #453E36"></div>
+  <div><div class="body" style="font-weight:700">Linie stark</div><div class="cap" style="font-family:ui-monospace,monospace">#453E36</div><div class="cap">Sekundäre Buttons</div></div>
+</div><div style="display:flex;flex-direction:column;gap:8px;width:132px">
+  <div style="height:72px;border-radius:10px;background:#EFE7D8;border:1px solid #453E36"></div>
+  <div><div class="body" style="font-weight:700">Knochen</div><div class="cap" style="font-family:ui-monospace,monospace">#EFE7D8</div><div class="cap">Text</div></div>
+</div><div style="display:flex;flex-direction:column;gap:8px;width:132px">
+  <div style="height:72px;border-radius:10px;background:#AFA393;border:1px solid #453E36"></div>
+  <div><div class="body" style="font-weight:700">Asche</div><div class="cap" style="font-family:ui-monospace,monospace">#AFA393</div><div class="cap">Sekundärtext</div></div>
+</div><div style="display:flex;flex-direction:column;gap:8px;width:132px">
+  <div style="height:72px;border-radius:10px;background:#756B5E;border:1px solid #453E36"></div>
+  <div><div class="body" style="font-weight:700">Gedämpft</div><div class="cap" style="font-family:ui-monospace,monospace">#756B5E</div><div class="cap">Captions, Eyebrows</div></div>
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;width:132px">
+  <div style="height:72px;border-radius:10px;background:#E0A045;border:1px solid #453E36"></div>
+  <div><div class="body" style="font-weight:700">Glut</div><div class="cap" style="font-family:ui-monospace,monospace">#E0A045</div><div class="cap">Primäre Aktion, Münzen, XP</div></div>
+</div><div style="display:flex;flex-direction:column;gap:8px;width:132px">
+  <div style="height:72px;border-radius:10px;background:#F4BF63;border:1px solid #453E36"></div>
+  <div><div class="body" style="font-weight:700">Glut hell</div><div class="cap" style="font-family:ui-monospace,monospace">#F4BF63</div><div class="cap">Hover, Zahlen</div></div>
+</div><div style="display:flex;flex-direction:column;gap:8px;width:132px">
+  <div style="height:72px;border-radius:10px;background:#8FB8CF;border:1px solid #453E36"></div>
+  <div><div class="body" style="font-weight:700">Frost</div><div class="cap" style="font-family:ui-monospace,monospace">#8FB8CF</div><div class="cap">Info, News, Selten</div></div>
+</div><div style="display:flex;flex-direction:column;gap:8px;width:132px">
+  <div style="height:72px;border-radius:10px;background:#7FB58A;border:1px solid #453E36"></div>
+  <div><div class="body" style="font-weight:700">Moos</div><div class="cap" style="font-family:ui-monospace,monospace">#7FB58A</div><div class="cap">Erfolg, An Bord</div></div>
+</div><div style="display:flex;flex-direction:column;gap:8px;width:132px">
+  <div style="height:72px;border-radius:10px;background:#C4573F;border:1px solid #453E36"></div>
+  <div><div class="body" style="font-weight:700">Blut</div><div class="cap" style="font-family:ui-monospace,monospace">#C4573F</div><div class="cap">Fehler, Events, Ablehnen</div></div>
+</div><div style="display:flex;flex-direction:column;gap:8px;width:132px">
+  <div style="height:72px;border-radius:10px;background:#E27A63;border:1px solid #453E36"></div>
+  <div><div class="body" style="font-weight:700">Blut hell</div><div class="cap" style="font-family:ui-monospace,monospace">#E27A63</div><div class="cap">Fehlertext</div></div>
+</div>
+</div>
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px"><div style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;border:1px solid #2F2A25"><span style="width:14px;height:14px;border-radius:3px;background:#8C8377"></span><span class="cap">Stufe I · Thrall</span></div><div style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;border:1px solid #2F2A25"><span style="width:14px;height:14px;border-radius:3px;background:#A39A8B"></span><span class="cap">Stufe II · Karl</span></div><div style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;border:1px solid #2F2A25"><span style="width:14px;height:14px;border-radius:3px;background:#7FA894"></span><span class="cap">Stufe III · Drengr</span></div><div style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;border:1px solid #2F2A25"><span style="width:14px;height:14px;border-radius:3px;background:#7CA2BF"></span><span class="cap">Stufe IV · Huskarl</span></div><div style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;border:1px solid #2F2A25"><span style="width:14px;height:14px;border-radius:3px;background:#C4573F"></span><span class="cap">Stufe V · Berserker</span></div><div style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;border:1px solid #2F2A25"><span style="width:14px;height:14px;border-radius:3px;background:#9C7CC9"></span><span class="cap">Stufe VI · Jarl</span></div><div style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;border:1px solid #2F2A25"><span style="width:14px;height:14px;border-radius:3px;background:#E0A045"></span><span class="cap">Stufe VII · Konungr</span></div><div style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;border:1px solid #2F2A25"><span style="width:14px;height:14px;border-radius:3px;background:#F4BF63"></span><span class="cap">Stufe VIII · Einherjar</span></div></div>
+</div>
+  <div style="display:flex;flex-direction:column;gap:18px;padding:36px 0;border-top:1px solid #2F2A25">
+  <div><div class="h1" style="font-size:20px">Typografie</div><div class="sub" style="margin-top:6px;max-width:640px">Cinzel trägt den Mythos: Wortmarke, Screentitel, Stufennamen, Zahlen. Manrope trägt den Alltag. Zwei Familien, nie mehr.</div></div>
+  <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:28px">
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div class="display" style="font-size:40px;letter-spacing:.14em;color:#F4BF63">VALHALLA</div>
+    <div class="cap">Cinzel 700 · Wortmarke, Screentitel, Stufen, große Zahlen (tabular)</div>
+    <div class="h1">Screentitel · 24/1.1</div>
+    <div class="num" style="font-size:44px">1 105</div>
+    <div class="cap">Zahlen: Cinzel 600, tabular-nums. Tausender mit schmalem Leerzeichen.</div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div class="h2">Manrope 800 · Titel 18</div>
+    <div class="body">Manrope 400 · Fließtext 14/1.45. Jeder Weg beginnt am Ufer. Treu bis zum letzten Horn.</div>
+    <div class="sub">Manrope 400 · Sekundär 13/1.4 in Asche</div>
+    <div class="cap">Manrope 400 · Caption 11.5 in Gedämpft</div>
+    <div class="eyebrow">Eyebrow 11 · 0.18em · Versalien</div>
+  </div>
+</div>
+</div>
+  <div style="display:flex;flex-direction:column;gap:18px;padding:36px 0;border-top:1px solid #2F2A25">
+  <div><div class="h1" style="font-size:20px">Abstände, Radien, Ziele</div><div class="sub" style="margin-top:6px;max-width:640px">Vierer-Raster. Leichte Rundungen, keine Pillen außer bei Status-Pills. Kein Element unter 44px.</div></div>
+  <div style="display:flex;gap:40px;flex-wrap:wrap">
+  <div style="display:flex;flex-direction:column;gap:10px"><span class="eyebrow">Abstände</span><div style="display:flex;gap:10px;align-items:flex-end"><div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:4px;height:4px;background:rgba(224,160,69,0.14);border:1px solid #E0A04566"></div><span class="cap">4</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:8px;height:8px;background:rgba(224,160,69,0.14);border:1px solid #E0A04566"></div><span class="cap">8</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:12px;height:12px;background:rgba(224,160,69,0.14);border:1px solid #E0A04566"></div><span class="cap">12</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:16px;height:16px;background:rgba(224,160,69,0.14);border:1px solid #E0A04566"></div><span class="cap">16</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:20px;height:20px;background:rgba(224,160,69,0.14);border:1px solid #E0A04566"></div><span class="cap">20</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:24px;height:24px;background:rgba(224,160,69,0.14);border:1px solid #E0A04566"></div><span class="cap">24</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:32px;height:32px;background:rgba(224,160,69,0.14);border:1px solid #E0A04566"></div><span class="cap">32</span></div></div></div>
+  <div style="display:flex;flex-direction:column;gap:10px"><span class="eyebrow">Radien</span><div style="display:flex;gap:14px"><div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:56px;height:56px;border-radius:6px;background:#1D1A17;border:1px solid #453E36"></div><span class="cap">6 · Pill/Badge</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:56px;height:56px;border-radius:8px;background:#1D1A17;border:1px solid #453E36"></div><span class="cap">8 · Button/Input</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:56px;height:56px;border-radius:12px;background:#1D1A17;border:1px solid #453E36"></div><span class="cap">12 · Karte</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:6px"><div style="width:56px;height:56px;border-radius:20px;background:#1D1A17;border:1px solid #453E36"></div><span class="cap">20 · Sheet</span></div></div></div>
+  <div style="display:flex;flex-direction:column;gap:10px"><span class="eyebrow">Touch-Ziele</span><div style="display:flex;gap:14px;align-items:flex-end"><div style="width:44px;height:44px;border:1px dashed #8FB8CF;border-radius:8px"></div><span class="cap">min. 44px</span><div style="width:52px;height:52px;border:1px dashed #E0A045;border-radius:8px"></div><span class="cap">Button 52</span></div></div>
+</div>
+</div>
+  <div style="display:flex;flex-direction:column;gap:18px;padding:36px 0;border-top:1px solid #2F2A25">
+  <div><div class="h1" style="font-size:20px">Icons</div><div class="sub" style="margin-top:6px;max-width:640px">36 Stroke-Icons in einem Stil, alle im Code als Inline-SVG.</div></div>
+  <div style="display:flex;flex-wrap:wrap;gap:14px"><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z"/></svg><span class="cap" style="font-size:10px">shield</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5V5.5M8 7h8M8 11h6"/></svg><span class="cap" style="font-size:10px">book</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M3 12h18M12 12v3M7 8V5.5A2.5 2.5 0 0 1 9.5 3h5A2.5 2.5 0 0 1 17 5.5V8"/></svg><span class="cap" style="font-size:10px">chest</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M4 20V11M12 20V4M20 20v-7"/><path d="M3 20h18"/></svg><span class="cap" style="font-size:10px">rank</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg><span class="cap" style="font-size:10px">user</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 17c0-1.7 1.3-3 3-3s3 1.3 3 3M14 9h4M14 13h4"/></svg><span class="cap" style="font-size:10px">badge</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4l2-2z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg><span class="cap" style="font-size:10px">bell</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg><span class="cap" style="font-size:10px">gear</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 9V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a2 2 0 0 0 0 6v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a2 2 0 0 0 0-6z"/><path d="M13 5v14" stroke-dasharray="2 3"/></svg><span class="cap" style="font-size:10px">ticket</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M6 3h12v18l-2-1.5L14 21l-2-1.5L10 21l-2-1.5L6 21z"/><path d="M9 8h6M9 12h6M9 16h4"/></svg><span class="cap" style="font-size:10px">receipt</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span class="cap" style="font-size:10px">check</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M6 6l12 12M18 6L6 18"/></svg><span class="cap" style="font-size:10px">x</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg><span class="cap" style="font-size:10px">search</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 15h18l-2 4H5l-2-4z"/><path d="M12 15V4l6 9H6"/><path d="M12 4l-4.5 7"/></svg><span class="cap" style="font-size:10px">ship</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="5" r="2"/><path d="M12 7v14M5 13a7 7 0 0 0 14 0M3 13h4M17 13h4"/></svg><span class="cap" style="font-size:10px">anchor</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.5 10.5c0-1 1-1.5 2.5-1.5s2.5.5 2.5 1.5-1 1.5-2.5 1.5-2.5.5-2.5 1.5 1 1.5 2.5 1.5 2.5-.5 2.5-1.5"/></svg><span class="cap" style="font-size:10px">coin</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M9 6l6 6-6 6"/></svg><span class="cap" style="font-size:10px">chev</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 20s-7-4.5-7-10a4 4 0 0 1 7-2.5A4 4 0 0 1 19 10c0 5.5-7 10-7 10z"/></svg><span class="cap" style="font-size:10px">heart</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span class="cap" style="font-size:10px">cal</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 3c1 3 4 4.5 4 9a4 4 0 0 1-8 0c0-2 1-3 1-3s.5 2 2 2c0-3 1-5 1-8z"/></svg><span class="cap" style="font-size:10px">flame</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M4 6c6 0 12 2 16 8l-3 3C13 12 8 10 4 10z"/><path d="M4 6v4"/></svg><span class="cap" style="font-size:10px">horn</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M6 3h12l-1 8a5 5 0 0 1-10 0z"/><path d="M12 16v5M8 21h8"/></svg><span class="cap" style="font-size:10px">glass</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M8 4l4 2 4-2 4 3-2 3-2-1v11H8V9L6 10 4 7z"/></svg><span class="cap" style="font-size:10px">shirt</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M4 18h16M4 18L3 8l5 4 4-6 4 6 5-4-1 10"/></svg><span class="cap" style="font-size:10px">crown</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 6l6-2 6 2 6-2v14l-6 2-6-2-6 2z"/><path d="M9 4v14M15 6v14"/></svg><span class="cap" style="font-size:10px">map</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 3v18M12 7l5 3M12 7L7 10M12 14l5 3M12 14l-5 3"/></svg><span class="cap" style="font-size:10px">rune</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg><span class="cap" style="font-size:10px">clock</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 4v11M7 10l5 5 5-5M4 20h16"/></svg><span class="cap" style="font-size:10px">download</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg><span class="cap" style="font-size:10px">trash</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 3l2 5 5 2-5 2-2 5-2-5-5-2 5-2z"/></svg><span class="cap" style="font-size:10px">sparkle</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 13a7 7 0 0 1 14 0v4H5z"/><path d="M12 6v11M5 13h14"/></svg><span class="cap" style="font-size:10px">helm</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M14 4l6 6-4 4-6-6z"/><path d="M12 10L4 18l2 2 8-8"/></svg><span class="cap" style="font-size:10px">axe</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M4 7l4 3h8l4-3v6l-3 6H7L4 13z"/><path d="M9 13h.01M15 13h.01"/></svg><span class="cap" style="font-size:10px">wolf</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M8 4h8l3 16H5z"/><path d="M8 4c2 2 6 2 8 0"/></svg><span class="cap" style="font-size:10px">cape</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span class="cap" style="font-size:10px">lock</span></div><div style="width:64px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#AFA393"><svg class="ic" style="width:24px;height:24px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/></svg><span class="cap" style="font-size:10px">refresh</span></div></div>
+<div class="cap">Stroke 1.75 · 24px-Raster · abgerundete Kappen. Keine Emoji.</div>
+</div>
+  <div style="display:flex;flex-direction:column;gap:18px;padding:36px 0;border-top:1px solid #2F2A25">
+  <div><div class="h1" style="font-size:20px">Helden und Stufen</div><div class="sub" style="margin-top:6px;max-width:640px">Acht Stufen, acht Kennfarben, eine Pose.</div></div>
+  <div style="display:flex;gap:18px;flex-wrap:wrap;align-items:flex-end">
+  <div style="display:flex;flex-direction:column;align-items:center;gap:6px"><svg viewBox="0 0 120 140" style="width:84px;height:98px;flex:none">
+<defs><radialGradient id="g1" cx="50%" cy="45%" r="55%"><stop offset="0" stop-color="#8C8377" stop-opacity=".38"/><stop offset="1" stop-color="#8C8377" stop-opacity="0"/></radialGradient></defs>
+<circle cx="60" cy="66" r="62" fill="url(#g1)"/>
+
+<path d="M22 140c0-26 16-42 38-42s38 16 38 42z" fill="#8C8377"/>
+<path d="M22 140c0-26 16-42 38-42v42z" fill="#0C0B0A" opacity=".18"/>
+<path d="M60 22c-18 0-28 14-28 32v12c0 16 12 28 28 28s28-12 28-28V54c0-18-10-32-28-32z" fill="#8C8377"/>
+<path d="M32 60h56" stroke="#0C0B0A" stroke-width="3" opacity=".45"/>
+<path d="M44 78c4 5 10 7 16 7s12-2 16-7" stroke="#0C0B0A" stroke-width="3" opacity=".35" fill="none"/>
+
+</svg><span class="cap" style="font-family:Cinzel,serif;letter-spacing:.1em;color:#8C8377">I Thrall</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:6px"><svg viewBox="0 0 120 140" style="width:84px;height:98px;flex:none">
+<defs><radialGradient id="g2" cx="50%" cy="45%" r="55%"><stop offset="0" stop-color="#A39A8B" stop-opacity=".38"/><stop offset="1" stop-color="#A39A8B" stop-opacity="0"/></radialGradient></defs>
+<circle cx="60" cy="66" r="62" fill="url(#g2)"/>
+
+<path d="M22 140c0-26 16-42 38-42s38 16 38 42z" fill="#A39A8B"/>
+<path d="M22 140c0-26 16-42 38-42v42z" fill="#0C0B0A" opacity=".18"/>
+<path d="M60 22c-18 0-28 14-28 32v12c0 16 12 28 28 28s28-12 28-28V54c0-18-10-32-28-32z" fill="#A39A8B"/>
+<path d="M32 60h56" stroke="#0C0B0A" stroke-width="3" opacity=".45"/>
+<path d="M44 78c4 5 10 7 16 7s12-2 16-7" stroke="#0C0B0A" stroke-width="3" opacity=".35" fill="none"/>
+
+</svg><span class="cap" style="font-family:Cinzel,serif;letter-spacing:.1em;color:#A39A8B">II Karl</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:6px"><svg viewBox="0 0 120 140" style="width:84px;height:98px;flex:none">
+<defs><radialGradient id="g3" cx="50%" cy="45%" r="55%"><stop offset="0" stop-color="#7FA894" stop-opacity=".38"/><stop offset="1" stop-color="#7FA894" stop-opacity="0"/></radialGradient></defs>
+<circle cx="60" cy="66" r="62" fill="url(#g3)"/>
+
+<path d="M22 140c0-26 16-42 38-42s38 16 38 42z" fill="#7FA894"/>
+<path d="M22 140c0-26 16-42 38-42v42z" fill="#0C0B0A" opacity=".18"/>
+<path d="M60 22c-18 0-28 14-28 32v12c0 16 12 28 28 28s28-12 28-28V54c0-18-10-32-28-32z" fill="#7FA894"/>
+<path d="M32 60h56" stroke="#0C0B0A" stroke-width="3" opacity=".45"/>
+<path d="M44 78c4 5 10 7 16 7s12-2 16-7" stroke="#0C0B0A" stroke-width="3" opacity=".35" fill="none"/>
+
+</svg><span class="cap" style="font-family:Cinzel,serif;letter-spacing:.1em;color:#7FA894">III Drengr</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:6px"><svg viewBox="0 0 120 140" style="width:84px;height:98px;flex:none">
+<defs><radialGradient id="g4" cx="50%" cy="45%" r="55%"><stop offset="0" stop-color="#7CA2BF" stop-opacity=".38"/><stop offset="1" stop-color="#7CA2BF" stop-opacity="0"/></radialGradient></defs>
+<circle cx="60" cy="66" r="62" fill="url(#g4)"/>
+<path d="M28 62c0-22 12-38 32-38s32 16 32 38v10H28z" fill="#1D1A17" stroke="#8FB8CF" stroke-width="2"/>
+<path d="M22 140c0-26 16-42 38-42s38 16 38 42z" fill="#7CA2BF"/>
+<path d="M22 140c0-26 16-42 38-42v42z" fill="#0C0B0A" opacity=".18"/>
+<path d="M60 22c-18 0-28 14-28 32v12c0 16 12 28 28 28s28-12 28-28V54c0-18-10-32-28-32z" fill="#7CA2BF"/>
+<path d="M32 60h56" stroke="#0C0B0A" stroke-width="3" opacity=".45"/>
+<path d="M44 78c4 5 10 7 16 7s12-2 16-7" stroke="#0C0B0A" stroke-width="3" opacity=".35" fill="none"/>
+
+</svg><span class="cap" style="font-family:Cinzel,serif;letter-spacing:.1em;color:#7CA2BF">IV Huskarl</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:6px"><svg viewBox="0 0 120 140" style="width:84px;height:98px;flex:none">
+<defs><radialGradient id="g5" cx="50%" cy="45%" r="55%"><stop offset="0" stop-color="#C4573F" stop-opacity=".38"/><stop offset="1" stop-color="#C4573F" stop-opacity="0"/></radialGradient></defs>
+<circle cx="60" cy="66" r="62" fill="url(#g5)"/>
+
+<path d="M22 140c0-26 16-42 38-42s38 16 38 42z" fill="#C4573F"/>
+<path d="M22 140c0-26 16-42 38-42v42z" fill="#0C0B0A" opacity=".18"/>
+<path d="M60 22c-18 0-28 14-28 32v12c0 16 12 28 28 28s28-12 28-28V54c0-18-10-32-28-32z" fill="#C4573F"/>
+<path d="M32 60h56" stroke="#0C0B0A" stroke-width="3" opacity=".45"/>
+<path d="M44 78c4 5 10 7 16 7s12-2 16-7" stroke="#0C0B0A" stroke-width="3" opacity=".35" fill="none"/>
+<path d="M34 46C24 40 20 28 24 16c4 8 10 14 16 18z" fill="#E8DFCC" opacity=".9"/><path d="M86 46c10-6 14-18 10-30-4 8-10 14-16 18z" fill="#E8DFCC" opacity=".9"/>
+</svg><span class="cap" style="font-family:Cinzel,serif;letter-spacing:.1em;color:#C4573F">V Berserker</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:6px"><svg viewBox="0 0 120 140" style="width:84px;height:98px;flex:none">
+<defs><radialGradient id="g6" cx="50%" cy="45%" r="55%"><stop offset="0" stop-color="#9C7CC9" stop-opacity=".38"/><stop offset="1" stop-color="#9C7CC9" stop-opacity="0"/></radialGradient></defs>
+<circle cx="60" cy="66" r="62" fill="url(#g6)"/>
+
+<path d="M22 140c0-26 16-42 38-42s38 16 38 42z" fill="#9C7CC9"/>
+<path d="M22 140c0-26 16-42 38-42v42z" fill="#0C0B0A" opacity=".18"/>
+<path d="M60 22c-18 0-28 14-28 32v12c0 16 12 28 28 28s28-12 28-28V54c0-18-10-32-28-32z" fill="#9C7CC9"/>
+<path d="M32 60h56" stroke="#0C0B0A" stroke-width="3" opacity=".45"/>
+<path d="M44 78c4 5 10 7 16 7s12-2 16-7" stroke="#0C0B0A" stroke-width="3" opacity=".35" fill="none"/>
+
+</svg><span class="cap" style="font-family:Cinzel,serif;letter-spacing:.1em;color:#9C7CC9">VI Jarl</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:6px"><svg viewBox="0 0 120 140" style="width:84px;height:98px;flex:none">
+<defs><radialGradient id="g7" cx="50%" cy="45%" r="55%"><stop offset="0" stop-color="#E0A045" stop-opacity=".38"/><stop offset="1" stop-color="#E0A045" stop-opacity="0"/></radialGradient></defs>
+<circle cx="60" cy="66" r="62" fill="url(#g7)"/>
+
+<path d="M22 140c0-26 16-42 38-42s38 16 38 42z" fill="#E0A045"/>
+<path d="M22 140c0-26 16-42 38-42v42z" fill="#0C0B0A" opacity=".18"/>
+<path d="M60 22c-18 0-28 14-28 32v12c0 16 12 28 28 28s28-12 28-28V54c0-18-10-32-28-32z" fill="#E0A045"/>
+<path d="M32 60h56" stroke="#0C0B0A" stroke-width="3" opacity=".45"/>
+<path d="M44 78c4 5 10 7 16 7s12-2 16-7" stroke="#0C0B0A" stroke-width="3" opacity=".35" fill="none"/>
+<path d="M38 40l6-16 8 10 8-14 8 14 8-10 6 16z" fill="#F4BF63"/>
+</svg><span class="cap" style="font-family:Cinzel,serif;letter-spacing:.1em;color:#E0A045">VII Konungr</span></div><div style="display:flex;flex-direction:column;align-items:center;gap:6px"><svg viewBox="0 0 120 140" style="width:84px;height:98px;flex:none">
+<defs><radialGradient id="g8" cx="50%" cy="45%" r="55%"><stop offset="0" stop-color="#F4BF63" stop-opacity=".38"/><stop offset="1" stop-color="#F4BF63" stop-opacity="0"/></radialGradient></defs>
+<circle cx="60" cy="66" r="62" fill="url(#g8)"/>
+
+<path d="M22 140c0-26 16-42 38-42s38 16 38 42z" fill="#F4BF63"/>
+<path d="M22 140c0-26 16-42 38-42v42z" fill="#0C0B0A" opacity=".18"/>
+<path d="M60 22c-18 0-28 14-28 32v12c0 16 12 28 28 28s28-12 28-28V54c0-18-10-32-28-32z" fill="#F4BF63"/>
+<path d="M32 60h56" stroke="#0C0B0A" stroke-width="3" opacity=".45"/>
+<path d="M44 78c4 5 10 7 16 7s12-2 16-7" stroke="#0C0B0A" stroke-width="3" opacity=".35" fill="none"/>
+<path d="M38 40l6-16 8 10 8-14 8 14 8-10 6 16z" fill="#F4BF63"/>
+</svg><span class="cap" style="font-family:Cinzel,serif;letter-spacing:.1em;color:#F4BF63">VIII Einherjar</span></div>
+</div>
+<div class="sub" style="max-width:720px">Platzhalter-Büsten bis die finalen Illustrationen (Midjourney, einheitliche Frontalpose, 4:5) da sind. Jede Stufe hat eine Kennfarbe, die in Badge, Glow und Rang wiederkehrt. Slots: Kopf, Hand, Umhang, Gefährte, Rahmen als transparente Ebenen über demselben Raster.</div>
+</div>
+  <div style="display:flex;flex-direction:column;gap:18px;padding:36px 0;border-top:1px solid #2F2A25">
+  <div><div class="h1" style="font-size:20px">Buttons und Eingaben</div></div>
+  <div style="display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:28px">
+  <div style="display:flex;flex-direction:column;gap:10px"><span class="eyebrow">Buttons · 52px, Radius 8</span><div style="display:flex;flex-direction:column;gap:10px;max-width:340px"><div class="btn btn-primary"><svg class="ic" style="width:20px;height:20px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M6 3h12v18l-2-1.5L14 21l-2-1.5L10 21l-2-1.5L6 21z"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>Primär · Glut</div><div class="btn btn-secondary">Sekundär · Outline</div><div class="btn btn-primary" style="opacity:.4">Deaktiviert</div><div class="btn btn-danger">Destruktiv</div><div class="btn btn-ghost">Ghost / Textlink</div><div style="display:flex;gap:10px"><div class="btn btn-secondary btn-sm" style="flex:1">Klein</div><div class="btn btn-primary btn-sm" style="flex:1">Klein primär</div></div></div></div>
+  <div style="display:flex;flex-direction:column;gap:10px"><span class="eyebrow">Eingaben · 52px, Label als Eyebrow</span><div style="display:flex;flex-direction:column;gap:16px;max-width:340px"><div class="field"><div class="input"><span class="lbl">Standard</span>Wert</div></div><div class="field"><div class="input focus"><span class="lbl">Fokus</span>Wert</div></div><div class="field"><div class="input" style="border-color:#C4573F"><span class="lbl" style="color:#E27A63">Fehler</span>Wert</div><div class="cap" style="color:#E27A63;margin-top:6px">Du musst mindestens 18 Jahre alt sein.</div></div><div class="seg"><div class="on">Deutsch</div><div>English</div></div><div style="display:flex;gap:8px"><span class="chip on">Kopf</span><span class="chip">Hand</span><span class="chip">Umhang</span></div><div style="display:flex;gap:16px;align-items:center"><div class="toggle on"></div><div class="toggle"></div><span class="cap">Schalter</span></div></div></div>
+</div>
+</div>
+  <div style="display:flex;flex-direction:column;gap:18px;padding:36px 0;border-top:1px solid #2F2A25">
+  <div><div class="h1" style="font-size:20px">Pills, Badges, Seltenheit</div></div>
+  <div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+  <span class="pill pill-coin" style=""><svg class="ic-sm" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.5 10.5c0-1 1-1.5 2.5-1.5s2.5.5 2.5 1.5-1 1.5-2.5 1.5-2.5.5-2.5 1.5 1 1.5 2.5 1.5 2.5-.5 2.5-1.5"/></svg>1 786</span><span class="pill pill-coin" style="height:34px;padding:0 14px;font-size:15px"><svg class="ic-sm" style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.5 10.5c0-1 1-1.5 2.5-1.5s2.5.5 2.5 1.5-1 1.5-2.5 1.5-2.5.5-2.5 1.5 1 1.5 2.5 1.5 2.5-.5 2.5-1.5"/></svg>1 786</span>
+  <span class="pill pill-ok"><svg class="ic-sm" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 15h18l-2 4H5l-2-4z"/><path d="M12 15V4l6 9H6"/><path d="M12 4l-4.5 7"/></svg>An Bord</span><span class="pill pill-off"><svg class="ic-sm" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="5" r="2"/><path d="M12 7v14M5 13a7 7 0 0 0 14 0M3 13h4M17 13h4"/></svg>Von Bord</span>
+  <span class="pill pill-frost" style="height:22px;font-size:10px;letter-spacing:.12em">NEWS</span><span class="pill pill-danger" style="height:22px;font-size:10px;letter-spacing:.12em">EVENT</span>
+  <span class="pill pill-off">Prüfung</span><span class="pill pill-ok">Bestätigt</span><span class="pill pill-danger">Abgelehnt</span>
+  <span class="rarity" style="color:#AFA393"><i style="background:#AFA393"></i>Gewöhnlich</span><span class="rarity" style="color:#8FB8CF"><i style="background:#8FB8CF"></i>Selten</span><span class="rarity" style="color:#F4BF63"><i style="background:#F4BF63"></i>Legendär</span>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:10px"><span class="level" style="color:#8C8377;border-color:#8C837766;background:#8C83771F;"><span>I</span><span style="opacity:.55">·</span><span>Thrall</span></span><span class="level" style="color:#A39A8B;border-color:#A39A8B66;background:#A39A8B1F;"><span>II</span><span style="opacity:.55">·</span><span>Karl</span></span><span class="level" style="color:#7FA894;border-color:#7FA89466;background:#7FA8941F;"><span>III</span><span style="opacity:.55">·</span><span>Drengr</span></span><span class="level" style="color:#7CA2BF;border-color:#7CA2BF66;background:#7CA2BF1F;"><span>IV</span><span style="opacity:.55">·</span><span>Huskarl</span></span><span class="level" style="color:#C4573F;border-color:#C4573F66;background:#C4573F1F;"><span>V</span><span style="opacity:.55">·</span><span>Berserker</span></span><span class="level" style="color:#9C7CC9;border-color:#9C7CC966;background:#9C7CC91F;"><span>VI</span><span style="opacity:.55">·</span><span>Jarl</span></span><span class="level" style="color:#E0A045;border-color:#E0A04566;background:#E0A0451F;"><span>VII</span><span style="opacity:.55">·</span><span>Konungr</span></span><span class="level" style="color:#F4BF63;border-color:#F4BF6366;background:#F4BF631F;"><span>VIII</span><span style="opacity:.55">·</span><span>Einherjar</span></span></div>
+</div>
+  <div style="display:flex;flex-direction:column;gap:18px;padding:36px 0;border-top:1px solid #2F2A25">
+  <div><div class="h1" style="font-size:20px">Karten und Zeilen</div></div>
+  <div style="display:grid;grid-template-columns:repeat(3, minmax(0, 1fr));gap:20px">
+  <div style="display:flex;flex-direction:column;gap:10px"><span class="eyebrow">Heldenkarte · Halle</span><div class="card" style="padding:18px;position:relative;overflow:hidden"><div class="glow" style="position:absolute;inset:0"></div><div style="position:relative;display:flex;gap:12px;align-items:center"><div style="flex:1;display:flex;flex-direction:column;gap:8px"><div class="display" style="font-size:22px">Ragnar</div><span class="level" style="color:#7CA2BF;border-color:#7CA2BF66;background:#7CA2BF1F;"><span>IV</span><span style="opacity:.55">·</span><span>Huskarl</span></span><span class="pill pill-ok"><svg class="ic-sm" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 15h18l-2 4H5l-2-4z"/><path d="M12 15V4l6 9H6"/><path d="M12 4l-4.5 7"/></svg>An Bord</span></div><svg viewBox="0 0 120 140" style="width:90px;height:105px;flex:none">
+<defs><radialGradient id="g4" cx="50%" cy="45%" r="55%"><stop offset="0" stop-color="#7CA2BF" stop-opacity=".38"/><stop offset="1" stop-color="#7CA2BF" stop-opacity="0"/></radialGradient></defs>
+<circle cx="60" cy="66" r="62" fill="url(#g4)"/>
+<path d="M28 62c0-22 12-38 32-38s32 16 32 38v10H28z" fill="#1D1A17" stroke="#8FB8CF" stroke-width="2"/>
+<path d="M22 140c0-26 16-42 38-42s38 16 38 42z" fill="#7CA2BF"/>
+<path d="M22 140c0-26 16-42 38-42v42z" fill="#0C0B0A" opacity=".18"/>
+<path d="M60 22c-18 0-28 14-28 32v12c0 16 12 28 28 28s28-12 28-28V54c0-18-10-32-28-32z" fill="#7CA2BF"/>
+<path d="M32 60h56" stroke="#0C0B0A" stroke-width="3" opacity=".45"/>
+<path d="M44 78c4 5 10 7 16 7s12-2 16-7" stroke="#0C0B0A" stroke-width="3" opacity=".35" fill="none"/>
+
+</svg></div><div style="position:relative;margin-top:14px"><div class="xp"><div style="width:51%"></div></div><div class="ticks"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div></div></div>
+  <div style="display:flex;flex-direction:column;gap:10px"><span class="eyebrow">Belohnung · Grid 2</span><div class="card" style="padding:14px;display:flex;flex-direction:column;gap:10px;opacity:1">
+  <div style="height:96px;border-radius:8px;background:radial-gradient(70% 70% at 50% 40%, #282420, #1D1A17);display:flex;align-items:center;justify-content:center;color:#F4BF63"><svg class="ic" style="width:40px;height:40px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M8 4l4 2 4-2 4 3-2 3-2-1v11H8V9L6 10 4 7z"/></svg></div>
+  <div><div class="eyebrow" style="font-size:10px">Merch</div><div class="body" style="font-weight:700;margin-top:3px;line-height:1.25">Valhalla T-Shirt</div></div>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-top:auto"><span class="pill pill-coin" style=""><svg class="ic-sm" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.5 10.5c0-1 1-1.5 2.5-1.5s2.5.5 2.5 1.5-1 1.5-2.5 1.5-2.5.5-2.5 1.5 1 1.5 2.5 1.5 2.5-.5 2.5-1.5"/></svg>2 500</span><span class="cap">Noch 30</span></div>
+</div></div>
+  <div style="display:flex;flex-direction:column;gap:10px"><span class="eyebrow">Gutschein</span><div class="card" style="display:flex;overflow:hidden">
+  <div style="width:76px;background:#1D1A17;border-right:1px dashed #453E36;display:flex;align-items:center;justify-content:center;color:#F4BF63"><svg class="ic" style="width:30px;height:30px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M6 3h12l-1 8a5 5 0 0 1-10 0z"/><path d="M12 16v5M8 21h8"/></svg></div>
+  <div style="flex:1;padding:14px 16px;display:flex;flex-direction:column;gap:4px">
+    <div style="display:flex;justify-content:space-between;align-items:center"><span class="body" style="font-weight:700">Ein Bier aufs Haus</span><span class="pill pill-coin" style="height:22px">Aktiv</span></div>
+    <div class="display" style="font-size:22px;color:#F4BF63;letter-spacing:.22em;">LBW7X5</div>
+    <div class="cap">Gültig bis 8. Okt. 2026</div>
+  </div>
+</div></div>
+  <div style="display:flex;flex-direction:column;gap:10px"><span class="eyebrow">Listenzeilen · 14/16 Padding</span><div class="card"><div class="row"><span style="color:#AFA393"><svg class="ic" style="width:22px;height:22px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 13a7 7 0 0 1 14 0v4H5z"/><path d="M12 6v11M5 13h14"/></svg></span><span class="body" style="flex:1;font-weight:600">Helden anpassen</span><span style="color:#756B5E"><svg class="ic-sm" style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M9 6l6 6-6 6"/></svg></span></div><div class="row"><span style="color:#AFA393"><svg class="ic" style="width:22px;height:22px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4l2-2z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span><span class="body" style="flex:1;font-weight:600">Nachrichten</span><span class="pill pill-danger" style="height:22px;padding:0 8px">3</span><span style="color:#756B5E"><svg class="ic-sm" style="width:18px;height:18px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M9 6l6 6-6 6"/></svg></span></div><div class="row" style="padding:12px 16px">
+  <div style="width:52px;height:52px;border-radius:10px;background:#1D1A17;border:1px solid #2F2A25;display:flex;align-items:center;justify-content:center;color:#8FB8CF"><svg class="ic" style="width:26px;height:26px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M14 4l6 6-4 4-6-6z"/><path d="M12 10L4 18l2 2 8-8"/></svg></div>
+  <div style="flex:1"><div class="body" style="font-weight:700">Bartaxt</div><div style="display:flex;gap:10px;margin-top:3px"><span class="rarity" style="color:#8FB8CF"><i style="background:#8FB8CF"></i>Selten</span><span class="cap">Hand</span></div></div>
+  <span class="pill pill-coin" style=""><svg class="ic-sm" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.5 10.5c0-1 1-1.5 2.5-1.5s2.5.5 2.5 1.5-1 1.5-2.5 1.5-2.5.5-2.5 1.5 1 1.5 2.5 1.5 2.5-.5 2.5-1.5"/></svg>800</span>
+</div></div></div>
+  <div style="display:flex;flex-direction:column;gap:10px"><span class="eyebrow">Kacheln</span><div style="display:flex;gap:10px"><div class="card" style="flex:1;padding:14px 12px;display:flex;flex-direction:column;align-items:center;gap:6px">
+  <span style="color:#E0A045"><svg class="ic" style="width:20px;height:20px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="12" r="8"/><path d="M12 8v8M9.5 10.5c0-1 1-1.5 2.5-1.5s2.5.5 2.5 1.5-1 1.5-2.5 1.5-2.5.5-2.5 1.5 1 1.5 2.5 1.5 2.5-.5 2.5-1.5"/></svg></span>
+  <span class="num" style="font-size:22px">1 786</span>
+  <span class="cap" style="letter-spacing:.06em;text-transform:uppercase;font-size:10px">Münzen</span>
+</div><div class="card" style="flex:1;padding:14px 12px;display:flex;flex-direction:column;align-items:center;gap:6px">
+  <span style="color:#8FB8CF"><svg class="ic" style="width:20px;height:20px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M6 3h12l-1 8a5 5 0 0 1-10 0z"/><path d="M12 16v5M8 21h8"/></svg></span>
+  <span class="num" style="font-size:22px">7</span>
+  <span class="cap" style="letter-spacing:.06em;text-transform:uppercase;font-size:10px">Besuche</span>
+</div></div></div>
+  <div style="display:flex;flex-direction:column;gap:10px"><span class="eyebrow">Rangzeile</span><div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:12px;border:1px solid #E0A04566;background:rgba(224,160,69,0.14)">
+  <div class="num" style="width:28px;font-size:15px;color:#756B5E">6</div>
+  <svg viewBox="0 0 120 140" style="width:44px;height:51px;flex:none">
+<defs><radialGradient id="g4" cx="50%" cy="45%" r="55%"><stop offset="0" stop-color="#7CA2BF" stop-opacity=".38"/><stop offset="1" stop-color="#7CA2BF" stop-opacity="0"/></radialGradient></defs>
+<circle cx="60" cy="66" r="62" fill="url(#g4)"/>
+<path d="M28 62c0-22 12-38 32-38s32 16 32 38v10H28z" fill="#1D1A17" stroke="#8FB8CF" stroke-width="2"/>
+<path d="M22 140c0-26 16-42 38-42s38 16 38 42z" fill="#7CA2BF"/>
+<path d="M22 140c0-26 16-42 38-42v42z" fill="#0C0B0A" opacity=".18"/>
+<path d="M60 22c-18 0-28 14-28 32v12c0 16 12 28 28 28s28-12 28-28V54c0-18-10-32-28-32z" fill="#7CA2BF"/>
+<path d="M32 60h56" stroke="#0C0B0A" stroke-width="3" opacity=".45"/>
+<path d="M44 78c4 5 10 7 16 7s12-2 16-7" stroke="#0C0B0A" stroke-width="3" opacity=".35" fill="none"/>
+
+</svg>
+  <div style="flex:1;display:flex;flex-direction:column;gap:5px">
+    <div class="body" style="font-weight:800;display:flex;gap:6px;align-items:center">Ragnar<span class="cap" style="color:#E0A045">· Du</span></div>
+    <div style="display:flex;gap:8px;align-items:center"><span class="level" style="color:#7CA2BF;border-color:#7CA2BF66;background:#7CA2BF1F;height:24px;font-size:11px"><span>IV</span><span style="opacity:.55">·</span><span>Huskarl</span></span><span style="color:#7FB58A"><svg class="ic-sm" style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M3 15h18l-2 4H5l-2-4z"/><path d="M12 15V4l6 9H6"/><path d="M12 4l-4.5 7"/></svg></span></div>
+  </div>
+  <div style="text-align:right"><div class="num" style="font-size:15px;color:#F4BF63">1 105 XP</div><div class="cap">7 Besuche</div></div>
+</div></div>
+</div>
+</div>
+  <div style="display:flex;flex-direction:column;gap:18px;padding:36px 0;border-top:1px solid #2F2A25">
+  <div><div class="h1" style="font-size:20px">Navigation</div></div>
+  <div style="display:flex;gap:28px;flex-wrap:wrap">
+  <div style="display:flex;flex-direction:column;gap:10px"><span class="eyebrow">Bottom-Navigation · 84px inkl. Home-Indicator</span><div style="position:relative;width:390px;height:84px;background:#0C0B0A;border-radius:12px;overflow:hidden"><div class="nav"><div class="nav-item on" style="position:relative"><svg class="ic" style="width:22px;height:22px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M12 3l7 3v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6l7-3z"/></svg><span>Halle</span></div><div class="nav-item" style="position:relative"><svg class="ic" style="width:22px;height:22px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5V5.5M8 7h8M8 11h6"/></svg><span>Saga</span></div><div class="nav-item" style="position:relative"><svg class="ic" style="width:22px;height:22px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M3 12h18M12 12v3M7 8V5.5A2.5 2.5 0 0 1 9.5 3h5A2.5 2.5 0 0 1 17 5.5V8"/></svg><span>Beute</span></div><div class="nav-item" style="position:relative"><svg class="ic" style="width:22px;height:22px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><path d="M4 20V11M12 20V4M20 20v-7"/><path d="M3 20h18"/></svg><span>Rangliste</span></div><div class="nav-item" style="position:relative"><svg class="ic" style="width:22px;height:22px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"/></svg><span>Profil</span></div><div class="nav-item" style="position:relative"><svg class="ic" style="width:22px;height:22px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" ><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M6 17c0-1.7 1.3-3 3-3s3 1.3 3 3M14 9h4M14 13h4"/></svg><span>Team</span><span style="position:absolute;top:-4px;right:12px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#C4573F;color:#EFE7D8;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center">1</span></div></div></div></div>
+  <div style="display:flex;flex-direction:column;gap:10px"><span class="eyebrow">Tabs · Unterstrich</span><div style="width:340px;display:flex;border-bottom:1px solid #2F2A25"><div class="tab on">Belohnungen</div><div class="tab">Ausrüstung</div></div></div>
+  <div style="display:flex;flex-direction:column;gap:10px"><span class="eyebrow">Abschnitt · Eyebrow + Aktion</span><div style="width:340px;background:#0C0B0A"><div style="display:flex;align-items:center;justify-content:space-between;padding:24px 20px 10px"><span class="eyebrow">Erfolge</span><span style="color:#E0A045;font-size:12px;font-weight:700">Alle 16 ›</span></div><div class="rune" style="padding:0 20px"><span class="cap" style="letter-spacing:.14em;text-transform:uppercase">oder</span></div></div></div>
+</div>
+</div>
+</div>
+</x-dc>
+</body>
+</html>

@@ -1,0 +1,8 @@
+name: valhalla_workspace
+publish_to: none
+environment:
+  sdk: ^3.12.0
+workspace:
+  - packages/core
+  - apps/mobile
+  - apps/admin
