@@ -1,4 +1,5 @@
 import 'package:supabase_flutter/supabase_flutter.dart';
+import 'package:flutter/services.dart' show PlatformException;
 
 /// Typed errors raised by server RPCs (see supabase/migrations/*_functions.sql).
 enum ApiErrorCode {
@@ -42,6 +43,8 @@ class ApiError implements Exception {
       return ApiError(ApiErrorCode.unknown, m);
     }
     if (e is AuthException) return ApiError(ApiErrorCode.unknown, e.message);
+    // native plugins (sign-in, camera, …): their message, not the whole dump
+    if (e is PlatformException) return ApiError(ApiErrorCode.unknown, e.message ?? e.code);
     return ApiError(ApiErrorCode.unknown, e.toString());
   }
 

@@ -52,6 +52,14 @@ class L10nNl extends L10n {
   String get createAccount => 'Account aanmaken';
 
   @override
+  String get signupConfirmTitle => 'Bevestig je e-mail';
+
+  @override
+  String signupConfirmBody(String email) {
+    return 'We hebben een link gestuurd naar $email. Open hem en log daarna hier in.';
+  }
+
+  @override
   String get completeProfile => 'Profiel aanvullen';
 
   @override
@@ -463,6 +471,9 @@ class L10nNl extends L10n {
 
   @override
   String get coinReasonRefund => 'Terugbetaling';
+
+  @override
+  String get coinReasonCheckin => 'Foto in de saga';
 
   @override
   String get tabHero => 'Held';
@@ -1074,7 +1085,7 @@ class L10nNl extends L10n {
   String get tabSaga => 'Saga';
 
   @override
-  String get tabScan => 'Scannen';
+  String get tabScan => 'Toevoegen';
 
   @override
   String get tonight => 'Vanavond';
@@ -1087,6 +1098,9 @@ class L10nNl extends L10n {
 
   @override
   String get eventsEmpty => 'Er zijn momenteel geen events gepland.';
+
+  @override
+  String get eventsPast => 'Afgelopen events';
 
   @override
   String get catMatch => 'Live sport';
@@ -1156,7 +1170,14 @@ class L10nNl extends L10n {
 
   @override
   String get receiptErrDailyLimit =>
-      'Je hebt hier vandaag al een bon ingewisseld. Tot morgen!';
+      'Daglimiet voor bonnen bereikt. Tot morgen!';
+
+  @override
+  String get receiptAdded => 'Bon toegevoegd';
+
+  @override
+  String get receiptAddedHint =>
+      'XP krijg je per bezoek – meer bonnen op dezelfde dag leveren munten op.';
 
   @override
   String get sagaComposerTitle => 'Deel je moment';

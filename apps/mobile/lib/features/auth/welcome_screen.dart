@@ -95,17 +95,22 @@ class _WelcomeScreenState extends ConsumerState<WelcomeScreen> {
                       const SizedBox(height: 10),
                       Text(t.welcomeBody, style: VType.body(size: 15, color: VColors.ash, height: 1.5)),
                       const SizedBox(height: 22),
-                      _AppleButton(label: t.continueWithApple, onTap: _busy ? null : () => _run(auth.signInWithApple)),
-                      const SizedBox(height: 10),
+                      // only the sign-in options that work on this platform/build
+                      if (AuthService.appleAvailable) ...[
+                        _AppleButton(label: t.continueWithApple, onTap: _busy ? null : () => _run(auth.signInWithApple)),
+                        const SizedBox(height: 10),
+                      ],
                       Row(children: [
-                        Expanded(
-                          child: _DarkButton(
-                            onTap: _busy ? null : () => _run(auth.signInWithGoogle),
-                            leading: Text('G', style: VType.body(size: 17, weight: FontWeight.w800, color: const Color(0xFF8AB4F8))),
-                            label: 'Google',
+                        if (AuthService.googleAvailable) ...[
+                          Expanded(
+                            child: _DarkButton(
+                              onTap: _busy ? null : () => _run(auth.signInWithGoogle),
+                              leading: Text('G', style: VType.body(size: 17, weight: FontWeight.w800, color: const Color(0xFF8AB4F8))),
+                              label: 'Google',
+                            ),
                           ),
-                        ),
-                        const SizedBox(width: 10),
+                          const SizedBox(width: 10),
+                        ],
                         Expanded(
                           child: _DarkButton(
                             onTap: () => context.push('/login'),

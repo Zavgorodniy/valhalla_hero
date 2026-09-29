@@ -197,6 +197,18 @@ abstract class L10n {
   /// **'Konto erstellen'**
   String get createAccount;
 
+  /// No description provided for @signupConfirmTitle.
+  ///
+  /// In de, this message translates to:
+  /// **'Bestätige deine E-Mail'**
+  String get signupConfirmTitle;
+
+  /// No description provided for @signupConfirmBody.
+  ///
+  /// In de, this message translates to:
+  /// **'Wir haben einen Link an {email} geschickt. Öffne ihn und melde dich dann hier an.'**
+  String signupConfirmBody(String email);
+
   /// No description provided for @completeProfile.
   ///
   /// In de, this message translates to:
@@ -976,6 +988,12 @@ abstract class L10n {
   /// In de, this message translates to:
   /// **'Erstattung'**
   String get coinReasonRefund;
+
+  /// No description provided for @coinReasonCheckin.
+  ///
+  /// In de, this message translates to:
+  /// **'Foto in der Saga'**
+  String get coinReasonCheckin;
 
   /// No description provided for @tabHero.
   ///
@@ -2006,7 +2024,7 @@ abstract class L10n {
   /// No description provided for @tabScan.
   ///
   /// In de, this message translates to:
-  /// **'Scannen'**
+  /// **'Hinzufügen'**
   String get tabScan;
 
   /// No description provided for @tonight.
@@ -2032,6 +2050,12 @@ abstract class L10n {
   /// In de, this message translates to:
   /// **'Gerade sind keine Events geplant.'**
   String get eventsEmpty;
+
+  /// No description provided for @eventsPast.
+  ///
+  /// In de, this message translates to:
+  /// **'Vergangene Events'**
+  String get eventsPast;
 
   /// No description provided for @catMatch.
   ///
@@ -2162,8 +2186,20 @@ abstract class L10n {
   /// No description provided for @receiptErrDailyLimit.
   ///
   /// In de, this message translates to:
-  /// **'Heute hast du hier schon einen Beleg eingelöst. Morgen wieder!'**
+  /// **'Tageslimit für Belege erreicht. Bis morgen!'**
   String get receiptErrDailyLimit;
+
+  /// No description provided for @receiptAdded.
+  ///
+  /// In de, this message translates to:
+  /// **'Beleg hinzugefügt'**
+  String get receiptAdded;
+
+  /// No description provided for @receiptAddedHint.
+  ///
+  /// In de, this message translates to:
+  /// **'XP gibt es einmal pro Besuch – weitere Belege des Tages bringen Münzen.'**
+  String get receiptAddedHint;
 
   /// No description provided for @sagaComposerTitle.
   ///

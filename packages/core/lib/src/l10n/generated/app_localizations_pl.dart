@@ -51,6 +51,14 @@ class L10nPl extends L10n {
   String get createAccount => 'Utwórz konto';
 
   @override
+  String get signupConfirmTitle => 'Potwierdź e-mail';
+
+  @override
+  String signupConfirmBody(String email) {
+    return 'Wysłaliśmy link na $email. Otwórz go, a potem zaloguj się tutaj.';
+  }
+
+  @override
   String get completeProfile => 'Uzupełnij profil';
 
   @override
@@ -462,6 +470,9 @@ class L10nPl extends L10n {
 
   @override
   String get coinReasonRefund => 'Zwrot';
+
+  @override
+  String get coinReasonCheckin => 'Zdjęcie w sadze';
 
   @override
   String get tabHero => 'Bohater';
@@ -1081,7 +1092,7 @@ class L10nPl extends L10n {
   String get tabSaga => 'Saga';
 
   @override
-  String get tabScan => 'Skanuj';
+  String get tabScan => 'Dodaj';
 
   @override
   String get tonight => 'Dziś wieczorem';
@@ -1094,6 +1105,9 @@ class L10nPl extends L10n {
 
   @override
   String get eventsEmpty => 'Obecnie brak zaplanowanych wydarzeń.';
+
+  @override
+  String get eventsPast => 'Minione wydarzenia';
 
   @override
   String get catMatch => 'Sport na żywo';
@@ -1163,7 +1177,14 @@ class L10nPl extends L10n {
 
   @override
   String get receiptErrDailyLimit =>
-      'Dziś już zaliczono tu Twój rachunek. Do jutra!';
+      'Osiągnięto dzienny limit rachunków. Do jutra!';
+
+  @override
+  String get receiptAdded => 'Rachunek dodany';
+
+  @override
+  String get receiptAddedHint =>
+      'XP jest za wizytę – kolejne rachunki tego dnia dają monety.';
 
   @override
   String get sagaComposerTitle => 'Podziel się chwilą';

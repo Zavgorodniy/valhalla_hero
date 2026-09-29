@@ -66,7 +66,7 @@ class _OnboardingFlowState extends ConsumerState<OnboardingFlow> {
 
   Future<void> _finish() async {
     final t = L10n.of(context);
-    final locale = Localizations.localeOf(context).languageCode == 'en' ? 'en' : 'de';
+    final locale = supportedLanguage(Localizations.localeOf(context).languageCode);
     setState(() => _busy = true);
     try {
       if (widget.mode == OnboardingMode.emailSignup) {
@@ -78,7 +78,12 @@ class _OnboardingFlowState extends ConsumerState<OnboardingFlow> {
               locale: locale,
               heroForm: _form,
             );
-        if ((_pushConsent || _offersConsent) && ref.read(supabaseProvider).auth.currentUser != null) {
+        // projects with email confirmation return no session until the link is opened
+        if (ref.read(supabaseProvider).auth.currentSession == null) {
+          if (mounted) await _confirmEmail(_email.text.trim());
+          return;
+        }
+        if (_pushConsent || _offersConsent) {
           await ref.read(profileRepoProvider).update(pushMarketingConsent: _pushConsent, personalisedOffersConsent: _offersConsent);
           ref.invalidate(profileProvider);
         }
@@ -94,6 +99,26 @@ class _OnboardingFlowState extends ConsumerState<OnboardingFlow> {
     } finally {
       if (mounted) setState(() => _busy = false);
     }
+  }
+
+  Future<void> _confirmEmail(String email) async {
+    final t = L10n.of(context);
+    await showVSheet<void>(
+      context,
+      builder: (ctx) => Padding(
+        padding: const EdgeInsets.fromLTRB(20, 4, 20, 20),
+        child: Column(mainAxisSize: MainAxisSize.min, children: [
+          const VIcon(VIcons.mail, size: 44, color: VColors.goldBright, stroke: 1.6),
+          const SizedBox(height: 14),
+          Text(t.signupConfirmTitle, textAlign: TextAlign.center, style: VType.cinzel(size: 22)),
+          const SizedBox(height: 10),
+          Text(t.signupConfirmBody(email), textAlign: TextAlign.center, style: VType.body(size: 15, color: VColors.ash, height: 1.45)),
+          const SizedBox(height: 20),
+          VPrimaryButton(label: t.gotIt, onPressed: () => Navigator.pop(ctx)),
+        ]),
+      ),
+    );
+    if (mounted) context.go('/login');
   }
 
   @override

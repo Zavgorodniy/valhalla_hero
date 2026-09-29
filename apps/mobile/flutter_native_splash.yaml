@@ -1,0 +1,10 @@
+# Launch screen: the glowing horse emblem on the app background.
+# Regenerate with  dart run flutter_native_splash:create
+flutter_native_splash:
+  color: "#0E0B09"
+  image: assets/branding/splash.png
+  android_12:
+    color: "#0E0B09"
+    image: assets/branding/splash_android12.png
+    icon_background_color: "#0E0B09"
+  web: false

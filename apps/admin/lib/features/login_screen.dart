@@ -9,8 +9,8 @@ class LoginScreen extends ConsumerStatefulWidget {
 }
 
 class _LoginScreenState extends ConsumerState<LoginScreen> {
-  final _email = TextEditingController(text: Env.isLocal ? 'admin@valhalla.demo' : '');
-  final _password = TextEditingController(text: Env.isLocal ? 'Valhalla123!' : '');
+  final _email = TextEditingController();
+  final _password = TextEditingController();
   bool _busy = false;
 
   Future<void> _submit() async {

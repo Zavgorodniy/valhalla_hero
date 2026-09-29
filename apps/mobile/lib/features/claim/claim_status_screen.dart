@@ -277,6 +277,7 @@ class CreditReveal extends ConsumerWidget {
     final coinGain = r?.coinsGained ?? now.coinBalance - b.coinBalance;
     final levelBefore = r?.levelBefore ?? b.level;
     final leveledUp = (r?.levelAfter ?? now.level) > levelBefore;
+    final added = r?.addedToVisit ?? false;
     final newKeys = r?.achievements.toSet() ??
         {for (final a in mine) if (since != null && !a.unlockedAt.isBefore(since!)) a.achievementKey};
     final newAch = achievements.where((a) => newKeys.contains(a.key)).toList();
@@ -290,16 +291,22 @@ class CreditReveal extends ConsumerWidget {
       VTopBar(actions: [VRoundButton(icon: VIcons.close, tooltip: t.close, background: VColors.surface2, onTap: () => context.go('/hero'))]),
       Expanded(
         child: ListView(padding: const EdgeInsets.symmetric(horizontal: 20), children: [
-          Center(child: VStatusPill(label: t.visitConfirmed.toUpperCase(), color: VColors.moss, icon: VIcons.check)),
+          Center(child: VStatusPill(label: (added ? t.receiptAdded : t.visitConfirmed).toUpperCase(), color: VColors.moss, icon: VIcons.check)),
           const SizedBox(height: 10),
           Text(t.hallHonours(now.nickname), textAlign: TextAlign.center, style: VType.cinzel(size: 26)),
           const SizedBox(height: 20),
-          Row(children: [
-            Expanded(child: _Tile(xp: true, value: '+$xpGain', label: t.experience)),
-            const SizedBox(width: 12),
-            Expanded(child: _Tile(xp: false, value: '+${vNum(coinGain)}', label: t.coinsWord)),
-          ]),
-          if (now.currentStreakWeeks >= 2) ...[
+          // a later receipt of the day joins the visit: coins only
+          if (added) ...[
+            _Tile(xp: false, value: '+${vNum(coinGain)}', label: t.coinsWord),
+            const SizedBox(height: 10),
+            Text(t.receiptAddedHint, textAlign: TextAlign.center, style: VType.body(size: 13, color: VColors.ash, height: 1.4)),
+          ] else
+            Row(children: [
+              Expanded(child: _Tile(xp: true, value: '+$xpGain', label: t.experience)),
+              const SizedBox(width: 12),
+              Expanded(child: _Tile(xp: false, value: '+${vNum(coinGain)}', label: t.coinsWord)),
+            ]),
+          if (!added && now.currentStreakWeeks >= 2) ...[
             const SizedBox(height: 14),
             VCard(
               padding: const EdgeInsets.all(14),

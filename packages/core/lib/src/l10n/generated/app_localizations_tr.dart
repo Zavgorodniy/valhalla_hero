@@ -52,6 +52,14 @@ class L10nTr extends L10n {
   String get createAccount => 'Hesap oluştur';
 
   @override
+  String get signupConfirmTitle => 'E-postanı onayla';
+
+  @override
+  String signupConfirmBody(String email) {
+    return '$email adresine bir bağlantı gönderdik. Aç, ardından buradan giriş yap.';
+  }
+
+  @override
   String get completeProfile => 'Profili tamamla';
 
   @override
@@ -463,6 +471,9 @@ class L10nTr extends L10n {
 
   @override
   String get coinReasonRefund => 'İade';
+
+  @override
+  String get coinReasonCheckin => 'Destan fotoğrafı';
 
   @override
   String get tabHero => 'Kahraman';
@@ -1074,7 +1085,7 @@ class L10nTr extends L10n {
   String get tabSaga => 'Destan';
 
   @override
-  String get tabScan => 'Tara';
+  String get tabScan => 'Ekle';
 
   @override
   String get tonight => 'Bu akşam';
@@ -1087,6 +1098,9 @@ class L10nTr extends L10n {
 
   @override
   String get eventsEmpty => 'Şu anda planlanmış etkinlik yok.';
+
+  @override
+  String get eventsPast => 'Geçmiş etkinlikler';
 
   @override
   String get catMatch => 'Canlı spor';
@@ -1154,7 +1168,14 @@ class L10nTr extends L10n {
 
   @override
   String get receiptErrDailyLimit =>
-      'Bugün burada zaten bir fiş kullandın. Yarın görüşürüz!';
+      'Günlük fiş sınırına ulaşıldı. Yarın görüşürüz!';
+
+  @override
+  String get receiptAdded => 'Fiş eklendi';
+
+  @override
+  String get receiptAddedHint =>
+      'XP ziyaret başınadır – aynı gün eklenen fişler sikke kazandırır.';
 
   @override
   String get sagaComposerTitle => 'Anını paylaş';

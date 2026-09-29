@@ -1,6 +1,6 @@
 // Generates demo receipt QR codes for the local stack.
 // Usage: swift tools/make_test_receipts.swift docs/test-receipts
-// The TSE payloads use the demo register "VH-BERLIN-KASSE-1" from supabase/seed.sql;
+// The TSE payloads use the demo register "VH-BERLIN-KASSE-1" from supabase/seeds/content.sql;
 // the seed disables the receipt age check, so these stay valid until redeemed once.
 import AppKit
 import CoreImage
@@ -14,6 +14,7 @@ let receipts: [(String, String)] = [
     ("tse-unknown-bar", "V0;OTHER-BAR-KASSE;Kassenbeleg-V1;Beleg^12.00_0.00_0.00_0.00_0.00^12.00:Bar;1;1;2026-09-25T18:00:00.000Z;2026-09-25T18:00:01.000Z;ecdsa-plain-SHA256;utcTime;DEMO;DEMO"),
     ("code-VH-3X9P-5T", "VH:VH-3X9P-5T"),
     ("code-VH-8N2D-6R", "VH:VH-8N2D-6R"),
+    ("code-VH-TEST-01", "VH:VH-TEST-01"),
 ]
 
 let context = CIContext()

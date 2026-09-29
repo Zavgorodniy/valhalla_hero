@@ -128,14 +128,26 @@ final playerCheckinsProvider = FutureProvider.family<List<FeedCheckin>, String>(
 final pendingCheckinProvider = Provider<Checkin?>((ref) =>
     (ref.watch(myCheckinsProvider).valueOrNull ?? const <Checkin>[]).where((c) => c.status == CheckinStatus.pending).firstOrNull);
 
+extension EventTiming on Post {
+  /// Events without an end time are assumed to last three hours.
+  DateTime get endsAtOrDefault => endsAt ?? startsAt!.add(const Duration(hours: 3));
+  bool isLiveAt(DateTime now) => startsAt!.isBefore(now) && endsAtOrDefault.isAfter(now);
+  bool isOverAt(DateTime now) => !endsAtOrDefault.isAfter(now);
+}
+
+List<Post> _events(Ref ref) =>
+    (ref.watch(feedProvider).valueOrNull ?? const <Post>[]).where((p) => p.type == PostType.event && p.startsAt != null).toList();
+
 /// Upcoming (and currently running) events, soonest first.
 final upcomingEventsProvider = Provider<List<Post>>((ref) {
-  final posts = ref.watch(feedProvider).valueOrNull ?? const <Post>[];
   final now = DateTime.now();
-  return posts
-      .where((p) => p.type == PostType.event && p.startsAt != null && (p.endsAt ?? p.startsAt!.add(const Duration(hours: 3))).isAfter(now))
-      .toList()
-    ..sort((a, b) => a.startsAt!.compareTo(b.startsAt!));
+  return _events(ref).where((p) => !p.isOverAt(now)).toList()..sort((a, b) => a.startsAt!.compareTo(b.startsAt!));
+});
+
+/// Events that are over, most recent first: they stay as the bar's history.
+final pastEventsProvider = Provider<List<Post>>((ref) {
+  final now = DateTime.now();
+  return _events(ref).where((p) => p.isOverAt(now)).toList()..sort((a, b) => b.startsAt!.compareTo(a.startsAt!));
 });
 
 // ---------- staff / admin ----------

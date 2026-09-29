@@ -52,6 +52,14 @@ class L10nEs extends L10n {
   String get createAccount => 'Crear cuenta';
 
   @override
+  String get signupConfirmTitle => 'Confirma tu correo';
+
+  @override
+  String signupConfirmBody(String email) {
+    return 'Te enviamos un enlace a $email. Ábrelo y luego inicia sesión aquí.';
+  }
+
+  @override
   String get completeProfile => 'Completar perfil';
 
   @override
@@ -463,6 +471,9 @@ class L10nEs extends L10n {
 
   @override
   String get coinReasonRefund => 'Reembolso';
+
+  @override
+  String get coinReasonCheckin => 'Foto en la saga';
 
   @override
   String get tabHero => 'Héroe';
@@ -1073,7 +1084,7 @@ class L10nEs extends L10n {
   String get tabSaga => 'Saga';
 
   @override
-  String get tabScan => 'Escanear';
+  String get tabScan => 'Añadir';
 
   @override
   String get tonight => 'Esta noche';
@@ -1086,6 +1097,9 @@ class L10nEs extends L10n {
 
   @override
   String get eventsEmpty => 'No hay eventos programados por ahora.';
+
+  @override
+  String get eventsPast => 'Eventos pasados';
 
   @override
   String get catMatch => 'Deporte en directo';
@@ -1155,7 +1169,14 @@ class L10nEs extends L10n {
 
   @override
   String get receiptErrDailyLimit =>
-      'Hoy ya canjeaste un tique aquí. ¡Hasta mañana!';
+      'Límite diario de tiques alcanzado. ¡Hasta mañana!';
+
+  @override
+  String get receiptAdded => 'Tique añadido';
+
+  @override
+  String get receiptAddedHint =>
+      'La XP es por visita: más tiques el mismo día suman monedas.';
 
   @override
   String get sagaComposerTitle => 'Comparte tu momento';

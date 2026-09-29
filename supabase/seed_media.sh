@@ -1,13 +1,24 @@
 #!/usr/bin/env bash
-# Demo photo check-ins for the local stack: uploads a few images to the
-# `checkins` bucket and creates approved (and one pending) check-ins.
-# Run after `supabase db reset`:  ./supabase/seed_checkins.sh
+# Demo media for the local stack. Run after `supabase db reset`:  ./supabase/seed_media.sh
+#  1. event images (supabase/seed_media/events) -> `media` bucket via [storage.buckets.media]
+#     in config.toml (cloud: `supabase seed buckets --linked`)
+#  2. photo check-ins of the demo users: uploads a few images to the `checkins` bucket and
+#     creates approved (and one pending) check-ins, unless demo check-ins already exist.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
 eval "$(supabase status -o env | grep -E '^(API_URL|SERVICE_ROLE_KEY)=')"
 KEY="$SERVICE_ROLE_KEY"
 ART=packages/core/assets/art/scenes
+
+supabase seed buckets --local > /dev/null
+echo "Uploaded event images."
+
+if [ "$(curl -sf "$API_URL/rest/v1/checkins?photo_path=like.*demo-*&select=id&limit=1" \
+  -H "Authorization: Bearer $KEY" -H "apikey: $KEY")" != "[]" ]; then
+  echo "Demo check-ins already present."
+  exit 0
+fi
 
 upload() { # user_id file -> path
   local path="$1/demo-$(basename "$2")"

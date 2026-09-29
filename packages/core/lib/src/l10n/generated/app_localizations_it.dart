@@ -52,6 +52,14 @@ class L10nIt extends L10n {
   String get createAccount => 'Crea account';
 
   @override
+  String get signupConfirmTitle => 'Conferma la tua e-mail';
+
+  @override
+  String signupConfirmBody(String email) {
+    return 'Abbiamo inviato un link a $email. Aprilo, poi accedi qui.';
+  }
+
+  @override
   String get completeProfile => 'Completa il profilo';
 
   @override
@@ -463,6 +471,9 @@ class L10nIt extends L10n {
 
   @override
   String get coinReasonRefund => 'Rimborso';
+
+  @override
+  String get coinReasonCheckin => 'Foto nella saga';
 
   @override
   String get tabHero => 'Eroe';
@@ -1075,7 +1086,7 @@ class L10nIt extends L10n {
   String get tabSaga => 'Saga';
 
   @override
-  String get tabScan => 'Scansiona';
+  String get tabScan => 'Aggiungi';
 
   @override
   String get tonight => 'Stasera';
@@ -1088,6 +1099,9 @@ class L10nIt extends L10n {
 
   @override
   String get eventsEmpty => 'Al momento non ci sono eventi in programma.';
+
+  @override
+  String get eventsPast => 'Eventi passati';
 
   @override
   String get catMatch => 'Sport in diretta';
@@ -1157,7 +1171,14 @@ class L10nIt extends L10n {
 
   @override
   String get receiptErrDailyLimit =>
-      'Oggi hai già usato uno scontrino qui. A domani!';
+      'Limite giornaliero di scontrini raggiunto. A domani!';
+
+  @override
+  String get receiptAdded => 'Scontrino aggiunto';
+
+  @override
+  String get receiptAddedHint =>
+      'Gli XP sono per visita – altri scontrini nello stesso giorno danno monete.';
 
   @override
   String get sagaComposerTitle => 'Condividi il tuo momento';

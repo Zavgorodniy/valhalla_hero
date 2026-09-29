@@ -1,8 +1,9 @@
--- Valhalla Hero demo seed (local / demo project only)
+-- Valhalla Hero bar content: venue, levels, achievements, gear, rewards, events, demo receipts.
+-- Safe for any project (no users). Local: applied by `supabase db reset`; cloud: see README.
 set search_path = public;
 
 insert into venues (id, slug, name, address, city, is_active) values
-  ('11111111-1111-1111-1111-111111111111', 'valhalla-berlin', 'Valhalla Bar', 'Warschauer Str. 42', 'Berlin', true),
+  ('11111111-1111-1111-1111-111111111111', 'valhalla-helmstedt', 'Valhalla Helmstedt', 'Papenberg 2', 'Helmstedt', true),
   ('22222222-2222-2222-2222-222222222222', 'valhalla-hamburg', 'Valhalla Hamburg', 'Reeperbahn 1', 'Hamburg', false);
 
 insert into levels (level, name, name_female, xp_threshold, coin_multiplier, hero_asset, tagline_de, tagline_en) values
@@ -68,97 +69,35 @@ insert into rewards (type, name_de, name_en, description_de, description_en, pri
   ('priority_booking', 'Vorrang-Reservierung', 'Priority Booking', 'Tisch am Freitag/Samstag, Vorzeigen beim Anruf.', 'Table on Fri/Sat, show when calling.', 1200, null, 60, 9),
   ('event_access', 'Zugang: Skalden-Nacht', 'Access: Skalds'' Night', 'Eintritt zur nächsten Skalden-Nacht.', 'Entry to the next Skalds'' Night.', 500, 40, 45, 10);
 
--- ---------- demo users (password: Valhalla123!) ----------
-create or replace function seed_user(p_id uuid, p_email text, p_nick text, p_birth date) returns void
-language plpgsql as $$
-begin
-  insert into auth.users (instance_id, id, aud, role, email, encrypted_password, email_confirmed_at,
-    raw_app_meta_data, raw_user_meta_data, created_at, updated_at, confirmation_token, recovery_token, email_change, email_change_token_new)
-  values ('00000000-0000-0000-0000-000000000000', p_id, 'authenticated', 'authenticated', p_email,
-    extensions.crypt('Valhalla123!', extensions.gen_salt('bf')), now(),
-    '{"provider":"email","providers":["email"]}', jsonb_build_object('nickname', p_nick, 'birth_date', p_birth::text),
-    now(), now(), '', '', '', '');
-  insert into auth.identities (id, user_id, provider_id, provider, identity_data, last_sign_in_at, created_at, updated_at)
-  values (gen_random_uuid(), p_id, p_id::text, 'email', jsonb_build_object('sub', p_id::text, 'email', p_email), now(), now(), now());
-end $$;
-
-select seed_user('a0000000-0000-0000-0000-000000000001', 'admin@valhalla.demo', 'Odin', '1985-03-01');
-select seed_user('a0000000-0000-0000-0000-000000000002', 'staff@valhalla.demo', 'Heimdall', '1992-07-14');
-select seed_user('a0000000-0000-0000-0000-000000000003', 'guest@valhalla.demo', 'Ragnar', '1996-11-22');
-select seed_user('a0000000-0000-0000-0000-000000000004', 'lagertha@valhalla.demo', 'Lagertha', '1994-05-05');
-select seed_user('a0000000-0000-0000-0000-000000000005', 'bjorn@valhalla.demo', 'Bjorn', '1990-01-30');
-select seed_user('a0000000-0000-0000-0000-000000000006', 'floki@valhalla.demo', 'Floki', '1988-09-09');
-select seed_user('a0000000-0000-0000-0000-000000000007', 'ivar@valhalla.demo', 'Ivar', '1999-12-12');
-select seed_user('a0000000-0000-0000-0000-000000000008', 'astrid@valhalla.demo', 'Astrid', '1997-04-18');
-select seed_user('a0000000-0000-0000-0000-000000000009', 'ubbe@valhalla.demo', 'Ubbe', '1993-08-08');
-select seed_user('a0000000-0000-0000-0000-000000000010', 'torvi@valhalla.demo', 'Torvi', '1995-02-02');
-
-update profiles set role = 'admin', leaderboard_visible = false where id = 'a0000000-0000-0000-0000-000000000001';
-update profiles set role = 'staff', leaderboard_visible = false where id = 'a0000000-0000-0000-0000-000000000002';
-update profiles set hero_form = 'heroine' where nickname in ('Lagertha', 'Astrid', 'Torvi');
-insert into venue_staff values ('a0000000-0000-0000-0000-000000000002', '11111111-1111-1111-1111-111111111111');
-
--- visit history: spread across past weeks so streaks/levels differ
-create or replace function seed_visits(p_user uuid, p_weeks int, p_per_week int, p_amount int) returns void
-language plpgsql as $$
-declare w int; i int;
-begin
-  for w in reverse (p_weeks - 1)..0 loop
-    for i in 1..p_per_week loop
-      perform record_visit(p_user, '11111111-1111-1111-1111-111111111111', p_amount + (i * 350), 'manual', null, null,
-        now() - make_interval(weeks => w, days => (i * 2) % 6, hours => 20));
-    end loop;
-  end loop;
-end $$;
-
-select seed_visits('a0000000-0000-0000-0000-000000000005', 40, 2, 2800);  -- Bjorn: top
-select seed_visits('a0000000-0000-0000-0000-000000000004', 30, 2, 2200);  -- Lagertha
-select seed_visits('a0000000-0000-0000-0000-000000000006', 20, 1, 3500);  -- Floki
-select seed_visits('a0000000-0000-0000-0000-000000000009', 12, 1, 1800);  -- Ubbe
-select seed_visits('a0000000-0000-0000-0000-000000000010', 8, 1, 2500);   -- Torvi
-select seed_visits('a0000000-0000-0000-0000-000000000003', 6, 1, 2400);   -- Ragnar (demo guest)
-select seed_visits('a0000000-0000-0000-0000-000000000007', 3, 1, 1500);   -- Ivar
--- Astrid: was active, then left the ship
-select record_visit('a0000000-0000-0000-0000-000000000008', '11111111-1111-1111-1111-111111111111', 3200, 'manual', null, null, now() - interval '70 days');
-select record_visit('a0000000-0000-0000-0000-000000000008', '11111111-1111-1111-1111-111111111111', 2100, 'manual', null, null, now() - interval '63 days');
-
-drop function seed_visits(uuid, int, int, int);
-drop function seed_user(uuid, text, text, date);
-
--- pending claims for the staff demo
-insert into visit_claims (user_id, venue_id, amount_cents, note) values
-  ('a0000000-0000-0000-0000-000000000007', '11111111-1111-1111-1111-111111111111', 4250, 'Freitag, Tisch 4'),
-  ('a0000000-0000-0000-0000-000000000003', '11111111-1111-1111-1111-111111111111', 1890, null);
-
--- equipment for the leaderboard
-insert into equipment (user_id, slot, item_id)
-select 'a0000000-0000-0000-0000-000000000005', slot, id from items where asset_key in ('headgear_crown', 'cape_fur', 'companion_wolf', 'frame_iron', 'hand_horn')
-on conflict do nothing;
-insert into equipment (user_id, slot, item_id)
-select 'a0000000-0000-0000-0000-000000000004', slot, id from items where asset_key in ('headgear_leather_cap', 'hand_horn', 'frame_iron')
-on conflict do nothing;
-
 -- feed: events (with categories) and news
 insert into posts (type, category, title, body, venue_id, starts_at, ends_at, published_at, author_id, like_count) values
-  ('event', 'match', 'Bundesliga live: Union – Dortmund', 'Anpfiff um 18:30 auf der großen Leinwand. Wer ein Foto vom Spiel teilt, bekommt Punkte.', '11111111-1111-1111-1111-111111111111', ((current_date + 0) + time '18:30') at time zone 'Europe/Berlin', ((current_date + 0) + time '20:30') at time zone 'Europe/Berlin', now() - interval '3 days', 'a0000000-0000-0000-0000-000000000001', 0),
-  ('event', 'live', 'Skalden-Nacht: Live-Musik', 'Ab 21 Uhr spielen die „Nordwind“ akustisch. Eintritt frei für alle an Bord.', '11111111-1111-1111-1111-111111111111', ((current_date + 2) + time '21:00') at time zone 'Europe/Berlin', ((current_date + 2) + time '23:30') at time zone 'Europe/Berlin', now() - interval '2 days', 'a0000000-0000-0000-0000-000000000001', 0),
-  ('event', 'match', 'Champions League auf der Leinwand', 'Alle Spiele des Abends, Ton an, beste Plätze für Stammgäste.', '11111111-1111-1111-1111-111111111111', ((current_date + 4) + time '21:00') at time zone 'Europe/Berlin', ((current_date + 4) + time '23:00') at time zone 'Europe/Berlin', now() - interval '1 day', 'a0000000-0000-0000-0000-000000000001', 0),
-  ('event', 'quiz', 'Runen-Quiz', 'Sechs Runden rund um Nordmänner, Musik und Berlin. Teams bis sechs Personen.', '11111111-1111-1111-1111-111111111111', ((current_date + 6) + time '20:00') at time zone 'Europe/Berlin', ((current_date + 6) + time '22:30') at time zone 'Europe/Berlin', now() - interval '1 day', 'a0000000-0000-0000-0000-000000000001', 0),
-  ('event', 'special', 'Hnefatafl-Turnier', 'Das Brettspiel der Wikinger – Regeln erklären wir vor Ort. Die Siegerin bekommt einen legendären Rahmen.', '11111111-1111-1111-1111-111111111111', ((current_date + 9) + time '19:00') at time zone 'Europe/Berlin', ((current_date + 9) + time '22:00') at time zone 'Europe/Berlin', now(), 'a0000000-0000-0000-0000-000000000001', 0),
-  ('news', null, 'Neuer Hoodie im Shop', 'Der schwere Runen-Hoodie ist da. 5000 Münzen, nur 15 Stück.', null, null, null, now() - interval '4 days', 'a0000000-0000-0000-0000-000000000001', 0),
-  ('news', null, 'Doppelte Münzen am Donnerstag', 'Jeden Donnerstag im September gibt es doppelte Münzen auf alle Besuche.', '11111111-1111-1111-1111-111111111111', null, null, now() - interval '9 days', 'a0000000-0000-0000-0000-000000000001', 0),
-  ('news', null, 'Wir eröffnen in Hamburg', 'Im Winter öffnet Valhalla Hamburg. Wer beide Hallen besucht, wird Weltenbummler.', null, null, null, null, 'a0000000-0000-0000-0000-000000000001', 0);
+  ('event', 'match', 'Bundesliga live: Union – Dortmund', 'Anpfiff um 18:30 auf der großen Leinwand. Wer ein Foto vom Spiel teilt, bekommt Punkte.', '11111111-1111-1111-1111-111111111111', ((current_date + 0) + time '18:30') at time zone 'Europe/Berlin', ((current_date + 0) + time '20:30') at time zone 'Europe/Berlin', now() - interval '3 days', null, 0),
+  ('news', null, 'Neuer Hoodie im Shop', 'Der schwere Runen-Hoodie ist da. 5000 Münzen, nur 15 Stück.', null, null, null, now() - interval '4 days', null, 0),
+  ('news', null, 'Doppelte Münzen am Donnerstag', 'Jeden Donnerstag im September gibt es doppelte Münzen auf alle Besuche.', '11111111-1111-1111-1111-111111111111', null, null, now() - interval '9 days', null, 0),
+  ('news', null, 'Wir eröffnen in Hamburg', 'Im Winter öffnet Valhalla Hamburg. Wer beide Hallen besucht, wird Weltenbummler.', null, null, null, null, null, 0);
 
-insert into post_likes (post_id, user_id)
-select p.id, u.id from posts p cross join (select id from profiles where role = 'user') u
-where p.published_at is not null and random() < 0.6;
-update posts set like_count = (select count(*) from post_likes where post_id = posts.id);
+-- events from instagram.com/valhallahelmstedt (newest first; past ones stay as history); images: supabase/seed_media/events,
+-- uploaded to the `media` bucket by ./supabase/seed_media.sh; like_count = the Instagram likes
+insert into posts (type, category, title, body, venue_id, image_url, starts_at, ends_at, published_at, author_id, like_count) values
+  ('event', 'live', 'Bodo Lüddemann – zurück im Valhalla', 'Er ist zurück! Bodo spielt bei uns am 01.10.26 ab 19:30 Uhr. Kommt vorbei! Er ist ein Must-See, auch ohne Sitzplatz. Wir freuen uns, euch diesen genialen Act erneut präsentieren zu dürfen. 🎸🎶', '11111111-1111-1111-1111-111111111111', 'events/DdwNqVZNsD5.jpg', timestamptz '2026-10-01 19:30 Europe/Berlin', timestamptz '2026-10-01 19:30 Europe/Berlin' + interval '3 hours', timestamptz '2026-09-26 12:00 Europe/Berlin', null, 11),
+  ('event', 'match', 'Silberfüchse vs. MTV Hondelage II', 'Viel Erfolg Jungs! Wir drücken euch die Daumen 🫵', '11111111-1111-1111-1111-111111111111', 'events/DdUQkRtNU-T.jpg', timestamptz '2026-09-20 13:00 Europe/Berlin', timestamptz '2026-09-20 13:00 Europe/Berlin' + interval '3 hours', timestamptz '2026-09-15 12:00 Europe/Berlin', null, 11),
+  ('event', 'live', 'Mark Beerell – Abschiedskonzert', 'Am 27.08 gibt Mark Beerell sein Abschiedskonzert bei uns im Valhalla. Keine Sorgen, wir arbeiten bereits an regelmäßigen Revivals im Valhalla. Ab 19:30 Uhr geht''s los. Reserviert euch schnell die letzten Plätze. 🎼🎵🎶', '11111111-1111-1111-1111-111111111111', 'events/DceUV6YNJC-.jpg', timestamptz '2026-08-27 19:30 Europe/Berlin', timestamptz '2026-08-27 19:30 Europe/Berlin' + interval '3 hours', timestamptz '2026-08-25 12:00 Europe/Berlin', null, 11),
+  ('event', 'live', 'Country Man Nico', 'Leider kam es bei unserer Zeitungsannounce zu einem kleinen Fehler. Morgen, den 20.08 ist unser Country Man Nico in the house. Nächsten Donnerstag, den 27.08 ist dann Mark Beerell zu Gast. Beide Konzerte sind fast ausgebucht. Ruft kurz durch für die letzten Plätze. Wir freuen uns auf euch! 🎶🎵🎼🥁🎙', '11111111-1111-1111-1111-111111111111', 'events/DcOugPZtkjF.jpg', timestamptz '2026-08-20 19:30 Europe/Berlin', timestamptz '2026-08-20 19:30 Europe/Berlin' + interval '3 hours', timestamptz '2026-08-19 12:00 Europe/Berlin', null, 7),
+  ('event', 'live', 'Walter P – Live im Valhalla', 'Nach dem letzten großen Erfolg in Valhalla freuen wir uns das Trio am 23.07.26 ab 19:30 Uhr wieder in Valhalla begrüßen zu dürfen. Walther P bietet eine musikalische Reise durch die letzten 70 Jahre. Von Rock’n’Roll über Blues bis Folk und Pop. Wir freuen uns auf ein weiteres musikalisches Highlight!', '11111111-1111-1111-1111-111111111111', 'events/DbFl_CltkoX.jpg', timestamptz '2026-07-23 19:30 Europe/Berlin', timestamptz '2026-07-23 19:30 Europe/Berlin' + interval '3 hours', timestamptz '2026-07-22 12:00 Europe/Berlin', null, 6),
+  ('event', 'match', 'WM-Finale: Spanien – Argentinien', 'Am Sonntag, den 19.07.26 übertragen wir das Knallerfinale der WM Spanien vs. Argentinien. Wir sind für euch ab 17:00 Uhr geöffnet! Wir freuen uns auf einen gemeinsamen Fußball Abend!', '11111111-1111-1111-1111-111111111111', 'events/Da40tEMtN-3.jpg', timestamptz '2026-07-19 17:00 Europe/Berlin', timestamptz '2026-07-19 17:00 Europe/Berlin' + interval '3 hours', timestamptz '2026-07-17 12:00 Europe/Berlin', null, 26),
+  ('event', 'live', 'Bodo Lüddemann: Rock & Blues', 'Morgen, den 02.07.2026 präsentieren wir euch einen weiteren Top Act in Valhalla! Bodo Lüddemann spielt eine Mischung aus Rockclassics, Bluesrock & Blues. Sichert euch für morgen noch einen Platz und schickt uns eure Reservierung. Start wie gewohnt 19:30 Uhr 🎼🎵🎶🎙', '11111111-1111-1111-1111-111111111111', 'events/DaPnN9iNkWx.jpg', timestamptz '2026-07-02 19:30 Europe/Berlin', timestamptz '2026-07-02 19:30 Europe/Berlin' + interval '3 hours', timestamptz '2026-07-01 12:00 Europe/Berlin', null, 12),
+  ('event', 'match', 'WM: Deutschland – Paraguay', 'Heute, ab 18:00 Uhr sind wir bereit für Paraguay! Es ist spät, wir müssen alle arbeiten, aber diese Spiele finden nur alle 4 Jahre statt. Ich hoffe einige Fans schauen dennoch vorbei. Wir freuen uns auf euch! ⚽️🏆', '11111111-1111-1111-1111-111111111111', 'events/DaJjVW8qL8f.jpg', timestamptz '2026-06-28 18:00 Europe/Berlin', timestamptz '2026-06-28 18:00 Europe/Berlin' + interval '3 hours', timestamptz '2026-06-28 10:00 Europe/Berlin', null, 13),
+  ('event', 'match', 'WM: Deutschland – Ecuador', 'Heute, im Anschluss an das Livekonzert der Ego Monsters übertragen wir selbstverständlich das Spiel Deutschland gegen Ecuador! Bis später! ⚽️🏆', '11111111-1111-1111-1111-111111111111', 'events/DaAiPgTtIOw.jpg', timestamptz '2026-06-25 22:00 Europe/Berlin', timestamptz '2026-06-25 22:00 Europe/Berlin' + interval '3 hours', timestamptz '2026-06-25 10:00 Europe/Berlin', null, 13),
+  ('event', 'live', 'Ego Monsters live', 'Morgen, den 25.06.2026 ab 19:30 Uhr spielen die Ego Monsters bei uns im Valhalla. Anschließend übertragen wir das Deutschlandspiel. Wir freuen uns auf einen ereignisreichen Abend. Reservierungen empfohlen! 🎼🎵🎶🎸', '11111111-1111-1111-1111-111111111111', 'events/DZ9s1z6NSTe.jpg', timestamptz '2026-06-25 19:30 Europe/Berlin', timestamptz '2026-06-25 19:30 Europe/Berlin' + interval '3 hours', timestamptz '2026-06-24 12:00 Europe/Berlin', null, 27),
+  ('event', 'live', 'Mike – #playmysong', 'Morgen, den 18.06.2026 rockt Mike erneut das Valhalla. Sichert euch noch schnell Plätze! Wir freuen uns auf einen schönen, musikalischen Abend mit euch 🎼🎵🎶🎙', '11111111-1111-1111-1111-111111111111', 'events/DZrgutmtxNu.jpg', timestamptz '2026-06-18 19:30 Europe/Berlin', timestamptz '2026-06-18 19:30 Europe/Berlin' + interval '3 hours', timestamptz '2026-06-17 12:00 Europe/Berlin', null, 10),
+  ('event', 'match', 'WM: Deutschland – Curaçao', 'Morgen ab 18:00 Uhr sind wir für euch geöffnet und übertragen das Spiel Deutschland vs. Curacao. Wir freuen uns auf euch 🇩🇪', '11111111-1111-1111-1111-111111111111', 'events/DZiPJVHNqLx.jpg', timestamptz '2026-06-14 18:00 Europe/Berlin', timestamptz '2026-06-14 18:00 Europe/Berlin' + interval '3 hours', timestamptz '2026-06-13 12:00 Europe/Berlin', null, 15);
 
 -- receipts: demo POS register (serial printed in the TSE QR) and one-time codes
 insert into venue_registers (serial, venue_id, label) values ('VH-BERLIN-KASSE-1', '11111111-1111-1111-1111-111111111111', 'Demo-Kasse Theke');
 insert into receipt_codes (code, venue_id, amount_cents) values
   ('VH-7Q4K-2M', '11111111-1111-1111-1111-111111111111', 3800), ('VH-3X9P-5T', '11111111-1111-1111-1111-111111111111', 2450), ('VH-8N2D-6R', '11111111-1111-1111-1111-111111111111', 5120), ('VH-4H7W-9C', '11111111-1111-1111-1111-111111111111', 1890),
   ('VH-6J3B-8L', '11111111-1111-1111-1111-111111111111', 4200), ('VH-2F5V-7Q', '11111111-1111-1111-1111-111111111111', 3150), ('VH-9K8T-3D', '11111111-1111-1111-1111-111111111111', 6600), ('VH-5M2R-4X', '11111111-1111-1111-1111-111111111111', 2780),
-  ('VH-1W6C-2P', '11111111-1111-1111-1111-111111111111', 4450), ('VH-7T3N-5J', '11111111-1111-1111-1111-111111111111', 3320);
+  ('VH-1W6C-2P', '11111111-1111-1111-1111-111111111111', 4450), ('VH-7T3N-5J', '11111111-1111-1111-1111-111111111111', 3320),
+  ('VH-TEST-01', '11111111-1111-1111-1111-111111111111', 5000);  -- easy to type for manual tests (50,00 €)
 -- demo: accept old test receipts (production default is 48 hours)
 update economy_config set receipt_max_age_hours = 0 where id = 1;

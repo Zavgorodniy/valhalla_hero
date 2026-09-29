@@ -432,6 +432,8 @@ abstract class ReceiptResult with _$ReceiptResult {
     @Default(0) int streakWeeks,
     /// Keys of achievements unlocked by this receipt.
     @Default(<String>[]) List<String> achievements,
+    /// A later receipt of the same day: joined today's visit, coins only.
+    @Default(false) bool addedToVisit,
   }) = _ReceiptResult;
   factory ReceiptResult.fromJson(Map<String, dynamic> json) => _$ReceiptResultFromJson(json);
 }

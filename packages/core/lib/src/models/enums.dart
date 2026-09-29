@@ -16,10 +16,10 @@ enum ClaimStatus { pending, approved, rejected }
 enum VisitSource { claim, manual, receipt }
 
 @JsonEnum(fieldRename: FieldRename.snake)
-enum XpReason { visit, streak, achievement, manual }
+enum XpReason { visit, streak, achievement, manual, checkin }
 
 @JsonEnum(fieldRename: FieldRename.snake)
-enum CoinReason { visit, achievement, manual, reward, item, expiry, refund }
+enum CoinReason { visit, achievement, manual, reward, item, expiry, refund, checkin }
 
 @JsonEnum(fieldRename: FieldRename.snake)
 enum ItemSlot { headgear, handItem, cape, companion, frame }

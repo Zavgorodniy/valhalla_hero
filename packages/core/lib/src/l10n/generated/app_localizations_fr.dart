@@ -52,6 +52,14 @@ class L10nFr extends L10n {
   String get createAccount => 'Créer un compte';
 
   @override
+  String get signupConfirmTitle => 'Confirme ton e-mail';
+
+  @override
+  String signupConfirmBody(String email) {
+    return 'Nous avons envoyé un lien à $email. Ouvre-le, puis connecte-toi ici.';
+  }
+
+  @override
   String get completeProfile => 'Compléter le profil';
 
   @override
@@ -463,6 +471,9 @@ class L10nFr extends L10n {
 
   @override
   String get coinReasonRefund => 'Remboursement';
+
+  @override
+  String get coinReasonCheckin => 'Photo dans la saga';
 
   @override
   String get tabHero => 'Héros';
@@ -1075,7 +1086,7 @@ class L10nFr extends L10n {
   String get tabSaga => 'Saga';
 
   @override
-  String get tabScan => 'Scanner';
+  String get tabScan => 'Ajouter';
 
   @override
   String get tonight => 'Ce soir';
@@ -1088,6 +1099,9 @@ class L10nFr extends L10n {
 
   @override
   String get eventsEmpty => 'Aucun événement prévu pour le moment.';
+
+  @override
+  String get eventsPast => 'Événements passés';
 
   @override
   String get catMatch => 'Sport en direct';
@@ -1157,7 +1171,14 @@ class L10nFr extends L10n {
 
   @override
   String get receiptErrDailyLimit =>
-      'Tu as déjà utilisé un ticket ici aujourd’hui. À demain !';
+      'Limite de tickets du jour atteinte. À demain !';
+
+  @override
+  String get receiptAdded => 'Ticket ajouté';
+
+  @override
+  String get receiptAddedHint =>
+      'L’XP est par visite – les tickets suivants du jour rapportent des pièces.';
 
   @override
   String get sagaComposerTitle => 'Partage ton moment';

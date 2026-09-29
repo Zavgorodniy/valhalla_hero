@@ -6,6 +6,19 @@
 	<string>Zum Scannen des QR-Codes auf deinem Beleg und für Fotos aus der Halle.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Um ein Foto aus deiner Mediathek in der Saga zu teilen oder einen Beleg-QR aus einem Bild zu lesen.</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>digital.windmill.valhallaMobile.auth</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>valhallahero</string>
+			</array>
+		</dict>
+	</array>
+	<key>FlutterDeepLinkingEnabled</key>
+	<false/>
 	<key>CFBundleLocalizations</key>
 	<array>
 		<string>de</string>
@@ -24,7 +37,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Valhalla Mobile</string>
+	<string>Valhalla Hero</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

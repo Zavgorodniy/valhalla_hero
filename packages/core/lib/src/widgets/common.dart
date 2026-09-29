@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../l10n/generated/app_localizations.dart';
 import '../models/enums.dart';
 import '../theme/valhalla_theme.dart';
 
@@ -30,7 +31,7 @@ class AsyncView<T> extends StatelessWidget {
               const Icon(Icons.error_outline, color: VColors.blood, size: 32),
               const SizedBox(height: 8),
               Text('$e', textAlign: TextAlign.center, style: const TextStyle(color: VColors.ash, fontSize: 12)),
-              if (onRetry != null) TextButton(onPressed: onRetry, child: const Text('Retry')),
+              if (onRetry != null) TextButton(onPressed: onRetry, child: Text(L10n.of(context).retry)),
             ],
           ),
         ),

@@ -14,6 +14,15 @@
   "alreadyHaveAccount": "Schon ein Konto?",
   "termsAccept": "Ich akzeptiere die Teilnahmebedingungen und habe die Datenschutzerklärung gelesen.",
   "createAccount": "Konto erstellen",
+  "signupConfirmTitle": "Bestätige deine E-Mail",
+  "signupConfirmBody": "Wir haben einen Link an {email} geschickt. Öffne ihn und melde dich dann hier an.",
+  "@signupConfirmBody": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
   "completeProfile": "Profil vervollständigen",
   "authError": "Anmeldung fehlgeschlagen: {message}",
   "@authError": {
@@ -211,6 +220,7 @@
   "coinReasonItem": "Ausrüstung",
   "coinReasonExpiry": "Verfall",
   "coinReasonRefund": "Erstattung",
+  "coinReasonCheckin": "Foto in der Saga",
   "tabHero": "Held",
   "heroPath": "Heldenweg",
   "statStreak": "Serie",
@@ -599,11 +609,12 @@
   "comingSoon": "Bald verfügbar",
   "tabEvents": "Events",
   "tabSaga": "Saga",
-  "tabScan": "Scannen",
+  "tabScan": "Hinzufügen",
   "tonight": "Heute Abend",
   "tomorrow": "Morgen",
   "liveNow": "Läuft gerade",
   "eventsEmpty": "Gerade sind keine Events geplant.",
+  "eventsPast": "Vergangene Events",
   "catMatch": "Sport live",
   "catLive": "Live-Musik",
   "catQuiz": "Quiz",
@@ -625,7 +636,9 @@
   "receiptErrInvalid": "Das ist kein gültiger Valhalla-Beleg.",
   "receiptErrTooOld": "Dieser Beleg ist zu alt.",
   "receiptErrUnknownVenue": "Der Beleg stammt nicht aus einer Valhalla-Bar.",
-  "receiptErrDailyLimit": "Heute hast du hier schon einen Beleg eingelöst. Morgen wieder!",
+  "receiptErrDailyLimit": "Tageslimit für Belege erreicht. Bis morgen!",
+  "receiptAdded": "Beleg hinzugefügt",
+  "receiptAddedHint": "XP gibt es einmal pro Besuch – weitere Belege des Tages bringen Münzen.",
   "sagaComposerTitle": "Teile deinen Moment",
   "sagaComposerSub": "Foto aus der Halle oder mit Valhalla-Merch · +{xp} XP · +{coins} Münzen",
   "@sagaComposerSub": {

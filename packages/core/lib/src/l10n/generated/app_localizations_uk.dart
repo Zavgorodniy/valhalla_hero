@@ -52,6 +52,14 @@ class L10nUk extends L10n {
   String get createAccount => 'Створити акаунт';
 
   @override
+  String get signupConfirmTitle => 'Підтверди e-mail';
+
+  @override
+  String signupConfirmBody(String email) {
+    return 'Ми надіслали посилання на $email. Відкрий його, а потім увійди тут.';
+  }
+
+  @override
   String get completeProfile => 'Заповнити профіль';
 
   @override
@@ -463,6 +471,9 @@ class L10nUk extends L10n {
 
   @override
   String get coinReasonRefund => 'Повернення';
+
+  @override
+  String get coinReasonCheckin => 'Фото в сазі';
 
   @override
   String get tabHero => 'Герой';
@@ -1081,7 +1092,7 @@ class L10nUk extends L10n {
   String get tabSaga => 'Сага';
 
   @override
-  String get tabScan => 'Скан';
+  String get tabScan => 'Додати';
 
   @override
   String get tonight => 'Сьогодні ввечері';
@@ -1094,6 +1105,9 @@ class L10nUk extends L10n {
 
   @override
   String get eventsEmpty => 'Поки що подій не заплановано.';
+
+  @override
+  String get eventsPast => 'Минулі події';
 
   @override
   String get catMatch => 'Трансляції';
@@ -1160,8 +1174,14 @@ class L10nUk extends L10n {
   String get receiptErrUnknownVenue => 'Цей чек не з бару Valhalla.';
 
   @override
-  String get receiptErrDailyLimit =>
-      'Сьогодні тут уже зараховано твій чек. До завтра!';
+  String get receiptErrDailyLimit => 'Денний ліміт чеків вичерпано. До завтра!';
+
+  @override
+  String get receiptAdded => 'Чек додано';
+
+  @override
+  String get receiptAddedHint =>
+      'XP нараховується за візит – наступні чеки за день приносять монети.';
 
   @override
   String get sagaComposerTitle => 'Поділися моментом';

@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
 import '../models/enums.dart';
@@ -31,6 +32,9 @@ class VArt {
     'frame_wood', 'frame_iron', 'frame_runic', 'frame_gold',
   };
   static String item(String key) => 'assets/art/items/$key.webp';
+  static const appIcon = 'assets/art/brand/app_icon.webp';
+  static const emblem = 'assets/art/brand/emblem.webp';
+  static const coinHorse = 'assets/art/brand/coin_horse.svg';
 
   static Image image(String path, {double? width, double? height, BoxFit fit = BoxFit.cover, Alignment alignment = Alignment.center}) =>
       Image.asset(path, package: _pkg, width: width, height: height, fit: fit, alignment: alignment, gaplessPlayback: true);
@@ -80,29 +84,56 @@ class VEmbers extends StatelessWidget {
 }
 
 // ---------------------------------------------------------------- currency
+/// Coin with the Valhalla horse (design "Münze mit dem Valhalla-Pferd"):
+/// gold disc lit from the upper left, dark outer rim over a light inner ring,
+/// horse engraved from 20 px up.
 class VCoin extends StatelessWidget {
   const VCoin({super.key, this.size = 18});
   final double size;
+
   @override
-  Widget build(BuildContext context) {
-    final ring = math.max(1.0, size / 14);
-    return Container(
-      width: size,
-      height: size,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        gradient: const RadialGradient(
-          center: Alignment(-.32, -.44),
-          colors: [Color(0xFFFFEDB8), Color(0xFFF0B955), Color(0xFFC8862C), Color(0xFF7C4E14)],
-          stops: [0, .38, .72, 1],
+  Widget build(BuildContext context) => SizedBox(
+        width: size,
+        height: size,
+        child: DecoratedBox(
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: RadialGradient(
+              center: Alignment(-.32, -.44),
+              radius: .98,
+              colors: [Color(0xFFFFEDB8), Color(0xFFF0B955), Color(0xFFC8862C), Color(0xFF7C4E14)],
+              stops: [0, .38, .72, 1],
+            ),
+            boxShadow: [BoxShadow(color: Color(0x80000000), blurRadius: 3, offset: Offset(0, 1))],
+          ),
+          child: CustomPaint(
+            painter: _CoinRimPainter(),
+            child: size >= 19
+                ? Center(child: SvgPicture.asset(VArt.coinHorse, package: 'valhalla_core', width: size * .7, height: size * .7, excludeFromSemantics: true))
+                : null,
+          ),
         ),
-        border: Border.all(color: const Color(0x8C643C0A), width: ring),
-        boxShadow: const [BoxShadow(color: Color(0x80000000), blurRadius: 3, offset: Offset(0, 1))],
-      ),
-      child: size >= 30 ? Text('ᚠ', style: VType.runes(size: size * .46, color: const Color(0xD96B420F), spacing: 0)) : null,
-    );
+      );
+}
+
+class _CoinRimPainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size s) {
+    final c = s.center(Offset.zero);
+    final r = s.shortestSide / 2;
+    void ring(double width, Color color) => canvas.drawCircle(
+        c,
+        r - width / 2,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = width
+          ..color = color);
+    ring(s.shortestSide * .155, const Color(0x47FFE8AA)); // light inner ring
+    ring(math.max(1.0, s.shortestSide * .07), const Color(0x8C643C0A)); // dark rim on top
   }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
 
 class VGem extends StatelessWidget {

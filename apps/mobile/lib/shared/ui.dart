@@ -136,3 +136,28 @@ String dayAbbrev(L10n t, int weekday) => switch (weekday) {
       6 => t.daySat,
       _ => t.daySun,
     };
+
+/// Darkens the status-bar area so scrolled content doesn't collide with it.
+/// Place as the last child of a full-screen Stack.
+class StatusBarScrim extends StatelessWidget {
+  const StatusBarScrim({super.key});
+  @override
+  Widget build(BuildContext context) => Positioned(
+        top: 0,
+        left: 0,
+        right: 0,
+        height: MediaQuery.paddingOf(context).top + 20,
+        child: const IgnorePointer(
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Color(0xF20E0B09), Color(0xB30E0B09), Color(0x000E0B09)],
+                stops: [0, .6, 1],
+              ),
+            ),
+          ),
+        ),
+      );
+}

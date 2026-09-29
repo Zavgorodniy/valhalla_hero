@@ -70,7 +70,7 @@ class SplashScreen extends ConsumerWidget {
                 border: Border.all(color: VColors.gold.withValues(alpha: .45)),
               ),
               clipBehavior: Clip.antiAlias,
-              child: VArt.image(VArt.scene('icon')),
+              child: VArt.image(VArt.appIcon),
             ),
             const SizedBox(height: 28),
             const Wordmark(),

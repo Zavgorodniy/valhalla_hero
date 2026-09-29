@@ -18,6 +18,13 @@ class FeedRepository {
         return rows.map(Post.fromJson).toList();
       });
 
+  /// `posts.image_url` holds a full URL or a path in the public `media` bucket.
+  String? imageUrl(String? value) {
+    if (value == null || value.isEmpty) return null;
+    if (value.startsWith('http')) return value;
+    return _db.storage.from('media').getPublicUrl(value);
+  }
+
   Future<Set<String>> myLikes() => guard(() async {
         final rows = await _db.from('post_likes').select('post_id').eq('user_id', _db.auth.currentUser!.id);
         return rows.map((r) => r['post_id'] as String).toSet();

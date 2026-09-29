@@ -130,6 +130,7 @@ class _Row extends StatelessWidget {
       CoinReason.item => (VIcons.held, t.coinReasonItem),
       CoinReason.expiry => (VIcons.hourglass, t.coinReasonExpiry),
       CoinReason.refund => (VIcons.arrowUp, t.coinReasonRefund),
+      CoinReason.checkin => (VIcons.camera, t.coinReasonCheckin),
     };
     final color = entry.reason == CoinReason.expiry ? VColors.amber : (pos ? VColors.goldBright : const Color(0xFFCFC2AE));
     return Container(

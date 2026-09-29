@@ -13,8 +13,8 @@ class EmailLoginScreen extends ConsumerStatefulWidget {
 }
 
 class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
-  final _email = TextEditingController(text: Env.isLocal ? 'guest@valhalla.demo' : '');
-  final _password = TextEditingController(text: Env.isLocal ? 'Valhalla123!' : '');
+  final _email = TextEditingController();
+  final _password = TextEditingController();
   bool _busy = false;
 
   @override
@@ -68,25 +68,6 @@ class _EmailLoginScreenState extends ConsumerState<EmailLoginScreen> {
               VPrimaryButton(label: t.signIn, busy: _busy, onPressed: _submit),
               const SizedBox(height: 8),
               Center(child: TextButton(onPressed: () => context.push('/signup'), child: Text(t.newHereCreate))),
-              if (Env.isLocal) ...[
-                const SizedBox(height: 16),
-                Wrap(
-                  alignment: WrapAlignment.center,
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: [
-                    for (final demo in const ['guest', 'staff', 'admin', 'bjorn', 'lagertha', 'astrid'])
-                      VChip(
-                        label: demo,
-                        active: _email.text == '$demo@valhalla.demo',
-                        onTap: () => setState(() {
-                          _email.text = '$demo@valhalla.demo';
-                          _password.text = 'Valhalla123!';
-                        }),
-                      ),
-                  ],
-                ),
-              ],
             ]),
           ),
         ]),
